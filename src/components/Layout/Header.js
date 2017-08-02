@@ -8,6 +8,11 @@ export default function () {
     <header className="main-header">
       <nav className="main-nav">
         <Link to={'/'} className="main-nav-brand">music-genres.com</Link>
+
+        <div className="side-links">
+          <Link to={'/browse'} className="side-link">Browse</Link>
+          <Link to={'/random'} className="side-link">Random</Link>
+        </div>
       </nav>
     </header>
   )
