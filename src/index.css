@@ -4,3 +4,8 @@ body {
   font-family: sans-serif;
   background-color: #fbf3ff;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
