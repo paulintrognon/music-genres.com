@@ -1,0 +1,16 @@
+.main-header {
+  color: #fff;
+  background-color: #00D1B2;
+  box-shadow: 1px 0 3px #00D1B2;
+  min-height: 100px;
+}
+
+.main-header .main-nav-brand {
+  line-height: 100px;
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-left: 20px;
+  font-family: 'fyodor';
+  font-style: italic;
+  text-shadow: 1px 1px 1px #007d6a;
+}
