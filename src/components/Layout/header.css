@@ -6,6 +6,11 @@
   padding: 0 20px;
 }
 
+.main-nav {
+  max-width: 1500px;
+  margin: auto;
+}
+
 .main-nav .main-nav-brand {
   line-height: 100px;
   font-size: 3rem;
