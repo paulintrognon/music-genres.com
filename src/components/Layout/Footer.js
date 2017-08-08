@@ -12,7 +12,7 @@ export default function () {
       &nbsp;-&nbsp;
       <a href="https://github.com/paulintrognon/music-genres.com" target="_blank">
         <i className="fa fa-github" aria-hidden="true"></i>
-        &nbsp;Code
+        &nbsp;Code source
       </a>
     </footer>
   )
