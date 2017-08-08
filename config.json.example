@@ -1,0 +1,8 @@
+{
+  "database": {
+    "host": "localhost",
+    "user": "music-genres",
+    "password": "change-me",
+    "database": "music-genres"
+  }
+}
