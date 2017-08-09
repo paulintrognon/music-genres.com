@@ -35,6 +35,5 @@ app.set('port', port);
 const server = http.createServer(app);
 server.listen(port, () => {
   const address = server.address();
-  logger.debug(`debug`);
   logger.info(`API up and running on ${address.address}:${address.port}`);
 });
