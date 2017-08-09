@@ -2,6 +2,7 @@
 
 const config = require('../config');
 const cors = require('cors');
+const db = require('./db');
 const express = require('express');
 const http = require('http');
 const logger = require('./logger');
@@ -33,7 +34,11 @@ app.set('port', port);
  * Starting the app
  */
 const server = http.createServer(app);
-server.listen(port, () => {
-  const address = server.address();
-  logger.info(`API up and running on ${address.address}:${address.port}`);
-});
+
+db.connect()
+  .then(() => {
+    server.listen(port, () => {
+      const address = server.address();
+      logger.info(`API up and running on ${address.address}:${address.port}`);
+    });
+  });

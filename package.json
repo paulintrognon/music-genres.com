@@ -5,11 +5,12 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "^4.15.4",
-    "mysql": "^2.14.1",
+    "mysql2": "^1.4.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
+    "sequelize": "^4.4.2",
     "winston": "^2.3.1"
   },
   "scripts": {
