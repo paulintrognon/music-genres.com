@@ -6,12 +6,14 @@ module.exports = errorMiddleware;
 
 function errorMiddleware(promise, req, res, next) {
   if (promise instanceof Error) {
-    return handleError(promise);
+    handleError(promise);
+    return;
   }
 
   if (!promise.then) {
     res.send({ result: promise });
-    return next();
+    next();
+    return;
   }
 
   promise

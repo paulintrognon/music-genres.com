@@ -13,7 +13,7 @@ function createApiController() {
 
   // ------------------------------------------------------
 
-  function ping(req) {
+  function ping() {
     return {
       name: appPackage.name,
       version: appPackage.version,

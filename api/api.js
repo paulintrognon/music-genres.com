@@ -21,12 +21,12 @@ require('./routes/routes')(app);
  * Adding the response middleware
  */
 const response = require('./response');
-app.use(response)
+app.use(response);
 
 /**
  * Configuring the app
  */
-const port = config.api && config.api.port || 3001;
+const port = (config.api && config.api.port) || 3001;
 app.set('port', port);
 
 /**
