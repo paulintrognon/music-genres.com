@@ -1,22 +1,21 @@
 'use strict';
 
-const appPackage = require('../../package.json');
+const MusicGenre = require('../models/MusicGenre.js');
 
 module.exports = createController();
 
 function createController() {
   const controller = {};
 
-  controller.ping = ping;
+  controller.createMusicGenre = createMusicGenre;
 
   return controller;
 
   // ------------------------------------------------------
 
-  function ping() {
-    return {
-      name: appPackage.name,
-      version: appPackage.version,
-    };
+  function createMusicGenre() {
+    return MusicGenre.create({
+      name: 'Jazz',
+    });
   }
 }
