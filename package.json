@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
     "mysql2": "^1.4.0",
+    "proxyquire": "^1.8.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
@@ -23,6 +25,9 @@
   },
   "devDependencies": {
     "eslint": "^4.4.1",
-    "eslint-plugin-react": "^7.1.0"
+    "eslint-plugin-react": "^7.1.0",
+    "mocha": "^3.5.0",
+    "should": "^11.2.1",
+    "sinon": "^3.2.0"
   }
 }
