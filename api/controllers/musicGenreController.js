@@ -1,6 +1,6 @@
 'use strict';
 
-const MusicGenre = require('../models/MusicGenre.js');
+const musicGenreManager = require('../managers/musicGenreManager.js');
 
 module.exports = createController();
 
@@ -14,7 +14,7 @@ function createController() {
   // ------------------------------------------------------
 
   function createMusicGenre(req) {
-    return MusicGenre.create({
+    return musicGenreManager.create({
       name: req.body.name,
     });
   }

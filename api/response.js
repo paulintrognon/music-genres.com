@@ -17,15 +17,17 @@ function errorMiddleware(promise, req, res, next) {
   }
 
   promise
-      .then(result => res.status(200).send({ result }))
-      .catch(handleError)
-      .catch(next);
+    .then(result => res.status(200).send({ result }))
+    .catch(handleError)
+    .catch(next);
 
   function handleError(error) {
     logger.error(error);
     res.send({
       error: true,
+      name: error.name,
       message: error.message,
+      errors: error.errors,
     });
   }
 }
