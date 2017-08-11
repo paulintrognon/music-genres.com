@@ -1,5 +1,6 @@
 'use strict';
 
+const bodyParser = require('body-parser');
 const config = require('../config');
 const cors = require('cors');
 const db = require('./db');
@@ -12,6 +13,7 @@ const logger = require('./logger');
  */
 const app = express();
 app.use(cors());
+app.use(bodyParser.json()); // for parsing application/json
 
 /**
  * Configuring the app

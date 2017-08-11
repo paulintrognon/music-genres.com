@@ -13,9 +13,9 @@ function createController() {
 
   // ------------------------------------------------------
 
-  function createMusicGenre() {
+  function createMusicGenre(req) {
     return MusicGenre.create({
-      name: 'Jazz',
+      name: req.body.name,
     });
   }
 }
