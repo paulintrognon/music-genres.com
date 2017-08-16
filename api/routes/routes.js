@@ -8,6 +8,10 @@ function addRoutes(app) {
   app.use('/api', apiRoutes);
 
   // MUSIC GENRES ROUTES
-  const musicGenresRoutes = require('./musicGenres');
-  app.use('/api/music-genres', musicGenresRoutes);
+  const musicGenreRoutes = require('./musicGenreRoutes.js');
+  app.use('/api/music-genres', musicGenreRoutes);
+
+  // TRACKS ROUTES
+  const trackRoutes = require('./trackRoutes.js');
+  app.use('/api/tracks', trackRoutes);
 }

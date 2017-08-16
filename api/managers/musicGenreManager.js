@@ -9,6 +9,7 @@ function createManager() {
   const manager = {};
 
   manager.create = create;
+  manager.get = get;
 
   return manager;
 
@@ -19,5 +20,9 @@ function createManager() {
       name: data.name,
       slug: _.kebabCase(data.name),
     });
+  }
+
+  function get(id) {
+    return MusicGenre.findById(id);
   }
 }
