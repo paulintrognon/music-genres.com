@@ -23,6 +23,14 @@ function createDb() {
       dialect: 'mysql',
       logging: false,
 
+      dialectOptions: {
+        socketPath: '/var/run/mysqld/mysqld.sock',
+      },
+
+      define: {
+        paranoid: true,
+      },
+
       pool: {
         max: 5,
         min: 0,
@@ -30,13 +38,14 @@ function createDb() {
       },
     });
 
+    logger.debug('Connecting to database...', {
+      database: config.database,
+      user: config.user,
+      host: config.host,
+    });
+
     return db.sequelize.authenticate()
       .then(() => {
-        logger.debug('Connecting to database...', {
-          database: config.database,
-          user: config.user,
-          host: config.host,
-        });
         logger.info('Successfull connection to database', {
           database: config.database,
         });
