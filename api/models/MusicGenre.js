@@ -27,6 +27,4 @@ const MusicGenre = sequelize.define('music_genre', {
   ],
 });
 
-MusicGenre.sync();
-
 module.exports = MusicGenre;

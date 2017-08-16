@@ -16,7 +16,19 @@ function createController() {
 
   function addTrack(req) {
     const musicGenreId = req.body.musicGenreId;
+    const track = {
+      url: req.body.url,
+    };
+
     return musicGenreManager.get(musicGenreId)
-      .then(() => 'lol');
+      .then(musicGenre => {
+        if (!musicGenre) {
+          return { notFound: true };
+        }
+        return trackManager.create({
+          musicGenre,
+          track,
+        });
+      });
   }
 }

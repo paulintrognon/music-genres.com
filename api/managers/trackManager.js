@@ -14,8 +14,11 @@ function createManager() {
   // ------------------------------------------------------
 
   function create(data) {
+    const musicGenre = data.musicGenre;
+    const trackData = data.track;
     return Track.create({
-      url: data.url,
-    });
+      url: trackData.url,
+    })
+      .then(track => musicGenre.addTrack(track).return(track));
   }
 }

@@ -49,6 +49,9 @@ function createDb() {
         logger.info('Successfull connection to database', {
           database: config.database,
         });
+
+        // Load relations
+        require('./models/_relations.js');
       })
       .catch(err => {
         logger.error('Unable to connect to the database', {
