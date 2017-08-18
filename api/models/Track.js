@@ -8,6 +8,11 @@ const Track = sequelize.define('track', {
     notEmpty: true,
     len: [5, 200],
   },
+  upvotes: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
 });
 
 module.exports = Track;
