@@ -1,7 +1,9 @@
 'use strict';
 
-const musicGenreManager = require('../managers/musicGenreManager.js');
-const trackManager = require('../managers/trackManager.js');
+const musicGenreManager = require('../managers/musicGenreManager');
+const trackManager = require('../managers/trackManager');
+
+const userService = require('../services/user');
 
 module.exports = createController();
 
@@ -9,6 +11,7 @@ function createController() {
   const controller = {};
 
   controller.addTrack = addTrack;
+  controller.upvoteTrack = upvoteTrack;
 
   return controller;
 
@@ -30,5 +33,13 @@ function createController() {
           track,
         });
       });
+  }
+
+  function upvoteTrack(req) {
+    const userHash = userService.getUserHashFromRequest(req);
+    return trackManager.upvote({
+      userHash,
+      trackId: req.params.trackId,
+    });
   }
 }

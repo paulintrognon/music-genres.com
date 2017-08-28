@@ -1,6 +1,5 @@
 'use strict';
 
-const bluebird = require('bluebird');
 const db = require('./db.js');
 const logger = require('./logger.js');
 
@@ -8,11 +7,11 @@ db.connect()
   .then(() => {
     const MusicGenre = require('./models/MusicGenre.js');
     const Track = require('./models/Track.js');
+    const Vote = require('./models/Vote.js');
 
-    return bluebird.props({
-      musicGenre: MusicGenre.sync({ alter: true }),
-      track: Track.sync({ alter: true }),
-    });
+    return MusicGenre.sync({ alter: true })
+      .then(() => Track.sync({ alter: true }))
+      .then(() => Vote.sync({ alter: true }));
   })
   .then(res => {
     logger.info('done');
