@@ -11,20 +11,27 @@ function errorMiddleware(promise, req, res, next) {
   }
 
   if (!promise.then) {
-    res.send({ result: promise });
+    handleSuccess(promise);
     next();
     return;
   }
 
   promise
-    .then(result => res.status(200).send({ result }))
-    .catch(handleError)
+    .then(handleSuccess, handleError)
     .catch(next);
+
+  function handleSuccess(result) {
+    res.status(200).send({
+      status: 200,
+      result,
+    });
+  }
 
   function handleError(error) {
     logger.error(error);
-    res.send({
+    res.status(error.status || 400).send({
       error: true,
+      status: error.status,
       name: error.name,
       message: error.message,
       errors: error.errors,

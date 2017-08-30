@@ -1,5 +1,7 @@
 'use strict';
 
+const httpErrors = require('http-errors');
+
 const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
 
@@ -23,16 +25,10 @@ function createController() {
       url: req.body.url,
     };
 
-    return musicGenreManager.get(musicGenreId)
-      .then(musicGenre => {
-        if (!musicGenre) {
-          return { notFound: true };
-        }
-        return trackManager.create({
-          musicGenre,
-          track,
-        });
-      });
+    return trackManager.create({
+      musicGenreId,
+      track,
+    });
   }
 
   function upvoteTrack(req) {
