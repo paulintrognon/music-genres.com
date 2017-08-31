@@ -12,12 +12,13 @@ function createDb() {
   };
 
   db.connect = connect;
+  db.close = close;
 
   return db;
 
   // ------------------------------------------------------
 
-  function connect() {
+  function connect(options = {}) {
     db.sequelize = new Sequelize(config.database, config.user, config.password, {
       host: config.host,
       dialect: 'mysql',
@@ -25,6 +26,7 @@ function createDb() {
 
       dialectOptions: {
         socketPath: '/var/run/mysqld/mysqld.sock',
+        multipleStatements: options.multipleStatements,
       },
 
       define: {
@@ -61,6 +63,13 @@ function createDb() {
           error: err,
         });
         throw err;
-      });
+      })
+      .return(db.sequelize);
+  }
+
+  function close() {
+    if (db.sequelize) {
+      db.sequelize.close();
+    }
   }
 }

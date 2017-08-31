@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sync-db": "node api/syncDb.js",
+    "update-db": "node ./migrations/run.js",
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./api/tests --watch"
   },
   "devDependencies": {
