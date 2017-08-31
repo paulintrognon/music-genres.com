@@ -57,9 +57,14 @@ function createManager() {
 
   function random() {
     return Track.find({
+      attributes: ['id', 'musicGenreId', 'url', 'upvotes'],
       order: [
         Sequelize.fn('RAND'),
       ],
+      include: {
+        model: MusicGenre,
+        attributes: ['id', 'name', 'slug'],
+      },
     });
   }
 
@@ -70,7 +75,7 @@ function createManager() {
     const userHash = data.userHash;
 
     return bluebird.props({
-      vote: Vote.findOne({ where: { userHash } }),
+      vote: Vote.findOne({ where: { userHash, trackId } }),
       track: Track.findById(trackId),
     })
       .then(res => {
@@ -85,6 +90,9 @@ function createManager() {
           registerVote: registerVote(res.track, userHash),
           incrementVoteCount: incrementVoteCount(res.track),
         });
+      })
+      .then(res => {
+        return { upvotes: res.incrementVoteCount.upvotes };
       });
   }
 
