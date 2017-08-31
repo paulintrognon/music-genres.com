@@ -1,8 +1,5 @@
 'use strict';
 
-const httpErrors = require('http-errors');
-
-const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
 
 const userService = require('../services/user');
@@ -13,6 +10,7 @@ function createController() {
   const controller = {};
 
   controller.addTrack = addTrack;
+  controller.getRandomTrack = getRandomTrack;
   controller.upvoteTrack = upvoteTrack;
 
   return controller;
@@ -29,6 +27,10 @@ function createController() {
       musicGenreId,
       track,
     });
+  }
+
+  function getRandomTrack() {
+    return trackManager.random();
   }
 
   function upvoteTrack(req) {

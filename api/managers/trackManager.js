@@ -2,6 +2,7 @@
 
 const bluebird = require('bluebird');
 const httpErrors = require('http-errors');
+const Sequelize = require('sequelize');
 
 const musicGenreManager = require('./musicGenreManager');
 const MusicGenre = require('../models/MusicGenre');
@@ -14,6 +15,7 @@ function createManager() {
   const manager = {};
 
   manager.create = create;
+  manager.random = random;
   manager.upvote = upvote;
 
   return manager;
@@ -50,6 +52,18 @@ function createManager() {
       })
       .then(track => musicGenre.addTrack(track).return(track));
   }
+
+  // ------------------------------------------------------
+
+  function random() {
+    return Track.find({
+      order: [
+        Sequelize.fn('RAND'),
+      ],
+    });
+  }
+
+  // ------------------------------------------------------
 
   function upvote(data) {
     const trackId = data.trackId;
