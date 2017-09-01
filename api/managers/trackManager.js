@@ -57,7 +57,7 @@ function createManager() {
 
   function random() {
     return Track.find({
-      attributes: ['id', 'musicGenreId', 'url', 'upvotes'],
+      attributes: ['id', 'url', 'upvotes'],
       order: [
         Sequelize.fn('RAND'),
       ],
@@ -65,7 +65,13 @@ function createManager() {
         model: MusicGenre,
         attributes: ['id', 'name', 'slug'],
       },
-    });
+    })
+      .then(res => {
+        const track = res.toJSON();
+        track.musicGenre = track.music_genre;
+        delete track.music_genre;
+        return track;
+      });
   }
 
   // ------------------------------------------------------
