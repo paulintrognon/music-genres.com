@@ -6,8 +6,10 @@ const sinon = require('sinon');
 const should = require('should');
 
 const MusicGenreStub = {};
+const TrackStub = {};
 const model = proxyquire('../../managers/musicGenreManager.js', {
-  '../models/MusicGenre.js': MusicGenreStub,
+  '../models/MusicGenre': MusicGenreStub,
+  '../models/Track': TrackStub,
 });
 
 describe('musicGenreManager', () => {
