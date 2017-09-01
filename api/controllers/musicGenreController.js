@@ -8,6 +8,7 @@ function createController() {
   const controller = {};
 
   controller.createMusicGenre = createMusicGenre;
+  controller.getWithTracks = getWithTracks;
 
   return controller;
 
@@ -17,5 +18,9 @@ function createController() {
     return musicGenreManager.create({
       name: req.body.name,
     });
+  }
+
+  function getWithTracks(req) {
+    return musicGenreManager.getWithTracks(req.params.id);
   }
 }
