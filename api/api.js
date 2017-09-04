@@ -1,5 +1,18 @@
 'use strict';
 
+/**
+ * Checking config existance
+ */
+const path = require('path');
+const fs = require('fs');
+const configPath = path.join(__dirname, '../config.json');
+if (!fs.existsSync(configPath)) {
+  throw new Error('You need to create the config.json file from config.json.example');
+}
+
+/**
+ * Loading dependencies
+ */
 const bodyParser = require('body-parser');
 const config = require('../config');
 const cors = require('cors');
