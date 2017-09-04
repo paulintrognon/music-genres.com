@@ -67,7 +67,7 @@ function createManager() {
 
   function random() {
     return Track.find({
-      attributes: ['id', 'url', 'upvotes'],
+      attributes: ['id', 'serviceName', 'serviceTrackId', 'upvotes'],
       order: [
         Sequelize.fn('RAND'),
       ],

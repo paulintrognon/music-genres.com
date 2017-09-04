@@ -33,7 +33,7 @@ function createManager() {
       attributes: ['id', 'name', 'slug'],
       include: [{
         model: Track,
-        attributes: ['id', 'url', 'upvotes'],
+        attributes: ['id', 'serviceName', 'serviceTrackId', 'upvotes'],
       }],
       order: [
         [Track, 'upvotes', 'DESC'],
