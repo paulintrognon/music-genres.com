@@ -19,11 +19,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "front": "react-scripts start",
     "api": "./node_modules/.bin/nodemon api/api.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "update-db": "node ./migrations/run.js",
+    "test-front": "react-scripts test --env=jsdom",
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./api/tests --watch"
   },
   "devDependencies": {
