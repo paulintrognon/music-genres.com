@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 31, 2017 at 10:26 PM
+-- Generation Time: Sep 04, 2017 at 12:02 PM
 -- Server version: 5.5.55-0+deb8u1
 -- PHP Version: 7.0.19-1~dotdeb+8.1
 
@@ -60,7 +60,8 @@ INSERT INTO `music_genres` (`id`, `name`, `slug`, `createdAt`, `updatedAt`, `del
 
 CREATE TABLE `tracks` (
   `id` int(11) NOT NULL,
-  `url` varchar(255) NOT NULL,
+  `serviceName` varchar(30) NOT NULL,
+  `serviceTrackId` varchar(255) NOT NULL,
   `upvotes` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -72,15 +73,15 @@ CREATE TABLE `tracks` (
 -- Dumping data for table `tracks`
 --
 
-INSERT INTO `tracks` (`id`, `url`, `upvotes`, `createdAt`, `updatedAt`, `deletedAt`, `musicGenreId`) VALUES
-(1, 'https://www.youtube.com/watch?v=CD-E-LDc384', 1, '2017-08-31 22:07:19', '2017-08-31 22:21:06', NULL, 1),
-(2, 'https://www.youtube.com/watch?v=XpZHUVjQydI', 0, '2017-08-31 22:11:36', '2017-08-31 22:11:37', NULL, 2),
-(3, 'https://www.youtube.com/watch?v=vmDDOFXSgAs', 0, '2017-08-31 22:13:12', '2017-08-31 22:13:13', NULL, 2),
-(4, 'https://www.youtube.com/watch?v=sU1yg6_l0_4', 0, '2017-08-31 22:13:45', '2017-08-31 22:13:45', NULL, 2),
-(5, 'hhttps://www.youtube.com/watch?v=2G5rfPISIwo', 0, '2017-08-31 22:19:07', '2017-08-31 22:19:07', NULL, 1),
-(6, 'https://www.youtube.com/watch?v=CSvFpBOe8eY', 0, '2017-08-31 22:19:26', '2017-08-31 22:19:26', NULL, 1),
-(7, 'https://www.youtube.com/watch?v=StZcUAPRRac', 0, '2017-08-31 22:19:44', '2017-08-31 22:19:44', NULL, 1),
-(8, 'https://www.youtube.com/watch?v=6DPhFpZW5a8', 0, '2017-08-31 22:20:51', '2017-08-31 22:20:51', NULL, 1);
+INSERT INTO `tracks` (`id`, `serviceName`, `serviceTrackId`, `upvotes`, `createdAt`, `updatedAt`, `deletedAt`, `musicGenreId`) VALUES
+(1, 'youtube', 'CD-E-LDc384', 3, '2017-08-31 22:07:19', '2017-08-31 22:21:06', NULL, 1),
+(2, 'youtube', 'XpZHUVjQydI', 0, '2017-08-31 22:11:36', '2017-08-31 22:11:37', NULL, 2),
+(3, 'youtube', 'vmDDOFXSgAs', 5, '2017-08-31 22:13:12', '2017-08-31 22:13:13', NULL, 2),
+(4, 'youtube', 'sU1yg6_l0_4', 2, '2017-08-31 22:13:45', '2017-08-31 22:13:45', NULL, 2),
+(5, 'youtube', '2G5rfPISIwo', 1, '2017-08-31 22:19:07', '2017-08-31 22:19:07', NULL, 1),
+(6, 'youtube', 'CSvFpBOe8eY', 12, '2017-08-31 22:19:26', '2017-08-31 22:19:26', NULL, 1),
+(7, 'youtube', 'StZcUAPRRac', 2, '2017-08-31 22:19:44', '2017-08-31 22:19:44', NULL, 1),
+(8, 'youtube', '6DPhFpZW5a8', 0, '2017-08-31 22:20:51', '2017-08-31 22:20:51', NULL, 1);
 
 -- --------------------------------------------------------
 
