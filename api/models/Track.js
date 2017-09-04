@@ -2,11 +2,17 @@ const Sequelize = require('sequelize');
 const sequelize = require('../db.js').sequelize;
 
 const Track = sequelize.define('track', {
-  url: {
+  serviceName: {
     type: Sequelize.STRING,
     allowNull: false,
     notEmpty: true,
-    len: [5, 200],
+    len: [3, 30],
+  },
+  serviceTrackId: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    notEmpty: true,
+    len: [1, 255],
   },
   upvotes: {
     type: Sequelize.INTEGER,

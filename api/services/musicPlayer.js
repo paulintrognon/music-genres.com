@@ -35,10 +35,10 @@ function createService() {
 
   function extractYoutubeId(url, regex) {
     const matches = url.match(regex);
-    const id = matches[1];
+    const trackId = matches[1];
     return {
-      id,
-      service: 'youtube',
+      trackId,
+      name: 'youtube',
     };
   }
 }

@@ -9,6 +9,8 @@ const MusicGenre = require('../models/MusicGenre');
 const Track = require('../models/Track');
 const Vote = require('../models/Vote');
 
+const musicPlayerService = require('../services/musicPlayer');
+
 module.exports = createManager();
 
 function createManager() {
@@ -24,7 +26,12 @@ function createManager() {
 
   function create(data) {
     const musicGenreId = data.musicGenreId;
-    const trackToCreate = data.track;
+    const trackUrl = data.track.url;
+    const trackService = musicPlayerService.parseTrackUrl(trackUrl);
+    const trackToCreate = {
+      serviceName: trackService.name,
+      serviceTrackId: trackService.trackId,
+    };
 
     return musicGenreManager.get(musicGenreId)
       .then(musicGenre => {
@@ -38,7 +45,10 @@ function createManager() {
 
   function createTrackIntoMusicGenre(trackToCreate, musicGenre) {
     return Track.findOne({
-      where: { url: trackToCreate.url },
+      where: {
+        serviceName: trackToCreate.serviceName,
+        serviceTrackId: trackToCreate.serviceTrackId,
+      },
       include: [{
         model: MusicGenre,
         where: { id: musicGenre.id },
