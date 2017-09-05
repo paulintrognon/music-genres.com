@@ -1,7 +1,7 @@
 'use strict';
 
 const bluebird = require('bluebird');
-const db = require('../database/db');
+const db = require('../db/db');
 const es = require('../es/es');
 
 bluebird.props({

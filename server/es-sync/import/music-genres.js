@@ -1,7 +1,7 @@
 'use strict';
 
 const bluebird = require('bluebird');
-const MusicGenre = require('../../database/models/MusicGenre');
+const MusicGenre = require('../../db/models/MusicGenre');
 const es = require('../../es/es');
 
 module.exports = importMusicGenres;
