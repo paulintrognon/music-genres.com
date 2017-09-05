@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db.js').sequelize;
+const sequelize = require('../services/db.js').sequelize;
 
 const Vote = sequelize.define('vote', {
   userHash: {

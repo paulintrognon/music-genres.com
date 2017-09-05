@@ -6,7 +6,7 @@ const config = require('../config').database;
 const path = require('path');
 const readFile = bluebird.promisify(require("fs").readFile);
 
-const db = require('../api/db');
+const db = require('../api/services/db');
 
 db.connect({multipleStatements: true})
   .then(() => runMigrationFiles())

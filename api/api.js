@@ -16,7 +16,7 @@ if (!fs.existsSync(configPath)) {
 const bodyParser = require('body-parser');
 const config = require('../config');
 const cors = require('cors');
-const db = require('./db');
+const db = require('./services/db');
 const express = require('express');
 const http = require('http');
 const logger = require('./logger');

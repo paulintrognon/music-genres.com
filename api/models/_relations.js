@@ -1,6 +1,7 @@
 'use strict';
 
 const MusicGenre = require('./MusicGenre.js');
+MusicGenre.belongsToMany(MusicGenre, { as: 'Parents', through: 'music_genre_parents' });
 
 const Track = require('./Track.js');
 MusicGenre.hasMany(Track);

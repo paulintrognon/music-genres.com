@@ -1,7 +1,8 @@
 'use strict';
 
-const config = require('../config.json').database;
-const logger = require('./logger.js');
+const bluebird = require('bluebird');
+const config = require('../../config.json').database;
+const logger = require('./../logger.js');
 const Sequelize = require('sequelize');
 
 module.exports = createDb();
@@ -12,6 +13,7 @@ function createDb() {
   };
 
   db.connect = connect;
+  db.sync = sync;
   db.close = close;
 
   return db;
@@ -53,7 +55,7 @@ function createDb() {
         });
 
         // Load relations
-        require('./models/_relations.js');
+        require('../models/_relations.js');
       })
       .catch(err => {
         logger.error('Unable to connect to the database', {
@@ -67,9 +69,21 @@ function createDb() {
       .return(db.sequelize);
   }
 
-  function close() {
-    if (db.sequelize) {
-      db.sequelize.close();
+  function sync() {
+    if (!db.sequelize) {
+      logger.warning('db not connected - cannot sync');
+      return bluebird.resolve();
     }
+    logger.info('database syncronized');
+    return db.sequelize.sync();
+  }
+
+  function close() {
+    if (!db.sequelize) {
+      logger.warning('db not connected - cannot close');
+      return bluebird.resolve();
+    }
+    logger.info('database closed');
+    return db.sequelize.close();
   }
 }
