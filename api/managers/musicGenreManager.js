@@ -11,7 +11,6 @@ function createManager() {
   const manager = {};
 
   manager.create = create;
-  manager.get = get;
   manager.getWithTracks = getWithTracks;
 
   return manager;
@@ -27,10 +26,6 @@ function createManager() {
         })
           .then(musicGenre => addParents(musicGenre, parents));
       });
-  }
-
-  function get(id) {
-    return MusicGenre.findById(id);
   }
 
   function getWithTracks(id) {

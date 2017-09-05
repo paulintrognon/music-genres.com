@@ -4,7 +4,6 @@ const bluebird = require('bluebird');
 const httpErrors = require('http-errors');
 const Sequelize = require('sequelize');
 
-const musicGenreManager = require('./musicGenreManager');
 const MusicGenre = require('../models/MusicGenre');
 const Track = require('../models/Track');
 const Vote = require('../models/Vote');
@@ -33,7 +32,9 @@ function createManager() {
       serviceTrackId: trackService.trackId,
     };
 
-    return musicGenreManager.get(musicGenreId)
+    return MusicGenre.findById(musicGenreId, {
+      attributes: ['id', 'name', 'slug'],
+    })
       .then(musicGenre => {
         if (!musicGenre) {
           throw new httpErrors.NotFound('music-genre-not-found');
@@ -55,10 +56,14 @@ function createManager() {
       }],
     })
       .then(track => {
-        if (track) {
-          throw new Error('track-already-exists');
+        if (!track) {
+          return Track.create(trackToCreate);
         }
-        return Track.create(trackToCreate);
+        return bluebird.reject({
+          message: `Track already listed in "${musicGenre.name}"`,
+          code: 'track-already-listed',
+          payload: { trackToCreate, musicGenre },
+        });
       })
       .then(track => musicGenre.addTrack(track).return(track));
   }
