@@ -8,8 +8,8 @@ const should = require('should');
 const MusicGenreStub = {};
 const TrackStub = {};
 const model = proxyquire('../../managers/musicGenreManager.js', {
-  '../models/MusicGenre': MusicGenreStub,
-  '../models/Track': TrackStub,
+  '../../db/models/MusicGenre': MusicGenreStub,
+  '../../db/models/Track': TrackStub,
 });
 
 describe('musicGenreManager', () => {

@@ -1,0 +1,11 @@
+{
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type" : "text",
+      "analyzer": "simple"
+    }
+  }
+}

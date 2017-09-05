@@ -6,6 +6,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "cors": "^2.8.4",
+    "elasticsearch": "^13.3.1",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
     "mysql2": "^1.4.0",
@@ -19,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "front": "react-scripts start",
-    "api": "./node_modules/.bin/nodemon api/api.js",
+    "api": "./node_modules/.bin/nodemon server/api/api.js",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "update-db": "node ./migrations/run.js",

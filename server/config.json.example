@@ -5,6 +5,9 @@
     "password": "change-me",
     "database": "music-genres"
   },
+  "index": {
+    "host": "localhost:9200"
+  },
   "api": {
     "logger": {
       "console": {
