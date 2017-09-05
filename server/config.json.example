@@ -8,6 +8,13 @@
   "index": {
     "host": "localhost:9200"
   },
+  "player-services": {
+    "youtube": {
+      "api": {
+        "key": "change-me"
+      }
+    }
+  },
   "api": {
     "logger": {
       "console": {
