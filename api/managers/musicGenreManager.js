@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
 const MusicGenre = require('../models/MusicGenre');
 const Track = require('../models/Track');
 
@@ -18,10 +19,14 @@ function createManager() {
   // ------------------------------------------------------
 
   function create(data) {
-    return MusicGenre.create({
-      name: data.name,
-      slug: _.kebabCase(data.name),
-    });
+    return bluebird.map(data.parentIds || [], checkMusicGenreExistance)
+      .then(parents => {
+        return MusicGenre.create({
+          name: data.name,
+          slug: _.kebabCase(data.name),
+        })
+          .then(musicGenre => addParents(musicGenre, parents));
+      });
   }
 
   function get(id) {
@@ -39,5 +44,22 @@ function createManager() {
         [Track, 'upvotes', 'DESC'],
       ],
     });
+  }
+
+  // ------------------------------------------------------
+
+  function addParents(musicGenre, parents) {
+    return bluebird.map(parents, parent => musicGenre.addParent(parent))
+      .return(musicGenre);
+  }
+
+  function checkMusicGenreExistance(musicGenreId) {
+    return MusicGenre.findById(musicGenreId)
+      .then(musicGenre => {
+        if (!musicGenre) {
+          throw new Error(`music genre with id ${musicGenreId} does not exist`);
+        }
+        return musicGenre;
+      });
   }
 }

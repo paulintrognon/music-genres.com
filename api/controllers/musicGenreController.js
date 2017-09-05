@@ -1,6 +1,7 @@
 'use strict';
 
-const musicGenreManager = require('../managers/musicGenreManager.js');
+const _ = require('lodash');
+const musicGenreManager = require('../managers/musicGenreManager');
 
 module.exports = createController();
 
@@ -15,8 +16,13 @@ function createController() {
   // ------------------------------------------------------
 
   function createMusicGenre(req) {
+    const parentIds = req.body.parentIds || [];
+    if (req.body.parentId) {
+      parentIds.push(req.body.parentId);
+    }
     return musicGenreManager.create({
       name: req.body.name,
+      parentIds: _.uniq(parentIds),
     });
   }
 
