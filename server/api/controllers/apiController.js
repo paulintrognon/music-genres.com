@@ -1,6 +1,6 @@
 'use strict';
 
-const appPackage = require('../../package.json');
+const appPackage = require('../../../package.json');
 
 module.exports = createController();
 

@@ -2,8 +2,8 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const MusicGenre = require('../models/MusicGenre');
-const Track = require('../models/Track');
+const MusicGenre = require('../../database/models/MusicGenre');
+const Track = require('../../database/models/Track');
 
 module.exports = createManager();
 

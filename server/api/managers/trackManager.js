@@ -3,9 +3,9 @@
 const bluebird = require('bluebird');
 const Sequelize = require('sequelize');
 
-const MusicGenre = require('../models/MusicGenre');
-const Track = require('../models/Track');
-const Vote = require('../models/Vote');
+const MusicGenre = require('../../database/models/MusicGenre');
+const Track = require('../../database/models/Track');
+const Vote = require('../../database/models/Vote');
 
 const musicPlayerService = require('../services/musicPlayer');
 

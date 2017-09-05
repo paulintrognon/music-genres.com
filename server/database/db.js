@@ -1,7 +1,7 @@
 'use strict';
 
 const bluebird = require('bluebird');
-const config = require('../../config.json').database;
+const config = require('../config').database;
 const logger = require('./../logger.js');
 const Sequelize = require('sequelize');
 
@@ -55,7 +55,7 @@ function createDb() {
         });
 
         // Load relations
-        require('../models/_relations.js');
+        require('./models/_relations');
       })
       .catch(err => {
         logger.error('Unable to connect to the database', {
