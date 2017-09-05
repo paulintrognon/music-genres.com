@@ -56,10 +56,15 @@ function createManager() {
   function checkMusicGenreExistance(musicGenreId) {
     return MusicGenre.findById(musicGenreId)
       .then(musicGenre => {
-        if (!musicGenre) {
-          throw new Error(`music genre with id ${musicGenreId} does not exist`);
+        if (musicGenre) {
+          return musicGenre;
         }
-        return musicGenre;
+        return bluebird.reject({
+          status: 404,
+          code: 'music-genre-not-found',
+          message: `Music genre with ID ${musicGenreId} not found`,
+          payload: { musicGenreId },
+        });
       });
   }
 }

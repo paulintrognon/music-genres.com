@@ -28,12 +28,18 @@ function createMusicGenreSuite() {
   it('should make parentIds uniq', testParentIds(
     { parentIds: [1, 2, 2], parentId: 1 },
     [1, 2]));
+  it('should work with singular parentIds', testParentIds(
+    { parentIds: 1 },
+    [1]));
+  it('should work with several parentId', testParentIds(
+    { parentId: [1, 2, 3] },
+    [1, 2, 3]));
 
   function callManagerTest(done) {
     const req = {
       body: {
         name: 'Métal',
-        parentIds: [1, 3, 2],
+        parentIds: [1, 2, 3],
       },
     };
     const res = {};

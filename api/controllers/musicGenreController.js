@@ -16,13 +16,12 @@ function createController() {
   // ------------------------------------------------------
 
   function createMusicGenre(req) {
-    const parentIds = req.body.parentIds || [];
-    if (req.body.parentId) {
-      parentIds.push(req.body.parentId);
-    }
+    const parentId = req.body.parentId ? _.castArray(req.body.parentId) : [];
+    const parentIds = req.body.parentIds ? _.castArray(req.body.parentIds) : [];
+
     return musicGenreManager.create({
       name: req.body.name,
-      parentIds: _.uniq(parentIds),
+      parentIds: _.uniq(parentId.concat(parentIds)).sort(),
     });
   }
 

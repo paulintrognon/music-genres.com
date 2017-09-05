@@ -34,7 +34,9 @@ function errorMiddleware(promise, req, res, next) {
       status: error.status,
       name: error.name,
       message: error.message,
+      code: error.code,
       errors: error.errors,
+      payload: error.payload,
     });
   }
 }
