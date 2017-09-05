@@ -35,7 +35,11 @@ function createManager() {
     return MusicGenre.findById(musicGenreId)
       .then(musicGenre => {
         if (!musicGenre) {
-          throw new httpErrors.NotFound('music-genre-not-found');
+          return bluebird.reject({
+            code: 'music-genre-not-found',
+            message: 'The music genre in which to add the track does not exist.',
+            payload: { data },
+          });
         }
 
         return createTrackIntoMusicGenre(trackToCreate, musicGenre);
