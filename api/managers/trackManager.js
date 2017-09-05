@@ -36,6 +36,7 @@ function createManager() {
       .then(musicGenre => {
         if (!musicGenre) {
           return bluebird.reject({
+            status: 404,
             code: 'music-genre-not-found',
             message: 'The music genre in which to add the track does not exist.',
             payload: { data },
@@ -105,7 +106,12 @@ function createManager() {
     })
       .then(res => {
         if (!res.track) {
-          throw new httpErrors.NotFound('track-not-found');
+          return bluebird.reject({
+            status: 404,
+            code: 'track-not-found',
+            message: 'The track to upvote has not been found.',
+            payload: { data },
+          });
         }
         if (res.vote) {
           return bluebird.reject({
