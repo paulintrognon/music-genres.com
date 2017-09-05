@@ -12,33 +12,33 @@ const musicGenreTypeMapping = require('./mappings/music-genre');
 module.exports = createIndex();
 
 function createIndex() {
-  const index = {
+  const es = {
     client: null,
   };
 
-  index.connect = connect;
-  index.sync = sync;
-  index.close = close;
+  es.connect = connect;
+  es.sync = sync;
+  es.close = close;
 
-  return index;
+  return es;
 
   // ------------------------------------------------------
 
   function connect(options = {}) {
-    logger.debug('Connecting to index...', {
+    logger.debug('Connecting to es...', {
       host: config.host,
     });
 
-    index.client = new elasticsearch.Client(_.assign({
+    es.client = new elasticsearch.Client(_.assign({
       host: config.host,
       log: 'info',
     }, options));
 
-    return bluebird.resolve(index.client);
+    return bluebird.resolve(es.client);
   }
 
   function sync() {
-    return index.client.indices.create({
+    return es.client.indices.create({
       index: 'music-genres',
       body: {
         settings,
@@ -50,11 +50,11 @@ function createIndex() {
   }
 
   function close() {
-    if (!index.client) {
-      logger.warning('index not connected - cannot close');
+    if (!es.client) {
+      logger.warning('es not connected - cannot close');
       return bluebird.resolve();
     }
-    logger.info('index connection closed');
-    return index.client.close();
+    logger.info('es connection closed');
+    return es.client.close();
   }
 }
