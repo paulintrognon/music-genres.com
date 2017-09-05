@@ -32,9 +32,7 @@ function createManager() {
       serviceTrackId: trackService.trackId,
     };
 
-    return MusicGenre.findById(musicGenreId, {
-      attributes: ['id', 'name', 'slug'],
-    })
+    return MusicGenre.findById(musicGenreId)
       .then(musicGenre => {
         if (!musicGenre) {
           throw new httpErrors.NotFound('music-genre-not-found');
@@ -46,6 +44,7 @@ function createManager() {
 
   function createTrackIntoMusicGenre(trackToCreate, musicGenre) {
     return Track.findOne({
+      attributes: ['id', 'serviceName', 'serviceTrackId'],
       where: {
         serviceName: trackToCreate.serviceName,
         serviceTrackId: trackToCreate.serviceTrackId,
@@ -53,6 +52,7 @@ function createManager() {
       include: [{
         model: MusicGenre,
         where: { id: musicGenre.id },
+        attributes: ['id', 'name', 'slug'],
       }],
     })
       .then(track => {
@@ -62,7 +62,7 @@ function createManager() {
         return bluebird.reject({
           message: `Track already listed in "${musicGenre.name}"`,
           code: 'track-already-listed',
-          payload: { trackToCreate, musicGenre },
+          payload: { track },
         });
       })
       .then(track => musicGenre.addTrack(track).return(track));
@@ -97,14 +97,18 @@ function createManager() {
 
     return bluebird.props({
       vote: Vote.findOne({ where: { userHash, trackId } }),
-      track: Track.findById(trackId),
+      track: Track.findById(trackId, { attributes: ['id', 'upvotes'] }),
     })
       .then(res => {
         if (!res.track) {
           throw new httpErrors.NotFound('track-not-found');
         }
         if (res.vote) {
-          throw new Error('already-voted');
+          return bluebird.reject({
+            message: 'This client has already voted for that track',
+            code: 'already-voted',
+            payload: { track: res.track },
+          });
         }
 
         return bluebird.props({
