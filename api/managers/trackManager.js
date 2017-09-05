@@ -1,7 +1,6 @@
 'use strict';
 
 const bluebird = require('bluebird');
-const httpErrors = require('http-errors');
 const Sequelize = require('sequelize');
 
 const MusicGenre = require('../models/MusicGenre');
