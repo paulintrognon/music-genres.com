@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const config = require('../config').database;
+const config = require('config').database;
 const path = require('path');
 const readFile = bluebird.promisify(require("fs").readFile);
 

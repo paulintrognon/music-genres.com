@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const config = require('../config').index;
+const config = require('config').index;
 const logger = require('./../logger.js');
 const elasticsearch = require('elasticsearch');
 

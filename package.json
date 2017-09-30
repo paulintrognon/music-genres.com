@@ -18,6 +18,7 @@
     "winston": "^2.3.1"
   },
   "scripts": {
+    "postinstall": "ln -s ../config node_modules/config",
     "start": "react-scripts start",
     "front": "react-scripts start",
     "api": "./node_modules/.bin/nodemon server/api/api.js",

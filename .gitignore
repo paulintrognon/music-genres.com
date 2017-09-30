@@ -9,9 +9,11 @@
 # production
 /build
 
+# config
+/config/index.js
+
 # misc
 .DS_Store
-config.json
 
 # Logs
 api.log
