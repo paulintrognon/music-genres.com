@@ -17,7 +17,7 @@ function createIndex() {
   };
 
   es.connect = connect;
-  es.sync = sync;
+  es.init = init;
   es.close = close;
 
   return es;
@@ -37,7 +37,7 @@ function createIndex() {
     return bluebird.resolve(es.client);
   }
 
-  function sync() {
+  function init() {
     return es.client.indices.create({
       index: 'music-genres',
       body: {
