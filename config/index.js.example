@@ -1,0 +1,19 @@
+module.exports = {
+  database: {
+    host: "localhost",
+    user: "music-genres",
+    password: "change-me",
+    database: "music-genres",
+  },
+  api: {
+    logger: {
+      console: {
+        level: "debug",
+      },
+      file: {
+        filename: "api.log",
+        level: "debug",
+      }
+    }
+  }
+};
