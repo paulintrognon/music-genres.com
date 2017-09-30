@@ -13,6 +13,7 @@ function createManager() {
   manager.create = create;
   manager.getOrFail = getOrFail;
   manager.getWithTracks = getWithTracks;
+  manager.search = search;
 
   return manager;
 
@@ -54,6 +55,18 @@ function createManager() {
       order: [
         [Track, 'upvotes', 'DESC'],
       ],
+    });
+  }
+
+  function search(query) {
+    return MusicGenre.findAll({
+      attributes: ['id', 'name'],
+      where: {
+        name: {
+          $like: `%${query}%`,
+        },
+      },
+      limit: 5,
     });
   }
 

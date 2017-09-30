@@ -10,6 +10,7 @@ function createController() {
 
   controller.createMusicGenre = createMusicGenre;
   controller.getWithTracks = getWithTracks;
+  controller.search = search;
 
   return controller;
 
@@ -27,5 +28,9 @@ function createController() {
 
   function getWithTracks(req) {
     return musicGenreManager.getWithTracks(req.params.id);
+  }
+
+  function search(req) {
+    return musicGenreManager.search(req.query.query);
   }
 }
