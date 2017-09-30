@@ -3,11 +3,7 @@
 const proxyquire = require('proxyquire').noCallThru();
 const should = require('should');
 
-<<<<<<< HEAD:server/api/tests/services/trackHostingService.test.js
-const service = proxyquire('../../services/trackHostingService.js', {});
-=======
 const service = proxyquire('../../services/trackPlayerService.js', {});
->>>>>>> feature/youtube-api:server/api/tests/services/trackHostingService.test.js
 
 describe('musicPlayer service', () => {
   describe('.parseTrackUrl', parseTrackUrlSuite);

@@ -1,12 +1,8 @@
 'use strict';
 
-<<<<<<< HEAD
-const musicPlayerService = require('./trackHostingService');
-=======
 const bluebird = require('bluebird');
 
 const musicPlayerService = require('./trackPlayerService');
->>>>>>> feature/youtube-api
 const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
 
@@ -30,8 +26,6 @@ function createService() {
       serviceTrackId: trackService.trackId,
     };
 
-<<<<<<< HEAD
-=======
     return bluebird.props({
       musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
       trackDataFromPlayer: musicPlayerService.getTrackPropertiesFromPlayer(trackToCreate),
@@ -44,16 +38,10 @@ function createService() {
   }
 
   function verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId) {
->>>>>>> feature/youtube-api
     return musicGenreManager.getOrFail(musicGenreId)
       .then(musicGenre => {
         return trackManager.verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre)
           .return(musicGenre);
-<<<<<<< HEAD
-      })
-      .then(musicGenre => trackManager.create(trackToCreate, musicGenre));
-=======
       });
->>>>>>> feature/youtube-api
   }
 }
