@@ -24,7 +24,7 @@
     "api": "./node_modules/.bin/nodemon server/api/api.js",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "update-db": "node ./server/migrations/run.js",
+    "update-db": "node ./server/db/migrations/run.js",
     "test-front": "react-scripts test --env=jsdom",
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./server/api/tests --watch"
   },
