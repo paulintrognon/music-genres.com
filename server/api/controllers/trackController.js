@@ -1,6 +1,6 @@
 'use strict';
 
-const trackManager = require('../managers/trackManager');
+const trackService = require('../services/trackService');
 
 const userService = require('../services/user');
 
@@ -23,7 +23,7 @@ function createController() {
       url: req.body.url,
     };
 
-    return trackManager.create({
+    return trackService.addToGenre({
       musicGenreId,
       track,
     });

@@ -1,13 +1,12 @@
 'use strict';
 
+const _ = require('lodash');
 const bluebird = require('bluebird');
 const Sequelize = require('sequelize');
 
 const MusicGenre = require('../../db/models/MusicGenre');
 const Track = require('../../db/models/Track');
 const Vote = require('../../db/models/Vote');
-
-const musicPlayerService = require('../services/trackHostingService');
 
 module.exports = createManager();
 
@@ -17,41 +16,25 @@ function createManager() {
   manager.create = create;
   manager.random = random;
   manager.upvote = upvote;
+  manager.verifyIfTrackDoesNotAlreadyExistsInGenre = verifyIfTrackDoesNotAlreadyExistsInGenre;
 
   return manager;
 
   // ------------------------------------------------------
 
-  function create(data) {
-    const musicGenreId = data.musicGenreId;
-    const trackUrl = data.track.url;
-    const trackService = musicPlayerService.parseTrackUrl(trackUrl);
-    const trackToCreate = {
-      serviceName: trackService.name,
-      serviceTrackId: trackService.trackId,
-    };
-
-    return MusicGenre.findById(musicGenreId)
-      .then(musicGenre => {
-        if (!musicGenre) {
-          return bluebird.reject({
-            status: 404,
-            code: 'music-genre-not-found',
-            message: 'The music genre in which to add the track does not exist.',
-            payload: { data },
-          });
-        }
-
-        return createTrackIntoMusicGenre(trackToCreate, musicGenre);
-      });
+  function create(trackToAdd, musicGenre) {
+    return Track.create(trackToAdd)
+      .then(track => musicGenre.addTrack(track).return(track));
   }
 
-  function createTrackIntoMusicGenre(trackToCreate, musicGenre) {
+  // ------------------------------------------------------
+
+  function verifyIfTrackDoesNotAlreadyExistsInGenre(track, musicGenre) {
     return Track.findOne({
       attributes: ['id', 'serviceName', 'serviceTrackId'],
       where: {
-        serviceName: trackToCreate.serviceName,
-        serviceTrackId: trackToCreate.serviceTrackId,
+        serviceName: track.serviceName,
+        serviceTrackId: track.serviceTrackId,
       },
       include: [{
         model: MusicGenre,
@@ -61,15 +44,14 @@ function createManager() {
     })
       .then(track => {
         if (!track) {
-          return Track.create(trackToCreate);
+          return musicGenre;
         }
         return bluebird.reject({
           message: `Track already listed in "${musicGenre.name}"`,
           code: 'track-already-listed',
           payload: { track },
         });
-      })
-      .then(track => musicGenre.addTrack(track).return(track));
+      });
   }
 
   // ------------------------------------------------------
