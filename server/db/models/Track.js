@@ -14,12 +14,17 @@ const Track = sequelize.define('track', {
     notEmpty: true,
     len: [1, 255],
   },
-  /*title: {
+  title: {
     type: Sequelize.STRING,
     allowNull: false,
     notEmpty: true,
     len: [1, 100],
-  },*/
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    notEmpty: false,
+  },
   upvotes: {
     type: Sequelize.INTEGER,
     allowNull: false,

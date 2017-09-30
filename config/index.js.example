@@ -5,6 +5,13 @@ module.exports = {
     password: "change-me",
     database: "music-genres",
   },
+  playerServices: {
+    youtube: {
+      api: {
+        key: "change-me"
+      }
+    }
+  },
   api: {
     logger: {
       console: {
