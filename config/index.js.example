@@ -1,0 +1,22 @@
+module.exports = {
+  database: {
+    host: "localhost",
+    user: "music-genres",
+    password: "9BNReXahyhcCpW2p",
+    database: "music-genres",
+  },
+  'player-services': {
+    youtube: {
+      api: {
+        key: "change-me"
+      }
+    }
+  },
+  api: {
+    logger: {
+      console: {
+        level: "debug",
+      },
+    }
+  }
+}
