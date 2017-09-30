@@ -32,6 +32,7 @@ function createService() {
     })
       .then(res => {
         trackToCreate.title = res.trackDataFromPlayer.title;
+        trackToCreate.description = res.trackDataFromPlayer.description;
         return trackManager.create(trackToCreate, res.musicGenre);
       });
   }
