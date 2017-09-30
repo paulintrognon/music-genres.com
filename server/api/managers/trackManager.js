@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const bluebird = require('bluebird');
 const Sequelize = require('sequelize');
 
@@ -29,12 +28,12 @@ function createManager() {
 
   // ------------------------------------------------------
 
-  function verifyIfTrackDoesNotAlreadyExistsInGenre(track, musicGenre) {
+  function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
     return Track.findOne({
       attributes: ['id', 'serviceName', 'serviceTrackId'],
       where: {
-        serviceName: track.serviceName,
-        serviceTrackId: track.serviceTrackId,
+        serviceName: trackToCreate.serviceName,
+        serviceTrackId: trackToCreate.serviceTrackId,
       },
       include: [{
         model: MusicGenre,

@@ -1,6 +1,7 @@
 'use strict';
 
 const trackService = require('../services/trackService');
+const trackManager = require('../managers/trackManager');
 
 const userService = require('../services/user');
 
