@@ -11,6 +11,7 @@ function createManager() {
   const manager = {};
 
   manager.create = create;
+  manager.getOrFail = getOrFail;
   manager.getWithTracks = getWithTracks;
 
   return manager;
@@ -25,6 +26,21 @@ function createManager() {
           slug: _.kebabCase(data.name),
         })
           .then(musicGenre => addParents(musicGenre, parents));
+      });
+  }
+
+  function getOrFail(id) {
+    return MusicGenre.findById(id)
+      .then(musicGenre => {
+        if (musicGenre) {
+          return musicGenre;
+        }
+        return bluebird.reject({
+          status: 404,
+          code: 'music-genre-not-found',
+          message: `The music genre with id ${id} does not exist.`,
+          payload: { id },
+        });
       });
   }
 

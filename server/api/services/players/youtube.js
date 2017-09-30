@@ -1,7 +1,7 @@
 'use strict';
 
 const axios = require('axios');
-const config = require('../../../config').playerServices.youtube;
+const config = require('config').playerServices.youtube;
 
 module.exports = createService();
 

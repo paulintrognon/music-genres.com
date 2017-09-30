@@ -3,7 +3,7 @@
 const proxyquire = require('proxyquire').noCallThru();
 const should = require('should');
 
-const service = proxyquire('../../services/musicPlayer.js', {});
+const service = proxyquire('../../services/trackPlayerService.js', {});
 
 describe('musicPlayer service', () => {
   describe('.parseTrackUrl', parseTrackUrlSuite);
