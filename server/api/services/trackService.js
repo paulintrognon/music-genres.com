@@ -22,8 +22,8 @@ function createService() {
     const trackUrl = data.track.url;
     const trackService = musicPlayerService.parseTrackUrl(trackUrl);
     const trackToCreate = {
-      serviceName: trackService.name,
-      serviceTrackId: trackService.trackId,
+      playerName: trackService.name,
+      playerTrackId: trackService.trackId,
     };
 
     return bluebird.props({

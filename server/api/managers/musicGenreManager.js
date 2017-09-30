@@ -50,7 +50,7 @@ function createManager() {
       attributes: ['id', 'name', 'slug'],
       include: [{
         model: Track,
-        attributes: ['id', 'serviceName', 'serviceTrackId', 'upvotes'],
+        attributes: ['id', 'title', 'playerName', 'playerTrackId', 'upvotes'],
       }],
       order: [
         [Track, 'upvotes', 'DESC'],

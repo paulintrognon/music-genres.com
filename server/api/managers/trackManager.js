@@ -30,10 +30,10 @@ function createManager() {
 
   function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
     return Track.findOne({
-      attributes: ['id', 'serviceName', 'serviceTrackId'],
+      attributes: ['id', 'playerName', 'playerTrackId'],
       where: {
-        serviceName: trackToCreate.serviceName,
-        serviceTrackId: trackToCreate.serviceTrackId,
+        playerName: trackToCreate.playerName,
+        playerTrackId: trackToCreate.playerTrackId,
       },
       include: [{
         model: MusicGenre,
@@ -57,7 +57,7 @@ function createManager() {
 
   function random() {
     return Track.find({
-      attributes: ['id', 'serviceName', 'serviceTrackId', 'upvotes'],
+      attributes: ['id', 'playerName', 'playerTrackId', 'upvotes'],
       order: [
         Sequelize.fn('RAND'),
       ],

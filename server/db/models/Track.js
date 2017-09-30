@@ -2,13 +2,13 @@ const Sequelize = require('sequelize');
 const sequelize = require('../db.js').sequelize;
 
 const Track = sequelize.define('track', {
-  serviceName: {
+  playerName: {
     type: Sequelize.STRING,
     allowNull: false,
     notEmpty: true,
     len: [3, 30],
   },
-  serviceTrackId: {
+  playerTrackId: {
     type: Sequelize.STRING,
     allowNull: false,
     notEmpty: true,
@@ -21,7 +21,7 @@ const Track = sequelize.define('track', {
     len: [1, 100],
   },
   description: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     notEmpty: false,
   },

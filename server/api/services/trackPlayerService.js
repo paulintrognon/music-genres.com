@@ -29,7 +29,7 @@ function createService() {
   // ------------------------------------------------------
 
   function getTrackPropertiesFromPlayer(track) {
-    return service.players[track.serviceName].getTrackPropertiesFromId(track.serviceTrackId);
+    return service.players[track.playerName].getTrackPropertiesFromId(track.playerTrackId);
   }
 
   function parseTrackUrl(url) {
