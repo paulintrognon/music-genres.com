@@ -7,7 +7,7 @@ const MusicGenre = require('../../db/models/MusicGenre');
 const Track = require('../../db/models/Track');
 const Vote = require('../../db/models/Vote');
 
-const musicPlayerService = require('../services/musicPlayer');
+const musicPlayerService = require('../services/trackHostingService');
 
 module.exports = createManager();
 
