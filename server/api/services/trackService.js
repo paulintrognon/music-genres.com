@@ -1,5 +1,7 @@
 'use strict';
 
+const bluebird = require('bluebird');
+
 const musicPlayerService = require('./trackPlayerService');
 const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
@@ -24,11 +26,21 @@ function createService() {
       serviceTrackId: trackService.trackId,
     };
 
+    return bluebird.props({
+      musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
+      trackDataFromPlayer: musicPlayerService.getTrackPropertiesFromPlayer(trackToCreate),
+    })
+      .then(res => {
+        trackToCreate.title = res.trackDataFromPlayer.title;
+        return trackManager.create(trackToCreate, res.musicGenre);
+      });
+  }
+
+  function verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId) {
     return musicGenreManager.getOrFail(musicGenreId)
       .then(musicGenre => {
         return trackManager.verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre)
           .return(musicGenre);
-      })
-      .then(musicGenre => trackManager.create(trackToCreate, musicGenre));
+      });
   }
 }

@@ -5,7 +5,7 @@ module.exports = {
     password: "9BNReXahyhcCpW2p",
     database: "music-genres",
   },
-  'player-services': {
+  playerServices: {
     youtube: {
       api: {
         key: "change-me"

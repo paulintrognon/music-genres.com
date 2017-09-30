@@ -1,6 +1,7 @@
 'use strict';
 
 const axios = require('axios');
+const bluebird = require('bluebird');
 const config = require('config').playerServices.youtube;
 
 module.exports = createService();
@@ -27,6 +28,13 @@ function createService() {
             id: videoProperies.channelId,
           },
         };
+      }, error => {
+        return bluebird.reject({
+          status: error.response.status,
+          code: 'call-to-youtube-api-failed',
+          message: 'Error while calling Youtube API',
+          payload: error.response.data,
+        });
       });
   }
 }

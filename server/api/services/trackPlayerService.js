@@ -3,7 +3,11 @@
 module.exports = createService();
 
 function createService() {
-  const service = {};
+  const service = {
+    players: {
+      youtube: require('./players/youtube'),
+    },
+  };
   const detections = [
     {
       detect: /youtube\.com/,
@@ -17,11 +21,16 @@ function createService() {
     },
   ];
 
+  service.getTrackPropertiesFromPlayer = getTrackPropertiesFromPlayer;
   service.parseTrackUrl = parseTrackUrl;
 
   return service;
 
   // ------------------------------------------------------
+
+  function getTrackPropertiesFromPlayer(track) {
+    return service.players[track.serviceName].getTrackPropertiesFromId(track.serviceTrackId);
+  }
 
   function parseTrackUrl(url) {
     const detection = detections.find(detectionTested => {
