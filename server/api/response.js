@@ -2,9 +2,9 @@
 
 const logger = require('../logger');
 
-module.exports = errorMiddleware;
+module.exports = responseMiddleware;
 
-function errorMiddleware(promise, req, res, next) {
+function responseMiddleware(promise, req, res, next) {
   if (promise instanceof Error) {
     handleError(promise);
     return;
