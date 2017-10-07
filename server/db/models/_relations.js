@@ -1,12 +1,15 @@
 'use strict';
 
 const MusicGenre = require('./MusicGenre.js');
-MusicGenre.belongsToMany(MusicGenre, { as: 'Parents', through: 'music_genre_parents' });
+MusicGenre.belongsToMany(MusicGenre, { as: 'Parents', through: 'musicGenreParents' });
 
 const Track = require('./Track.js');
-MusicGenre.hasMany(Track);
-Track.belongsTo(MusicGenre);
+const MusicGenreTrack = require('./MusicGenreTrack');
+MusicGenre.belongsToMany(Track, { through: MusicGenreTrack });
+Track.belongsToMany(MusicGenre, { through: MusicGenreTrack });
 
 const Vote = require('./Vote.js');
 Track.hasMany(Vote);
 Vote.belongsTo(Track);
+MusicGenre.hasMany(Vote);
+Vote.belongsTo(MusicGenre);

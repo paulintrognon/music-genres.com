@@ -36,9 +36,12 @@ function createController() {
 
   function upvoteTrack(req) {
     const userHash = userService.getUserHashFromRequest(req);
+    const trackId = req.body.trackId;
+    const musicGenreId = req.body.musicGenreId;
     return trackManager.upvote({
       userHash,
-      trackId: req.params.trackId,
+      trackId,
+      musicGenreId,
     });
   }
 }

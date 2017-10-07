@@ -5,6 +5,7 @@ const Sequelize = require('sequelize');
 
 const MusicGenre = require('../../db/models/MusicGenre');
 const Track = require('../../db/models/Track');
+const MusicGenreTrack = require('../../db/models/MusicGenreTrack');
 const Vote = require('../../db/models/Vote');
 
 module.exports = createManager();
@@ -78,11 +79,14 @@ function createManager() {
 
   function upvote(data) {
     const trackId = data.trackId;
+    const musicGenreId = data.musicGenreId;
     const userHash = data.userHash;
 
     return bluebird.props({
-      vote: Vote.findOne({ where: { userHash, trackId } }),
-      track: Track.findById(trackId, { attributes: ['id', 'upvotes'] }),
+      vote: Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
+      track: Track.findById(trackId, { attributes: ['id'] }),
+      musicGenre: MusicGenre.findById(musicGenreId, { attributes: ['id'] }),
+      musicGenreTrack: MusicGenreTrack.findOne({ where: { trackId, musicGenreId } }),
     })
       .then(res => {
         if (!res.track) {
@@ -93,17 +97,33 @@ function createManager() {
             payload: { data },
           });
         }
+        if (!res.musicGenre) {
+          return bluebird.reject({
+            status: 404,
+            code: 'musicGenre-not-found',
+            message: 'The musicGenre in which to upvote the track has not been found.',
+            payload: { data },
+          });
+        }
+        if (!res.musicGenreTrack) {
+          return bluebird.reject({
+            status: 404,
+            code: 'musicGenreTrack-not-found',
+            message: 'The link between the genre and the track has not been found.',
+            payload: { data },
+          });
+        }
         if (res.vote) {
           return bluebird.reject({
-            message: 'This client has already voted for that track',
+            message: 'This client has already voted for that track in that genre',
             code: 'already-voted',
-            payload: { track: res.track },
+            payload: { data },
           });
         }
 
         return bluebird.props({
-          registerVote: registerVote(res.track, userHash),
-          incrementVoteCount: incrementVoteCount(res.track),
+          registerVote: registerVote(res.track, res.musicGenre, userHash),
+          incrementVoteCount: incrementVoteCount(res.musicGenreTrack),
         });
       })
       .then(res => {
@@ -111,13 +131,14 @@ function createManager() {
       });
   }
 
-  function registerVote(track, userHash) {
+  function registerVote(track, musicGenre, userHash) {
     return Vote.create({ userHash })
-      .then(vote => track.addVote(vote));
+      .then(vote => track.addVote(vote).return(vote))
+      .then(vote => musicGenre.addVote(vote));
   }
 
-  function incrementVoteCount(track) {
-    track.upvotes += 1;
-    return track.save();
+  function incrementVoteCount(musicGenreTrack) {
+    musicGenreTrack.upvotes += 1;
+    return musicGenreTrack.save();
   }
 }
