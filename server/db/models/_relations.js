@@ -7,6 +7,7 @@ const Track = require('./Track.js');
 const MusicGenreTrack = require('./MusicGenreTrack');
 MusicGenre.belongsToMany(Track, { through: MusicGenreTrack });
 Track.belongsToMany(MusicGenre, { through: MusicGenreTrack });
+MusicGenre.hasMany(MusicGenreTrack);
 
 const Vote = require('./Vote.js');
 Track.hasMany(Vote);
