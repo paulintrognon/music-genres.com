@@ -3,6 +3,7 @@
 const _ = require('lodash');
 const bluebird = require('bluebird');
 const MusicGenre = require('../../db/models/MusicGenre');
+const trackManager = require('./trackManager');
 const Track = require('../../db/models/Track');
 
 module.exports = createManager();
@@ -55,12 +56,7 @@ function createManager() {
     })
       .then(res => res.get({ plain: true }))
       .then(res => {
-        res.tracks = res.tracks.sort((a, b) => {
-          return b.musicGenreTrack.upvotes - a.musicGenreTrack.upvotes;
-        }).map(track => {
-          track.upvotes = track.musicGenreTrack.upvotes;
-          return _.omit(track, 'musicGenreTrack');
-        });
+        res.tracks = trackManager.formatWithUpvotes(res.tracks);
         return res;
       });
   }

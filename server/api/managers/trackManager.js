@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const bluebird = require('bluebird');
 const Sequelize = require('sequelize');
 
@@ -16,6 +17,7 @@ function createManager() {
   manager.create = create;
   manager.random = random;
   manager.upvote = upvote;
+  manager.formatWithUpvotes = formatWithUpvotes;
   manager.verifyIfTrackDoesNotAlreadyExistsInGenre = verifyIfTrackDoesNotAlreadyExistsInGenre;
 
   return manager;
@@ -25,6 +27,17 @@ function createManager() {
   function create(trackToAdd, musicGenre) {
     return Track.create(trackToAdd)
       .then(track => musicGenre.addTrack(track).return(track));
+  }
+
+  // ------------------------------------------------------
+
+  function formatWithUpvotes(tracks) {
+    return tracks.sort((a, b) => {
+      return b.musicGenreTrack.upvotes - a.musicGenreTrack.upvotes;
+    }).map(musicGenre => {
+      musicGenre.upvotes = musicGenre.musicGenreTrack.upvotes;
+      return _.omit(musicGenre, 'musicGenreTrack');
+    });
   }
 
   // ------------------------------------------------------
@@ -61,7 +74,7 @@ function createManager() {
 
   function random() {
     return Track.find({
-      attributes: ['id', 'playerName', 'playerTrackId', 'upvotes'],
+      attributes: ['id', 'playerName', 'playerTrackId'],
       order: [
         Sequelize.fn('RAND'),
       ],
@@ -70,11 +83,10 @@ function createManager() {
         attributes: ['id', 'name', 'slug'],
       },
     })
+      .then(res => res.get({ plain: true }))
       .then(res => {
-        const track = res.toJSON();
-        track.musicGenre = track.music_genre;
-        delete track.music_genre;
-        return track;
+        res.musicGenres = formatWithUpvotes(res.musicGenres);
+        return res;
       });
   }
 
