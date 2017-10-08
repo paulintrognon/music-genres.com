@@ -49,7 +49,10 @@ function createManager() {
         return bluebird.reject({
           message: `Track already listed in "${musicGenre.name}"`,
           code: 'track-already-listed',
-          payload: { track },
+          payload: {
+            trackToCreate,
+            musicGenre: musicGenre.get({ plain: true }),
+          },
         });
       });
   }
