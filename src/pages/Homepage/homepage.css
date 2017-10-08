@@ -24,13 +24,12 @@
   text-transform: uppercase;
   color: #FFF;
   padding: 25px 55px;
-  background-color: #83FFF5;
+  background-color: #34A8A0;
   border: none;
   font-size: 1.4rem;
   box-shadow: 0 0 5px #5CE0D5;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat Subrayada';
   font-weight: bold;
-  text-decoration: underline;
 }
 
 .homepage-container .random-container .random-button:hover {
