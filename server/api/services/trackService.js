@@ -5,6 +5,7 @@ const bluebird = require('bluebird');
 const musicPlayerService = require('./trackPlayerService');
 const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
+const Track = require('../../db/models/Track');
 
 module.exports = createService();
 
@@ -28,12 +29,18 @@ function createService() {
 
     return bluebird.props({
       musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
-      trackDataFromPlayer: musicPlayerService.getTrackPropertiesFromPlayer(trackToCreate),
+      track: Track.findOne({ where: trackToCreate }),
     })
       .then(res => {
-        trackToCreate.title = res.trackDataFromPlayer.title;
-        trackToCreate.description = res.trackDataFromPlayer.description;
-        return trackManager.create(trackToCreate, res.musicGenre);
+        if (res.track) {
+          return res.musicGenre.addTrack(res.track).return(res.track);
+        }
+        return musicPlayerService.getTrackPropertiesFromPlayer(trackToCreate)
+          .then(trackDataFromPlayer => {
+            trackToCreate.title = trackDataFromPlayer.title;
+            trackToCreate.description = trackDataFromPlayer.description;
+            return trackManager.create(trackToCreate, res.musicGenre);
+          });
       });
   }
 

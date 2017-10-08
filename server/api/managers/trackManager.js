@@ -44,7 +44,7 @@ function createManager() {
 
   function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
     return Track.findOne({
-      attributes: ['id', 'playerName', 'playerTrackId'],
+      attributes: ['id'],
       where: {
         playerName: trackToCreate.playerName,
         playerTrackId: trackToCreate.playerTrackId,
