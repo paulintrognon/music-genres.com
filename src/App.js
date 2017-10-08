@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Route } from 'react-router';
+import { ConnectedRouter } from 'react-router-redux';
+import { Provider } from 'react-redux';
 
 import Layout from './components/Layout/Layout.js';
+import Homepage from './pages/Homepage';
+
+import store from './store';
+import history from './history';
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Layout>
-          hello world
-        </Layout>
-      </Router>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Layout>
+            <Route path="/" exact={true} component={Homepage}></Route>
+          </Layout>
+        </ConnectedRouter>
+      </Provider>
     );
   }
 }
