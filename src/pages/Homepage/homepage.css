@@ -1,0 +1,38 @@
+.homepage-container {
+  text-align: center;
+}
+
+.homepage-container .search-container {
+  margin-top: 120px;
+}
+
+.homepage-container .search-container .search-input {
+  width: 625px;
+  border: 2px solid #FFF;
+  color: #FFF;
+  background-color: #E62979;
+  padding: 15px 25px;
+  box-shadow: 0 0 5px #AAA;
+  font-size: 1.5rem;
+}
+
+.homepage-container .or-container {
+  margin: 50px;
+}
+
+.homepage-container .random-container .random-button {
+  text-transform: uppercase;
+  color: #FFF;
+  padding: 25px 55px;
+  background-color: #83FFF5;
+  border: none;
+  font-size: 1.4rem;
+  box-shadow: 0 0 5px #5CE0D5;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.homepage-container .random-container .random-button:hover {
+  cursor: pointer;
+}
