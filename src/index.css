@@ -1,8 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'GidoleRegular', sans-serif;
-  background-color: #fbf3ff;
+  background-color: #64F6EC;
+  color: #fff;
+  font-family: 'Oxygen', sans-serif;
   min-height: 100vh;
 }
 

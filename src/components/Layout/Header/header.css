@@ -1,0 +1,23 @@
+.main-header {
+  padding: 30px 40px;
+}
+
+.main-header .main-logo {
+  display: inline-block;
+}
+
+.main-header .side-buttons {
+  float: right;
+  margin-top: 24px;
+}
+
+.main-header .side-buttons .side-button {
+  border: 2px solid white;
+  padding: 10px 22px;
+  margin-left: 20px;
+}
+
+.main-header .side-buttons .side-button img {
+  margin-left: 10px;
+  vertical-align: middle;
+}
