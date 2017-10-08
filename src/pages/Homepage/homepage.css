@@ -6,6 +6,10 @@
   margin-top: 120px;
 }
 
+.homepage-container .search-container .search-input-container {
+  position: relative;
+}
+
 .homepage-container .search-container .search-input {
   width: 625px;
   border: 2px solid #FFF;
@@ -16,8 +20,16 @@
   font-size: 1.5rem;
 }
 
+.homepage-container .search-container .search-icon {
+  position: absolute;
+  right: 30px;
+  bottom: 1px;
+  cursor: pointer;
+  background-color: #E62979;
+}
+
 .homepage-container .or-container {
-  margin: 50px;
+  margin: 75px;
 }
 
 .homepage-container .random-container .random-button {
