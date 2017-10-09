@@ -1,31 +1,15 @@
 .homepage-container {
   text-align: center;
+  padding-top: 120px;
 }
 
-.homepage-container .search-container {
-  margin-top: 120px;
+.homepage-container>div {
+  opacity: 1;
+  transition: opacity 500ms;
 }
 
-.homepage-container .search-container .search-input-container {
-  position: relative;
-}
-
-.homepage-container .search-container .search-input {
-  width: 625px;
-  border: 2px solid #FFF;
-  color: #FFF;
-  background-color: #E62979;
-  padding: 15px 25px;
-  box-shadow: 0 0 5px #AAA;
-  font-size: 1.5rem;
-}
-
-.homepage-container .search-container .search-icon {
-  position: absolute;
-  right: 30px;
-  bottom: 1px;
-  cursor: pointer;
-  background-color: #E62979;
+.homepage-container .hidden {
+  opacity: 0;
 }
 
 .homepage-container .or-container {

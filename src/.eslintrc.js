@@ -1,14 +1,11 @@
 module.exports = {
+  parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 6,
-    sourceType: "module",
+    ecmaVersion: 2017,
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-  },
-  env: {
-    node: true,
-    browser: true,
   },
   globals: {
     React: true
@@ -17,4 +14,7 @@ module.exports = {
   plugins: [
     'react',
   ],
+  rules: {
+    "react/prop-types": 0,
+  },
 };

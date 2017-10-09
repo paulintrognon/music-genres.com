@@ -1,0 +1,21 @@
+.search-genres-container .search-input-container {
+  position: relative;
+}
+
+.search-genres-container .search-input-container .search-input {
+  width: 625px;
+  border: 2px solid #FFF;
+  color: #FFF;
+  background-color: #E62979;
+  padding: 15px 25px;
+  box-shadow: 0 0 5px #AAA;
+  font-size: 1.5rem;
+}
+
+.search-genres-container .search-input-container .search-icon {
+  position: absolute;
+  right: 30px;
+  bottom: 1px;
+  cursor: pointer;
+  background-color: #E62979;
+}
