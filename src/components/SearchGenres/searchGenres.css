@@ -4,12 +4,15 @@
 
 .search-genres-container .search-input-container .search-input {
   width: 625px;
+  max-width: 80%;
+  height: 40px;
   border: 2px solid #FFF;
   color: #FFF;
   background-color: #E62979;
   padding: 15px 25px;
   box-shadow: 0 0 5px #AAA;
   font-size: 1.5rem;
+  transition: width 200ms, height 200ms;
 }
 
 .search-genres-container .search-input-container .search-icon {
@@ -18,4 +21,15 @@
   bottom: 1px;
   cursor: pointer;
   background-color: #E62979;
+}
+
+.search-genres-container .search-input-container.focused .search-input {
+  width: 800px;
+  height: 50px;
+}
+
+@media (max-width: 800px) {
+  .search-genres-container .search-input-container.focused .search-input {
+    height: 40px;
+  }
 }

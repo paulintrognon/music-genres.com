@@ -30,3 +30,9 @@
 .homepage-container .random-container .random-button:hover {
   cursor: pointer;
 }
+
+@media (max-width: 800px) {
+  .homepage-container {
+    padding-top: 20px;
+  }
+}
