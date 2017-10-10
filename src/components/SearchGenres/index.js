@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeFocusAction } from '../../actions/searchGenresActions';
+import { changeFocusAction, suggestGenresAction } from '../../actions/searchGenresActions';
 
 import magnifyingGlass from './magnifying-glass.png';
 import './searchGenres.css';
@@ -11,6 +11,12 @@ function mapStoreToProps(store) {
   };
 }
 class SearchGenre extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      text: '',
+    };
+  }
 
   onFocus() {
     this.props.dispatch(changeFocusAction(true));
@@ -18,6 +24,14 @@ class SearchGenre extends React.Component {
 
   onBlur() {
     this.props.dispatch(changeFocusAction(false));
+  }
+
+  handleChange(event) {
+    const text = event.target.value;
+    this.setState({ text });
+    if (text.length >= 3) {
+      this.props.dispatch(suggestGenresAction(text));
+    }
   }
 
   render() {
@@ -28,8 +42,10 @@ class SearchGenre extends React.Component {
             type="text"
             className="search-input"
             placeholder="Look for a genre"
+            onChange={this.handleChange.bind(this)}
             onFocus={this.onFocus.bind(this)}
             onBlur={this.onBlur.bind(this)}
+            value={this.state.text}
           />
           <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" />
         </span>

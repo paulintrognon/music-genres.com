@@ -4,3 +4,9 @@ export function changeFocusAction(focus) {
   }
   return { type: 'SEARCH_GENRE_UNFOCUS' };
 }
+
+export function suggestGenresAction(text) {
+  return dispatch => {
+    console.log('suggest', text);
+  };
+}
