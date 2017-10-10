@@ -1,3 +1,5 @@
+import api from '../services/api';
+
 export function changeFocusAction(focus) {
   if (focus) {
     return { type: 'SEARCH_GENRE_FOCUS' };
@@ -8,5 +10,7 @@ export function changeFocusAction(focus) {
 export function suggestGenresAction(text) {
   return dispatch => {
     console.log('suggest', text);
+    api.get(`/music-genres/search?query=${text}`)
+      .then(res => console.log(res));
   };
 }
