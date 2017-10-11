@@ -2,13 +2,12 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const config = require('config').database;
 const path = require('path');
-const readFile = bluebird.promisify(require("fs").readFile);
+const readFile = bluebird.promisify(require('fs').readFile);
 
-const db = require('../db/db');
+const db = require('../db');
 
-db.connect({multipleStatements: true})
+db.connect({ multipleStatements: true })
   .then(() => runMigrationFiles())
   .finally(() => db.close());
 
@@ -17,8 +16,8 @@ function runMigrationFiles() {
   const end = process.argv[3] || 99;
 
   if (!start) {
-      console.error('No version specified');
-      return;
+    console.error('No version specified');
+    return;
   }
 
   const range = _.range(start, end);
