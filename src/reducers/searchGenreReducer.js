@@ -11,7 +11,7 @@ export default function reducer(state = defaultState, action) {
     case 'SEARCH_GENRE_UNFOCUS':
       return { ...state, isFocused: false };
 
-    case 'SEARCH_GENRE_SUGGESTIONS_FETCHED':
+    case 'SEARCH_GENRE_SUGGESTIONS_SET':
       return { ...state, suggestions: action.payload };
 
     default:

@@ -1,15 +1,20 @@
+.search-genres-container {
+  width: 800px;
+  max-width: 80%;
+  margin: auto;
+}
+
 .search-genres-container .search-input-container {
   position: relative;
 }
 
 .search-genres-container .search-input-container .search-input {
-  width: 625px;
-  max-width: 80%;
+  width: 80%;
   height: 40px;
   border: 2px solid #FFF;
   color: #FFF;
   background-color: #E62979;
-  padding: 15px 25px;
+  padding: 15px 3%;
   box-shadow: 0 0 5px #AAA;
   font-size: 1.5rem;
   transition: width 200ms, height 200ms;
@@ -24,7 +29,7 @@
 }
 
 .search-genres-container .search-input-container.focused .search-input {
-  width: 800px;
+  width: 94%;
   height: 50px;
 }
 

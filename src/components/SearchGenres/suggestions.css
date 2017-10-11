@@ -1,0 +1,19 @@
+.search-genres-container .suggestions-container {
+  background-color: #E62979;
+  text-align: left;
+  font-size: 1.4rem;
+}
+
+.search-genres-container .suggestions-container .suggestions-item {
+  padding: 1.5% 3%;
+}
+
+.search-genres-container .suggestions-container .suggestions-item.selected {
+  background-color: #E688B0;
+}
+
+@media (max-width: 800px) {
+  .search-genres-container .search-input-container.focused .search-input {
+    height: 40px;
+  }
+}

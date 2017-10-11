@@ -12,8 +12,15 @@ export function suggestGenresAction(text) {
     api.get(`/music-genres/search?query=${text}`)
       .then(res => {
         if (!res.data.error) {
-          dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_FETCHED', payload: res.data.result });
+          dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_SET', payload: res.data.result });
         }
       });
+  };
+}
+
+export function resetGenresSuggestionsAction() {
+  return {
+    type: 'SEARCH_GENRE_SUGGESTIONS_SET',
+    payload: [],
   };
 }

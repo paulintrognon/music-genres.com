@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeFocusAction, suggestGenresAction } from '../../actions/searchGenresActions';
+import { changeFocusAction, suggestGenresAction, resetGenresSuggestionsAction } from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './suggestions';
 import magnifyingGlass from './magnifying-glass.png';
@@ -24,7 +24,9 @@ class SearchGenre extends React.Component {
   }
 
   onBlur() {
-    this.props.dispatch(changeFocusAction(false));
+    if (!this.state.text.length) {
+      this.props.dispatch(changeFocusAction(false));
+    }
   }
 
   handleChange(event) {
@@ -32,6 +34,8 @@ class SearchGenre extends React.Component {
     this.setState({ text });
     if (text.length >= 3) {
       this.props.dispatch(suggestGenresAction(text));
+    } else {
+      this.props.dispatch(resetGenresSuggestionsAction());
     }
   }
 
