@@ -1,5 +1,6 @@
 const defaultState = {
   isActive: false,
+  suggestions: [],
 };
 
 export default function reducer(state = defaultState, action) {
@@ -9,6 +10,9 @@ export default function reducer(state = defaultState, action) {
 
     case 'SEARCH_GENRE_UNFOCUS':
       return { ...state, isFocused: false };
+
+    case 'SEARCH_GENRE_SUGGESTIONS_FETCHED':
+      return { ...state, suggestions: action.payload };
 
     default:
       return state;

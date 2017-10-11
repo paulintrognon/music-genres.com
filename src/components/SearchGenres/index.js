@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { changeFocusAction, suggestGenresAction } from '../../actions/searchGenresActions';
 
+import SearchGenreSuggestions from './suggestions';
 import magnifyingGlass from './magnifying-glass.png';
 import './searchGenres.css';
 
@@ -36,20 +37,23 @@ class SearchGenre extends React.Component {
 
   render() {
     return (
-      <p className="search-genres-container">
-        <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Look for a genre"
-            onChange={this.handleChange.bind(this)}
-            onFocus={this.onFocus.bind(this)}
-            onBlur={this.onBlur.bind(this)}
-            value={this.state.text}
-          />
-          <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" />
-        </span>
-      </p>
+      <div className="search-genres-container">
+        <p>
+          <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Look for a genre"
+              onChange={this.handleChange.bind(this)}
+              onFocus={this.onFocus.bind(this)}
+              onBlur={this.onBlur.bind(this)}
+              value={this.state.text}
+            />
+            <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" />
+          </span>
+        </p>
+        <SearchGenreSuggestions></SearchGenreSuggestions>
+      </div>
     );
   }
 }

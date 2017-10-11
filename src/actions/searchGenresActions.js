@@ -9,8 +9,11 @@ export function changeFocusAction(focus) {
 
 export function suggestGenresAction(text) {
   return dispatch => {
-    console.log('suggest', text);
     api.get(`/music-genres/search?query=${text}`)
-      .then(res => console.log(res));
+      .then(res => {
+        if (!res.data.error) {
+          dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_FETCHED', payload: res.data.result });
+        }
+      });
   };
 }
