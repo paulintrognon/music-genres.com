@@ -8,6 +8,7 @@ import './searchGenres.css';
 
 function mapStoreToProps(store) {
   return {
+    suggestions: store.searchGenre.suggestions,
     isFocused: store.searchGenre.isFocused,
   };
 }
@@ -29,6 +30,10 @@ class SearchGenre extends React.Component {
     }
   }
 
+  handleKeyPress(event) {
+    console.log(event.key);
+  }
+
   handleChange(event) {
     const text = event.target.value;
     this.setState({ text });
@@ -41,7 +46,7 @@ class SearchGenre extends React.Component {
 
   render() {
     return (
-      <div className="search-genres-container">
+      <div className="search-genres-container" onKeyPress={this.handleKeyPress.bind(this)}>
         <p>
           <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
             <input

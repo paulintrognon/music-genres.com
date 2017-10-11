@@ -8,8 +8,10 @@
   padding: 1.5% 3%;
 }
 
-.search-genres-container .suggestions-container .suggestions-item.selected {
+.search-genres-container .suggestions-container .suggestions-item.selected,
+.search-genres-container .suggestions-container .suggestions-item:hover {
   background-color: #E688B0;
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {
