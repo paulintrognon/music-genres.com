@@ -6,6 +6,9 @@ import {
   resetGenresSuggestionsAction,
   selectSuggestion
 } from '../../actions/searchGenresActions';
+import {
+  goToGenre
+} from '../../actions/musicGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
 import magnifyingGlass from './magnifying-glass.png';
@@ -15,6 +18,7 @@ function mapStoreToProps(store) {
   return {
     suggestions: store.searchGenre.suggestions,
     isFocused: store.searchGenre.isFocused,
+    selectedSuggestion: store.searchGenre.selectedSuggestion,
   };
 }
 class SearchGenre extends React.Component {
@@ -40,6 +44,11 @@ class SearchGenre extends React.Component {
       this.props.dispatch(selectSuggestion('down'));
     } else if (event.key === 'ArrowUp') {
       this.props.dispatch(selectSuggestion('up'));
+    } else if (event.key === 'Enter') {
+      const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
+      if (selectedSuggestion) {
+        this.props.dispatch(goToGenre(selectedSuggestion.slug));
+      }
     }
   }
 
