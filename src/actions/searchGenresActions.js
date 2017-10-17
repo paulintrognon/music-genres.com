@@ -1,4 +1,5 @@
 import api from '../services/api';
+import { goToMusicGenre } from './navigationActions';
 
 export function changeFocusAction(focus) {
   if (focus) {
@@ -26,5 +27,13 @@ export function selectSuggestion(direction) {
   return {
     type: 'SEARCH_GENRE_SUGGESTIONS_SELECT',
     payload: direction,
+  };
+}
+
+export function validSuggestion(slug) {
+  return dispatch => {
+    dispatch(goToMusicGenre(slug));
+    dispatch({ type: 'SEARCH_GENRE_UNFOCUS' });
+    dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_RESET' });
   };
 }

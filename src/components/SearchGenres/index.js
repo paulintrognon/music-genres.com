@@ -4,11 +4,9 @@ import {
   changeFocusAction,
   suggestGenresAction,
   resetGenresSuggestionsAction,
-  selectSuggestion
+  selectSuggestion,
+  validSuggestion
 } from '../../actions/searchGenresActions';
-import {
-  goToGenre
-} from '../../actions/musicGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
 import magnifyingGlass from './magnifying-glass.png';
@@ -47,7 +45,7 @@ class SearchGenre extends React.Component {
     } else if (event.key === 'Enter') {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
-        this.props.dispatch(goToGenre(selectedSuggestion.slug));
+        this.props.dispatch(validSuggestion(selectedSuggestion.slug));
       }
     }
   }

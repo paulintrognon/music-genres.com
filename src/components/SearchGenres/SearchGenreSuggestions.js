@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { goToGenre } from '../../actions/musicGenresActions';
+import { validSuggestion } from '../../actions/searchGenresActions';
 
 import './suggestions.css';
 import Suggestion from './Suggestion';
@@ -22,7 +22,7 @@ class SearchGenreSuggestions extends React.Component {
   }
 
   onClickHandler(value) {
-    this.props.dispatch(goToGenre(value));
+    this.props.dispatch(validSuggestion(value));
   }
 
   render() {
