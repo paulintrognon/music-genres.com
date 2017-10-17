@@ -63,7 +63,7 @@ function createManager() {
 
   function search(query) {
     return MusicGenre.findAll({
-      attributes: ['id', 'name'],
+      attributes: ['name', 'slug'],
       where: {
         name: {
           $like: `%${query}%`,

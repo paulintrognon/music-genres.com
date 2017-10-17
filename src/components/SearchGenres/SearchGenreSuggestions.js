@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { goToGenre } from '../../actions/musicGenresActions';
 
 import './suggestions.css';
 import Suggestion from './Suggestion';
@@ -21,7 +22,7 @@ class SearchGenreSuggestions extends React.Component {
   }
 
   onClickHandler(value) {
-    console.log(value);
+    this.props.dispatch(goToGenre(value));
   }
 
   render() {
@@ -32,7 +33,7 @@ class SearchGenreSuggestions extends React.Component {
       <ul className="suggestions-container">
         {this.props.suggestions.map((suggestion, i) => (
           <Suggestion key={i}
-              value={suggestion.id}
+              value={suggestion.slug}
               name={suggestion.name}
               isSelected={i === this.props.suggestionSelected}
               onSuggestionClick={this.onClickHandler}
