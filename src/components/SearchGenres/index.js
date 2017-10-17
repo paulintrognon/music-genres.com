@@ -7,7 +7,7 @@ import {
   selectSuggestion
 } from '../../actions/searchGenresActions';
 
-import SearchGenreSuggestions from './suggestions';
+import SearchGenreSuggestions from './SearchGenreSuggestions';
 import magnifyingGlass from './magnifying-glass.png';
 import './searchGenres.css';
 
