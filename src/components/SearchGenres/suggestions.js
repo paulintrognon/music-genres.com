@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './suggestions.css';
+import Suggestion from './Suggestion';
 
 function mapStoreToProps(store) {
   return {
@@ -16,6 +17,11 @@ class SearchGenreSuggestions extends React.Component {
     this.state = {
       text: '',
     };
+    this.onClickHandler = this.onClickHandler.bind(this);
+  }
+
+  onClickHandler() {
+    console.log(this.props.suggestionSelected);
   }
 
   render() {
@@ -24,19 +30,15 @@ class SearchGenreSuggestions extends React.Component {
     }
     return (
       <ul className="suggestions-container">
-        {this.props.suggestions.map(this.renderSuggestion.bind(this))}
+        {this.props.suggestions.map((suggestion, i) => (
+          <Suggestion key={i}
+              name={suggestion.name}
+              isSelected={i === this.props.suggestionSelected}
+              onSuggestionClick={this.onClickHandler}
+          ></Suggestion>
+        ))}
       </ul>
     );
-  }
-
-  renderSuggestion(suggestion, i) {
-    let className = 'suggestions-item';
-    if (i === this.props.suggestionSelected) {
-      className += ' selected';
-    }
-    return <li className={className} key={i}>
-      {suggestion.name}
-    </li>;
   }
 }
 export default connect(mapStoreToProps)(SearchGenreSuggestions);
