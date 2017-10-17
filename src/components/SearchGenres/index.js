@@ -26,21 +26,19 @@ class SearchGenre extends React.Component {
     this.state = {
       text: '',
     };
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
-  onFocus() {
+  onFocus = () => {
     this.props.dispatch(changeFocusAction(true));
   }
 
-  onBlur() {
+  onBlur = () => {
     if (!this.state.text.length) {
       this.props.dispatch(changeFocusAction(false));
     }
   }
 
-  handleKeyDown(event) {
+  handleKeyDown = (event) => {
     if (event.key === 'ArrowDown') {
       this.props.dispatch(selectSuggestionAction('down'));
     } else if (event.key === 'ArrowUp') {
@@ -55,7 +53,7 @@ class SearchGenre extends React.Component {
     }
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const text = event.target.value;
     this.setState({ text });
     if (text.length >= 3) {
@@ -65,7 +63,7 @@ class SearchGenre extends React.Component {
     }
   }
 
-  handleSearchClick() {
+  handleSearchClick = () => {
     this.searchGenre();
   }
 
@@ -84,9 +82,9 @@ class SearchGenre extends React.Component {
               type="text"
               className="search-input"
               placeholder="Look for a genre"
-              onChange={this.handleChange.bind(this)}
-              onFocus={this.onFocus.bind(this)}
-              onBlur={this.onBlur.bind(this)}
+              onChange={this.handleChange}
+              onFocus={this.onFocus}
+              onBlur={this.onBlur}
               value={this.state.text}
             />
             <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" onClick={this.handleSearchClick} />
