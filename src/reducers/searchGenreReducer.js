@@ -25,7 +25,6 @@ export default function reducer(state = defaultState, action) {
       } else if (action.payload === 'down') {
         newSuggestionSelected = state.suggestionSelected + 1;
       }
-      console.log(newSuggestionSelected);
       if (newSuggestionSelected > state.suggestions.length - 1) {
         return { ...state, suggestionSelected: 0 };
       }
