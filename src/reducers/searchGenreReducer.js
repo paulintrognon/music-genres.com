@@ -2,6 +2,7 @@ const defaultState = {
   isActive: false,
   suggestions: [],
   selectedSuggestion: -1,
+  results: null,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -35,6 +36,10 @@ export default function reducer(state = defaultState, action) {
         return { ...state, selectedSuggestion: state.suggestions.length - 1 };
       }
       return { ...state, selectedSuggestion: newSuggestionSelected };
+    }
+
+    case 'SEARCH_RESULTS_FULFILLED': {
+      return { ...state, results: action.payload };
     }
 
     default:

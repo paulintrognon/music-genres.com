@@ -61,16 +61,19 @@ function createManager() {
       });
   }
 
-  function search(query) {
-    return MusicGenre.findAll({
+  function search(query, limit) {
+    const sqlQuery = {
       attributes: ['name', 'slug'],
       where: {
         name: {
           $like: `%${query}%`,
         },
       },
-      limit: 5,
-    });
+    };
+    if (limit) {
+      sqlQuery.limit = limit;
+    }
+    return MusicGenre.findAll(sqlQuery);
   }
 
   // ------------------------------------------------------

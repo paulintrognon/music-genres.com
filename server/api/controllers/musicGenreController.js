@@ -31,6 +31,6 @@ function createController() {
   }
 
   function search(req) {
-    return musicGenreManager.search(req.query.query);
+    return musicGenreManager.search(req.query.query, parseInt(req.query.limit, 10));
   }
 }
