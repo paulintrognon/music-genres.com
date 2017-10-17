@@ -33,7 +33,6 @@ export function selectSuggestion(direction) {
 export function validSuggestion(slug) {
   return dispatch => {
     dispatch(goToMusicGenre(slug));
-    dispatch({ type: 'SEARCH_GENRE_UNFOCUS' });
-    dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_RESET' });
+    dispatch({ type: 'SEARCH_GENRE_RESET' });
   };
 }

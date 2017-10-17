@@ -6,6 +6,9 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'SEARCH_GENRE_RESET':
+      return { ...defaultState };
+
     case 'SEARCH_GENRE_FOCUS':
       return { ...state, isFocused: true };
 
