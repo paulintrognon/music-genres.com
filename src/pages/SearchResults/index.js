@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { fetchSearchResultsAction } from '../../actions/searchGenresActions';
 
+import LoadingIndicator from '../../components/LoadingIndicator';
+
 function mapStoreToProps(store) {
   return {
     searchResults: store.searchGenre.results,
@@ -30,7 +32,7 @@ class SearchResults extends React.Component {
 
   renderResults() {
     if (!this.props.searchResults) {
-      return '';
+      return <LoadingIndicator></LoadingIndicator>;
     }
     return this.props.searchResults.map((result, i) => (
       <div key={i}>{result.name}</div>
