@@ -23,21 +23,21 @@ export function resetGenresSuggestionsAction() {
   return { type: 'SEARCH_GENRE_SUGGESTIONS_RESET' };
 }
 
-export function selectSuggestion(direction) {
+export function selectSuggestionAction(direction) {
   return {
     type: 'SEARCH_GENRE_SUGGESTIONS_SELECT',
     payload: direction,
   };
 }
 
-export function validSuggestion(slug) {
+export function validSuggestionAction(slug) {
   return dispatch => {
     dispatch(goToMusicGenre(slug));
     dispatch({ type: 'SEARCH_GENRE_RESET' });
   };
 }
 
-export function searchGenre(query) {
+export function goToSearchResultsAction(query) {
   return dispatch => {
     dispatch(search(query));
     dispatch({ type: 'SEARCH_GENRE_RESET' });

@@ -4,9 +4,9 @@ import {
   changeFocusAction,
   suggestGenresAction,
   resetGenresSuggestionsAction,
-  selectSuggestion,
-  validSuggestion,
-  searchGenre
+  selectSuggestionAction,
+  validSuggestionAction,
+  goToSearchResultsAction
 } from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
@@ -42,13 +42,13 @@ class SearchGenre extends React.Component {
 
   handleKeyDown(event) {
     if (event.key === 'ArrowDown') {
-      this.props.dispatch(selectSuggestion('down'));
+      this.props.dispatch(selectSuggestionAction('down'));
     } else if (event.key === 'ArrowUp') {
-      this.props.dispatch(selectSuggestion('up'));
+      this.props.dispatch(selectSuggestionAction('up'));
     } else if (event.key === 'Enter') {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
-        this.props.dispatch(validSuggestion(selectedSuggestion.slug));
+        this.props.dispatch(validSuggestionAction(selectedSuggestion.slug));
       } else {
         this.searchGenre();
       }
@@ -71,7 +71,7 @@ class SearchGenre extends React.Component {
 
   searchGenre() {
     if (this.state.text) {
-      this.props.dispatch(searchGenre(this.state.text));
+      this.props.dispatch(goToSearchResultsAction(this.state.text));
     }
   }
 
