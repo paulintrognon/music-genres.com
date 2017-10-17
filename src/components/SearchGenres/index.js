@@ -26,6 +26,8 @@ class SearchGenre extends React.Component {
     this.state = {
       text: '',
     };
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
   onFocus() {
@@ -48,7 +50,7 @@ class SearchGenre extends React.Component {
       if (selectedSuggestion) {
         this.props.dispatch(validSuggestion(selectedSuggestion.slug));
       } else {
-        this.props.dispatch(searchGenre(this.state.text));
+        this.searchGenre();
       }
     }
   }
@@ -63,9 +65,19 @@ class SearchGenre extends React.Component {
     }
   }
 
+  handleSearchClick() {
+    this.searchGenre();
+  }
+
+  searchGenre() {
+    if (this.state.text) {
+      this.props.dispatch(searchGenre(this.state.text));
+    }
+  }
+
   render() {
     return (
-      <div className="search-genres-container" onKeyDown={this.handleKeyDown.bind(this)}>
+      <div className="search-genres-container" onKeyDown={this.handleKeyDown}>
         <p>
           <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
             <input
@@ -77,7 +89,7 @@ class SearchGenre extends React.Component {
               onBlur={this.onBlur.bind(this)}
               value={this.state.text}
             />
-            <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" />
+            <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" onClick={this.handleSearchClick} />
           </span>
         </p>
         <SearchGenreSuggestions></SearchGenreSuggestions>
