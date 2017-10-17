@@ -19,8 +19,12 @@ export function suggestGenresAction(text) {
 }
 
 export function resetGenresSuggestionsAction() {
+  return { type: 'SEARCH_GENRE_SUGGESTIONS_RESET' };
+}
+
+export function selectSuggestion(direction) {
   return {
-    type: 'SEARCH_GENRE_SUGGESTIONS_SET',
-    payload: [],
+    type: 'SEARCH_GENRE_SUGGESTIONS_SELECT',
+    payload: direction,
   };
 }

@@ -7,6 +7,7 @@ function mapStoreToProps(store) {
   return {
     isFocused: store.searchGenre.isFocused,
     suggestions: store.searchGenre.suggestions,
+    suggestionSelected: store.searchGenre.suggestionSelected,
   };
 }
 class SearchGenreSuggestions extends React.Component {
@@ -28,8 +29,12 @@ class SearchGenreSuggestions extends React.Component {
     );
   }
 
-  renderSuggestion(suggestion) {
-    return <li className="suggestions-item">
+  renderSuggestion(suggestion, i) {
+    let className = 'suggestions-item';
+    if (i === this.props.suggestionSelected) {
+      className += ' selected';
+    }
+    return <li className={className} key={i}>
       {suggestion.name}
     </li>;
   }

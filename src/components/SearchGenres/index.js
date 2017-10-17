@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeFocusAction, suggestGenresAction, resetGenresSuggestionsAction } from '../../actions/searchGenresActions';
+import {
+  changeFocusAction,
+  suggestGenresAction,
+  resetGenresSuggestionsAction,
+  selectSuggestion
+} from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './suggestions';
 import magnifyingGlass from './magnifying-glass.png';
@@ -30,8 +35,12 @@ class SearchGenre extends React.Component {
     }
   }
 
-  handleKeyPress(event) {
-    console.log(event.key);
+  handleKeyDown(event) {
+    if (event.key === 'ArrowDown') {
+      this.props.dispatch(selectSuggestion('down'));
+    } else if (event.key === 'ArrowUp') {
+      this.props.dispatch(selectSuggestion('up'));
+    }
   }
 
   handleChange(event) {
@@ -46,7 +55,7 @@ class SearchGenre extends React.Component {
 
   render() {
     return (
-      <div className="search-genres-container" onKeyPress={this.handleKeyPress.bind(this)}>
+      <div className="search-genres-container" onKeyDown={this.handleKeyDown.bind(this)}>
         <p>
           <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
             <input
