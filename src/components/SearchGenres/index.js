@@ -5,7 +5,8 @@ import {
   suggestGenresAction,
   resetGenresSuggestionsAction,
   selectSuggestion,
-  validSuggestion
+  validSuggestion,
+  searchGenre
 } from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
@@ -46,6 +47,8 @@ class SearchGenre extends React.Component {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
         this.props.dispatch(validSuggestion(selectedSuggestion.slug));
+      } else {
+        this.props.dispatch(searchGenre(this.state.text));
       }
     }
   }
