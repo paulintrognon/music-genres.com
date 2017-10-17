@@ -20,8 +20,8 @@ class SearchGenreSuggestions extends React.Component {
     this.onClickHandler = this.onClickHandler.bind(this);
   }
 
-  onClickHandler() {
-    console.log(this.props.suggestionSelected);
+  onClickHandler(value) {
+    console.log(value);
   }
 
   render() {
@@ -32,6 +32,7 @@ class SearchGenreSuggestions extends React.Component {
       <ul className="suggestions-container">
         {this.props.suggestions.map((suggestion, i) => (
           <Suggestion key={i}
+              value={suggestion.id}
               name={suggestion.name}
               isSelected={i === this.props.suggestionSelected}
               onSuggestionClick={this.onClickHandler}
