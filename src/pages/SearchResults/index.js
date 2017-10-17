@@ -1,9 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import { fetchSearchResultsAction } from '../../actions/searchGenresActions';
+import {
+  fetchSearchResultsAction
+} from '../../actions/searchGenresActions';
+import {
+  goToMusicGenre
+} from '../../actions/navigationActions';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
+import SearchResult from './SearchResult';
 
 function mapStoreToProps(store) {
   return {
@@ -30,12 +35,20 @@ class SearchResults extends React.Component {
     );
   }
 
+  onClickHandler = (slug) => {
+    this.props.dispatch(goToMusicGenre(slug));
+  }
+
   renderResults() {
     if (!this.props.searchResults) {
       return <LoadingIndicator></LoadingIndicator>;
     }
     return this.props.searchResults.map((result, i) => (
-      <div key={i}>{result.name}</div>
+      <SearchResult key={i}
+        name={result.name}
+        value={result.slug}
+        onClickHandler={this.onClickHandler}
+        ></SearchResult>
     ));
   }
 }
