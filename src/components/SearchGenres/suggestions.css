@@ -1,16 +1,20 @@
 .search-genres-container .suggestions-container {
-  background-color: #E62979;
+  color: #5841F2;
+  background-color: #a6f168;
   text-align: left;
-  font-size: 1.4rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .search-genres-container .suggestions-container .suggestions-item {
   padding: 1.5% 3%;
+  box-sizing: border-box;
 }
 
 .search-genres-container .suggestions-container .suggestions-item.selected,
 .search-genres-container .suggestions-container .suggestions-item:hover {
-  background-color: #E688B0;
+  color: #fff;
+  background-color: #7672D8;
   cursor: pointer;
 }
 
