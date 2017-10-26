@@ -12,6 +12,10 @@
   opacity: 0;
 }
 
+.homepage-container .search-genres-container {
+  margin: auto;
+}
+
 .homepage-container .or-container {
   margin: 75px;
 }

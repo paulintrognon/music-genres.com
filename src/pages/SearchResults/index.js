@@ -7,8 +7,11 @@ import {
   goToMusicGenre
 } from '../../actions/navigationActions';
 
+import './searchResults.css';
+
 import LoadingIndicator from '../../components/LoadingIndicator';
 import SearchResult from './SearchResult';
+import SearchGenres from '../../components/SearchGenres'
 
 function mapStoreToProps(store) {
   return {
@@ -25,11 +28,22 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div className="search-results-container">
-        <h2>
-          {this.props.match.params.query}
+        <h2 className="hashtag-title">
+          # {this.props.match.params.query}
         </h2>
-        <div>
-          {this.renderResults()}
+        <div className="search-results">
+          <p className="phrase">
+            Are you looking for one of those genres?
+          </p>
+          <div>
+            {this.renderResults()}
+          </div>
+        </div>
+        <div className="continue-search">
+          <p className="phrase">
+            Not what you were looking for?
+          </p>
+          <SearchGenres></SearchGenres>
         </div>
       </div>
     );

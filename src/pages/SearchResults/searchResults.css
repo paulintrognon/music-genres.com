@@ -1,0 +1,27 @@
+.search-results-container .hashtag-title {
+  font-family: 'Montserrat Subrayada';
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.search-results-container .phrase {
+  margin-bottom: 30px;
+}
+
+.search-results-container .search-result {
+  font-family: 'Montserrat Subrayada';
+  background-color: #7c56fd;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.19);
+  padding: 0px 15px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  height: 48px;
+  line-height: 48px;
+  font-size: 18px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.search-results-container .continue-search {
+  margin-top: 100px;
+}

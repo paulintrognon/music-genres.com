@@ -7,7 +7,7 @@ export default class SearchResult extends React.Component {
 
   render() {
     return (
-      <div onClick={this.handleClick}>
+      <div onClick={this.handleClick} className="search-result">
         {this.props.name}
       </div>
     )
