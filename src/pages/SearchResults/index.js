@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchSearchResultsAction
+  fetchSearchResultsAction,
+  goToSearchResultsAction
 } from '../../actions/searchGenresActions';
 import {
   goToMusicGenre
@@ -21,8 +22,13 @@ function mapStoreToProps(store) {
 class SearchResults extends React.Component {
   componentWillMount() {
     if (!this.props.searchResults) {
-      this.props.dispatch(fetchSearchResultsAction(this.props.match.params.query));
+      this.searchGenresHandler(this.props.match.params.query);
     }
+  }
+
+  searchGenresHandler = (queryString) => {
+    this.props.dispatch(goToSearchResultsAction(queryString));
+    this.props.dispatch(fetchSearchResultsAction(queryString));
   }
 
   render() {
@@ -43,7 +49,7 @@ class SearchResults extends React.Component {
           <p className="phrase">
             Not what you were looking for?
           </p>
-          <SearchGenres></SearchGenres>
+          <SearchGenres searchGenresHandler={this.searchGenresHandler}></SearchGenres>
         </div>
       </div>
     );

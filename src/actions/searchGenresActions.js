@@ -32,15 +32,15 @@ export function selectSuggestionAction(direction) {
 
 export function validSuggestionAction(slug) {
   return dispatch => {
-    dispatch(goToMusicGenre(slug));
     dispatch({ type: 'SEARCH_GENRE_RESET' });
+    dispatch(goToMusicGenre(slug));
   };
 }
 
 export function goToSearchResultsAction(query) {
   return dispatch => {
-    dispatch(search(query));
     dispatch({ type: 'SEARCH_GENRE_RESET' });
+    dispatch(search(query));
   };
 }
 

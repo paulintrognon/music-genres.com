@@ -1,12 +1,12 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import {
   changeFocusAction,
   suggestGenresAction,
   resetGenresSuggestionsAction,
   selectSuggestionAction,
-  validSuggestionAction,
-  goToSearchResultsAction
+  validSuggestionAction
 } from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
@@ -69,7 +69,8 @@ class SearchGenre extends React.Component {
 
   searchGenre() {
     if (this.state.text) {
-      this.props.dispatch(goToSearchResultsAction(this.state.text));
+      this.props.searchGenresHandler(this.state.text);
+      this.setState({ text: '' });
     }
   }
 
@@ -96,3 +97,7 @@ class SearchGenre extends React.Component {
   }
 }
 export default connect(mapStoreToProps)(SearchGenre);
+
+SearchGenre.propTypes = {
+   searchGenresHandler: PropTypes.func.isRequired,
+}

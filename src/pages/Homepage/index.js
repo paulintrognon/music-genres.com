@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  goToSearchResultsAction
+} from '../../actions/searchGenresActions';
 
 import './homepage.css';
 import or from './or.png';
@@ -12,10 +15,15 @@ function mapStoreToProps(store) {
   };
 }
 class Homepage extends React.Component {
+
+  searchGenresHandler = (queryString) => {
+    this.props.dispatch(goToSearchResultsAction(queryString));
+  }
+
   render() {
     return (
       <div className="homepage-container">
-        <SearchGenre></SearchGenre>
+        <SearchGenre searchGenresHandler={this.searchGenresHandler}></SearchGenre>
         <div className={this.props.isSearchFocused ? 'hidden' : ''}>
           <p className="or-container">
             <img src={or} alt="or" />
