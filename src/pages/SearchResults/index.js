@@ -37,14 +37,7 @@ class SearchResults extends React.Component {
         <h2 className="hashtag-title">
           # {this.props.match.params.query}
         </h2>
-        <div className="search-results">
-          <p className="phrase">
-            Are you looking for one of those genres?
-          </p>
-          <div>
-            {this.renderResults()}
-          </div>
-        </div>
+        {this.renderResultsDiv()}
         <div className="continue-search">
           <p className="phrase">
             Not what you were looking for?
@@ -59,10 +52,30 @@ class SearchResults extends React.Component {
     this.props.dispatch(goToMusicGenre(slug));
   }
 
-  renderResults() {
+  renderResultsDiv = () => {
     if (!this.props.searchResults) {
       return <LoadingIndicator></LoadingIndicator>;
     }
+    if (!this.props.searchResults.length) {
+      return (
+        <p>
+          Sorry, no results!
+        </p>
+      );
+    }
+    return (
+      <div className="search-results">
+        <p className="phrase">
+          Are you looking for one of those genres?
+        </p>
+        <div>
+          {this.renderResults()}
+        </div>
+      </div>
+    );
+  }
+
+  renderResults = () => {
     return this.props.searchResults.map((result, i) => (
       <SearchResult key={i}
         name={result.name}
