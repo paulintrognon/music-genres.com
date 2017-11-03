@@ -7,5 +7,15 @@
   text-align: center;
   font-size: 0.9rem;
   color: #FFF;
-  border-top: 1px #fff solid;
+}
+
+.main-footer-content {
+  max-width: 660px;
+  border-top: 1px #a0fdf7 solid;
+  margin: auto;
+}
+
+.main-footer-content .plus-sign {
+  width: 18px;
+  height: 13px;
 }
