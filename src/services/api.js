@@ -12,3 +12,7 @@ export function searchMusicGenres(query, limit) {
 export function fetchMusicGenre(slug) {
   return api.get(`/music-genres/${slug}/with-tracks`);
 }
+
+export function upvoteTrack(trackId, musicGenreId) {
+  return api.post(`/tracks/upvote`, { trackId, musicGenreId });
+}

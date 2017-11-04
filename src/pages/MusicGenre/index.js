@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   fetchMusicGenreAction,
+  upvoteTrackAction,
 } from '../../actions/musicGenreActions';
 
 import HashtagTitle from '../../components/HashtagTitle';
@@ -19,6 +20,10 @@ function mapStoreToProps(store) {
 class MusicGenre extends React.Component {
   componentWillMount() {
     this.props.dispatch(fetchMusicGenreAction(this.props.match.params.slug));
+  }
+
+  upvoteTrack = (trackId) => {
+    this.props.dispatch(upvoteTrackAction(trackId, this.props.musicGenre.id));
   }
 
   render() {
@@ -55,14 +60,14 @@ class MusicGenre extends React.Component {
       <div>
         <div className="top-tracks-container">
           {[0,1,2].map(index => (
-            <Track key={index} track={topTracks[index]} index={index}></Track>
+            <Track key={index} track={topTracks[index]} index={index} upvoteTrackHandler={this.upvoteTrack}></Track>
           ))}
         </div>
         {this.renderAddTrack()}
         <HashtagTitle className="more-of-title">More from {this.props.musicGenre.name}</HashtagTitle>
         <div className="other-tracks-container">
           {otherTracks.map((track, i) => (
-            <Track key={i} track={track}></Track>
+            <Track key={i} track={track} upvoteTrackHandler={this.upvoteTrack}></Track>
           ))}
         </div>
         {this.renderAddTrack()}
