@@ -13,7 +13,7 @@ export default class Footer extends React.Component {
           <a href="https://fr.linkedin.com/in/margotbrun" target="_blank" rel="noopener noreferrer">
             Margot Brun
           </a>
-          &nbsp;<img src={plusImage} className="plus-sign" />&nbsp;
+          &nbsp;<img src={plusImage} className="plus-sign" alt="-" />&nbsp;
           <a href="https://github.com/paulintrognon/music-genres.com" target="_blank" rel="noopener noreferrer">
             Code by&nbsp;
           </a>
