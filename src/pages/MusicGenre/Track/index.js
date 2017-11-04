@@ -35,7 +35,7 @@ export default function Track(props) {
           {track.title.length < 40 ? track.title : track.title.substring(0, 40)+'…'}
         </h3>
         <p className="track-votes">
-          100 Votes
+          {track.upvotes} vote{track.upvotes > 1 ? 's' : ''}
           <img className="plus-1" src={plus1Image} alt="+1" />
         </p>
       </div>

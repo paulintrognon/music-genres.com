@@ -6,8 +6,12 @@ const sinon = require('sinon');
 const should = require('should');
 
 const musicGenreManagerStub = {};
+const userService = {};
+const trackService = {};
 const controller = proxyquire('../../controllers/musicGenreController', {
   '../managers/musicGenreManager': musicGenreManagerStub,
+  '../services/user': userService,
+  '../services/trackService': trackService,
 });
 
 describe('musicGenreController', () => {

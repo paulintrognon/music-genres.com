@@ -1,7 +1,11 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
+
 const musicGenreManager = require('../managers/musicGenreManager');
+const userService = require('../services/user');
+const trackService = require('../services/trackService');
 
 module.exports = createController();
 
@@ -27,7 +31,17 @@ function createController() {
   }
 
   function getWithTracks(req) {
-    return musicGenreManager.getWithTracks(req.params.slug);
+    return bluebird.props({
+      musicGenre: musicGenreManager.getWithTracks(req.params.slug),
+      userHash: userService.getUserHashFromRequest(req),
+    })
+      .then(res => {
+        return trackService.checkIfUserHasUpvotedTheTracks(res.musicGenre.tracks, res.userHash)
+          .then(tracks => {
+            res.musicGenre.tracks = tracks;
+            return res.musicGenre;
+          });
+      });
   }
 
   function search(req) {

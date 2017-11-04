@@ -17,6 +17,7 @@ function createManager() {
   manager.create = create;
   manager.random = random;
   manager.upvote = upvote;
+  manager.hasUserUpvotedTheTrack = hasUserUpvotedTheTrack;
   manager.formatWithUpvotes = formatWithUpvotes;
   manager.verifyIfTrackDoesNotAlreadyExistsInGenre = verifyIfTrackDoesNotAlreadyExistsInGenre;
 
@@ -27,6 +28,16 @@ function createManager() {
   function create(trackToAdd, musicGenre) {
     return Track.create(trackToAdd)
       .then(track => musicGenre.addTrack(track).return(track));
+  }
+
+  // ------------------------------------------------------
+
+  function hasUserUpvotedTheTrack(trackId, userHash) {
+    return Vote.count({ where: {
+      trackId,
+      userHash,
+    } })
+      .then(count => count > 0);
   }
 
   // ------------------------------------------------------
@@ -83,11 +94,7 @@ function createManager() {
         attributes: ['id', 'name', 'slug'],
       },
     })
-      .then(res => res.get({ plain: true }))
-      .then(res => {
-        res.musicGenres = formatWithUpvotes(res.musicGenres);
-        return res;
-      });
+      .then(res => res.get({ plain: true }));
   }
 
   // ------------------------------------------------------
