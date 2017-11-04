@@ -5,3 +5,16 @@
 .music-genre-page .top-tracks-container {
   margin-top: 80px;
 }
+
+.music-genre-page .other-tracks-container {
+  margin-top: 80px;
+  margin-left: -1.5%;
+  margin-right: -1.5%;
+}
+
+.music-genre-page .other-tracks-container .track-box {
+  margin-top: 100px;
+  width: 30%;
+  margin-left: 1.66%;
+  margin-right: 1.66%;
+}

@@ -47,11 +47,20 @@ class MusicGenre extends React.Component {
     if (!tracks.length) {
       return <p>No tracks yet.</p>
     }
+    const topTracks = tracks.slice(0,3);
+    const otherTracks = tracks.slice(3);
     return (
-      <div className="top-tracks-container">
-        <Track track={tracks[0]} index={0}></Track>
-        <Track track={tracks[1]} index={1}></Track>
-        <Track track={tracks[2]} index={2}></Track>
+      <div>
+        <div className="top-tracks-container">
+          {[0,1,2].map(index => (
+            <Track key={index} track={topTracks[index]} index={index}></Track>
+          ))}
+        </div>
+        <div className="other-tracks-container">
+          {otherTracks.map((track, i) => (
+            <Track key={i} track={track}></Track>
+          ))}
+        </div>
       </div>
     );
   }

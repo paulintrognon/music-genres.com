@@ -31,7 +31,7 @@ export default function Track(props) {
       </div>
       <div className="track-information">
         <h3 className="track-title" title={track.title}>
-          {track.title.length < 40 ? track.title : track.title.substring(0, 40)+'…'}
+          {track.title.length < 35 ? track.title : track.title.substring(0, 35)+'…'}
         </h3>
         <p className="track-votes">
           {track.upvotes} vote{track.upvotes > 1 ? 's' : ''}
