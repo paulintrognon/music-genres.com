@@ -46,14 +46,26 @@ function createManager() {
       });
   }
 
-  function getWithTracks(id) {
-    return MusicGenre.findById(id, {
+  function getWithTracks(slug) {
+    return MusicGenre.findOne({
+      where: { slug },
       attributes: ['id', 'name', 'slug'],
       include: [{
         model: Track,
         attributes: ['id', 'title', 'playerName', 'playerTrackId'],
       }],
     })
+      .then(res => {
+        if (!res) {
+          return bluebird.reject({
+            status: 404,
+            code: 'music-genre-not-found',
+            message: `The music genre with slug ${slug} does not exist.`,
+            payload: { slug },
+          });
+        }
+        return res;
+      })
       .then(res => res.get({ plain: true }))
       .then(res => {
         res.tracks = trackManager.formatWithUpvotes(res.tracks);

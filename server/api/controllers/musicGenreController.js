@@ -27,7 +27,7 @@ function createController() {
   }
 
   function getWithTracks(req) {
-    return musicGenreManager.getWithTracks(req.params.id);
+    return musicGenreManager.getWithTracks(req.params.slug);
   }
 
   function search(req) {
