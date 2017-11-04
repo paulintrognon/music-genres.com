@@ -94,7 +94,7 @@
 }
 
 .track-box .track-upvote-button:hover {
-  background-color: #2DF178;
+  background-color: #8300FC;
 }
 
 .track-box .track-upvote-button span {
@@ -104,5 +104,5 @@
 
 .track-box .track-upvote-button.has-upvoted {
   cursor: default;
-  background-color: #2DF178;
+  background-color: #8300FC;
 }
