@@ -1,5 +1,6 @@
 .hashtag-title {
   font-family: 'Montserrat Subrayada';
-  text-transform: uppercase;
+  font-weight: unset;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
