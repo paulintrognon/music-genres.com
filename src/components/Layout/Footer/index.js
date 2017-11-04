@@ -2,7 +2,7 @@ import React from 'react';
 
 import './footer.css';
 
-import plusImage from '../../../images/plus.png';
+import Plus from '../../images/Plus';
 
 export default class Footer extends React.Component {
   render() {
@@ -13,7 +13,7 @@ export default class Footer extends React.Component {
           <a href="https://fr.linkedin.com/in/margotbrun" target="_blank" rel="noopener noreferrer">
             Margot Brun
           </a>
-          &nbsp;<img src={plusImage} className="plus-sign" alt="-" />&nbsp;
+          &nbsp;<Plus className="plus-sign" alt="-"></Plus>&nbsp;
           <a href="https://github.com/paulintrognon/music-genres.com" target="_blank" rel="noopener noreferrer">
             Code by&nbsp;
           </a>

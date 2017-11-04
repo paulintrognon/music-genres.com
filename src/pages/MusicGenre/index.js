@@ -7,6 +7,8 @@ import {
 
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
+import Plus from '../../components/images/Plus';
+import RectangleButton from '../../components/RectangleButton';
 import Track from './Track';
 
 import './musicGenre.css';
@@ -56,11 +58,24 @@ class MusicGenre extends React.Component {
             <Track key={index} track={topTracks[index]} index={index}></Track>
           ))}
         </div>
+        {this.renderAddTrack()}
+        <HashtagTitle className="more-of-title">More from {this.props.musicGenre.name}</HashtagTitle>
         <div className="other-tracks-container">
           {otherTracks.map((track, i) => (
             <Track key={i} track={track}></Track>
           ))}
         </div>
+        {this.renderAddTrack()}
+      </div>
+    );
+  }
+
+  renderAddTrack = () => {
+    return (
+      <div className="add-track-row">
+        <RectangleButton>
+          Add a track&nbsp;<Plus></Plus>
+        </RectangleButton>
       </div>
     );
   }

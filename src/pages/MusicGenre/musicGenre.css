@@ -1,13 +1,17 @@
-.music-genre-page {
-
-}
-
 .music-genre-page .top-tracks-container {
   margin-top: 80px;
 }
 
+.music-genre-page .add-track-row {
+  margin-top: 108px;
+  text-align: center;
+}
+
+.music-genre-page .more-of-title {
+  margin-top: 100px;
+}
+
 .music-genre-page .other-tracks-container {
-  margin-top: 80px;
   margin-left: -1.5%;
   margin-right: -1.5%;
 }

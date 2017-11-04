@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './header.css';
 import logo from './logo.png';
-import plusImage from '../../../images/plus.png';
+import Plus from '../../images/Plus';
 
 export default class Header extends React.Component {
   render() {
@@ -17,7 +17,7 @@ export default class Header extends React.Component {
         <div className="side-buttons">
           <Link to={'/tracks/add'} className="side-button">
             Add video
-            <img src={plusImage} alt="plus" />
+            <Plus></Plus>
           </Link>
         </div>
       </header>

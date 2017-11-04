@@ -7,6 +7,7 @@ import {
 import './homepage.css';
 import or from './or.png';
 
+import RectangleButton from '../../components/RectangleButton';
 import SearchGenre from '../../components/SearchGenres';
 
 function mapStoreToProps(store) {
@@ -29,9 +30,9 @@ class Homepage extends React.Component {
             <img src={or} alt="or" />
           </p>
           <p className="random-container">
-            <button className="random-button">
+            <RectangleButton>
               Get surprised
-            </button>
+            </RectangleButton>
           </p>
         </div>
       </div>
