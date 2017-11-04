@@ -2,7 +2,6 @@ import React from 'react';
 
 import './style.css';
 
-import plus1Image from './+1.png';
 import playImage from './play.png';
 import playHoverImage from './play_hover.png';
 
@@ -36,7 +35,9 @@ export default function Track(props) {
         </h3>
         <p className="track-votes">
           {track.upvotes} vote{track.upvotes > 1 ? 's' : ''}
-          <img className="plus-1" src={plus1Image} alt="+1" />
+        </p>
+        <p className={'track-upvote-button' + (track.hasUpvoted ? ' has-upvoted' : '')}>
+          <span>+1</span>
         </p>
       </div>
     </div>

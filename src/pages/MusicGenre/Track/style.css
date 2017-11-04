@@ -59,6 +59,7 @@
 
 .track-box .track-title {
   margin-top: 37px;
+  margin-bottom: 0;
   height: 100px;
   overflow: hidden;
   font-family: 'Montserrat';
@@ -78,10 +79,30 @@
   font-size: 22px;
   font-weight: 400;
   text-align: left;
+  display: inline-block;
 }
 
-.track-box .track-votes .plus-1 {
-  vertical-align: middle;
-  padding-left: 20px;
+.track-box .track-upvote-button {
+  display: inline-block;
+  transform: skew(-20deg);
+  background-color: #62DD7C;
+  margin-left: 20px;
   cursor: pointer;
+  text-align: center;
+  width: 40px;
+  transition: background-color 100ms;
+}
+
+.track-box .track-upvote-button:hover {
+  background-color: #693ffa;
+}
+
+.track-box .track-upvote-button span {
+  display: inline-block;
+  transform: skew(20deg);
+}
+
+.track-box .track-upvote-button.has-upvoted {
+  cursor: default;
+  background-color: #693ffa;
 }
