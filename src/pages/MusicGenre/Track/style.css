@@ -22,6 +22,33 @@
   background-size: cover;
   border: 1px solid #fff;
   box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+.track-box .track-thumb .play-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: opacity 200ms;
+  cursor: pointer;
+}
+
+.track-box .track-thumb .play-button.play-button-normal {
+  opacity: 1;
+}
+.track-box .track-thumb:hover .play-button.play-button-normal {
+  opacity: 0;
+}
+.track-box .track-thumb .play-button.play-button-hover {
+  opacity: 0;
+}
+.track-box .track-thumb:hover .play-button.play-button-hover {
+  opacity: 1;
 }
 
 .track-box .track-information {
@@ -32,7 +59,8 @@
 
 .track-box .track-title {
   margin-top: 37px;
-  min-height: 70px;
+  height: 100px;
+  overflow: hidden;
   font-family: 'Montserrat';
   font-weight: unset;
   text-transform: uppercase;
