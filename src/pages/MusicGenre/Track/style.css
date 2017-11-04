@@ -1,0 +1,59 @@
+.track-box {
+  background-color: #FFF;
+  display: inline-block;
+  margin: 0;
+  vertical-align:top;
+  width: 33.33%;
+}
+
+.track-box.index-2 {
+  margin-top: 20px;
+}
+.track-box.index-3 {
+  margin-top: 40px;
+}
+
+.track-box .track-thumb {
+  display: block;
+  width: 100%;
+  padding: 56.25% 0 0 0;
+  background-color: #999;
+  background-position: center;
+  background-size: cover;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+}
+
+.track-box .track-information {
+  margin-left: 18px;
+  margin-right: 50px;
+  min-height: 100px;
+}
+
+.track-box .track-title {
+  margin-top: 37px;
+  min-height: 70px;
+  font-family: 'Montserrat';
+  font-weight: unset;
+  text-transform: uppercase;
+  color: #693ffa;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.track-box .track-votes {
+  margin-top: 43px;
+  margin-bottom: 37px;
+  font-family: Oxygen;
+  color: #5bdc77;
+  font-size: 22px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.track-box .track-votes .plus-1 {
+  vertical-align: middle;
+  padding-left: 20px;
+  cursor: pointer;
+}

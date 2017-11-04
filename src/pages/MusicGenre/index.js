@@ -7,6 +7,7 @@ import {
 
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
+import Track from './Track';
 
 import './musicGenre.css';
 
@@ -36,9 +37,23 @@ class MusicGenre extends React.Component {
     if (this.props.isFetched) {
       return <div>
         <HashtagTitle>{this.props.musicGenre.name}</HashtagTitle>
+        {this.renderTracks(this.props.musicGenre.tracks)}
       </div>;
     }
-    return <p>?</p>;
+    return null;
+  }
+
+  renderTracks = (tracks) => {
+    if (!tracks.length) {
+      return <p>No tracks yet.</p>
+    }
+    return (
+      <div className="top-tracks-container">
+        <Track track={tracks[0]} index={0}></Track>
+        <Track track={tracks[1]} index={1}></Track>
+        <Track track={tracks[2]} index={2}></Track>
+      </div>
+    );
   }
 }
 export default connect(mapStoreToProps)(MusicGenre);
