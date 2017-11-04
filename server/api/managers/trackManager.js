@@ -17,6 +17,7 @@ function createManager() {
   manager.create = create;
   manager.random = random;
   manager.upvote = upvote;
+  manager.downvote = downvote;
   manager.hasUserUpvotedTheTrack = hasUserUpvotedTheTrack;
   manager.formatWithUpvotes = formatWithUpvotes;
   manager.verifyIfTrackDoesNotAlreadyExistsInGenre = verifyIfTrackDoesNotAlreadyExistsInGenre;
@@ -162,5 +163,28 @@ function createManager() {
   function incrementVoteCount(musicGenreTrack) {
     musicGenreTrack.upvotes += 1;
     return musicGenreTrack.save();
+  }
+
+  // ------------------------------------------------------
+
+  function downvote(data) {
+    const trackId = data.trackId;
+    const musicGenreId = data.musicGenreId;
+    const userHash = data.userHash;
+
+    return bluebird.props({
+      vote: Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
+    })
+      .then(res => {
+        if (!res.vote) {
+          return bluebird.reject({
+            message: 'This client has not voted for that track in that genre',
+            code: 'vote-not-found',
+            payload: { data },
+          });
+        }
+
+        return res.vote.destroy();
+      });
   }
 }

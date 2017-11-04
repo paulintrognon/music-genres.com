@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   fetchMusicGenreAction,
   upvoteTrackAction,
+  downvoteTrackAction,
 } from '../../actions/musicGenreActions';
 
 import HashtagTitle from '../../components/HashtagTitle';
@@ -24,6 +25,9 @@ class MusicGenre extends React.Component {
 
   upvoteTrack = (trackId) => {
     this.props.dispatch(upvoteTrackAction(trackId, this.props.musicGenre.id));
+  }
+  downvoteTrack = (trackId) => {
+    this.props.dispatch(downvoteTrackAction(trackId, this.props.musicGenre.id));
   }
 
   render() {
@@ -60,14 +64,14 @@ class MusicGenre extends React.Component {
       <div>
         <div className="top-tracks-container">
           {[0,1,2].map(index => (
-            <Track key={index} track={topTracks[index]} index={index} upvoteTrackHandler={this.upvoteTrack}></Track>
+            <Track key={index} track={topTracks[index]} index={index} upvoteTrackHandler={this.upvoteTrack} downvoteTrackHandler={this.downvoteTrack}></Track>
           ))}
         </div>
         {this.renderAddTrack()}
         <HashtagTitle className="more-of-title">More from {this.props.musicGenre.name}</HashtagTitle>
         <div className="other-tracks-container">
           {otherTracks.map((track, i) => (
-            <Track key={i} track={track} upvoteTrackHandler={this.upvoteTrack}></Track>
+            <Track key={i} track={track} upvoteTrackHandler={this.upvoteTrack} downvoteTrackHandler={this.downvoteTrack}></Track>
           ))}
         </div>
         {this.renderAddTrack()}

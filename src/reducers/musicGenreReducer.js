@@ -16,7 +16,7 @@ export default function reducer(state = defaultState, action) {
     case 'MUSIC_GENRE_FETCH_ERROR':
       return { ...state, isFetched: true, isFetching: false, musicGenre: null, error: action.payload };
 
-    case 'UPVOTE_TRACK':
+    case 'TOGGLE_VOTE_TRACK':
       return { ...state, musicGenre: {
         ...state.musicGenre,
         tracks: state.musicGenre.tracks.map(track => {

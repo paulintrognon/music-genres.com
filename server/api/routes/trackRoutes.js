@@ -8,5 +8,6 @@ const trackController = require('../controllers/trackController.js');
 router.post('/add', (req, res, next) => next(trackController.addTrack(req)));
 router.get('/random', (req, res, next) => next(trackController.getRandomTrack()));
 router.post('/upvote', (req, res, next) => next(trackController.upvoteTrack(req)));
+router.post('/downvote', (req, res, next) => next(trackController.downvoteTrack(req)));
 
 module.exports = router;

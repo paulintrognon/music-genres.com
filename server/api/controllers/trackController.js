@@ -13,6 +13,7 @@ function createController() {
   controller.addTrack = addTrack;
   controller.getRandomTrack = getRandomTrack;
   controller.upvoteTrack = upvoteTrack;
+  controller.downvoteTrack = downvoteTrack;
 
   return controller;
 
@@ -39,6 +40,17 @@ function createController() {
     const trackId = req.body.trackId;
     const musicGenreId = req.body.musicGenreId;
     return trackManager.upvote({
+      userHash,
+      trackId,
+      musicGenreId,
+    });
+  }
+
+  function downvoteTrack(req) {
+    const userHash = userService.getUserHashFromRequest(req);
+    const trackId = req.body.trackId;
+    const musicGenreId = req.body.musicGenreId;
+    return trackManager.downvote({
       userHash,
       trackId,
       musicGenreId,

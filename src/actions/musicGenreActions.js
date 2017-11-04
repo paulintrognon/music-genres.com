@@ -1,4 +1,4 @@
-import { fetchMusicGenre, upvoteTrack } from '../services/api';
+import { fetchMusicGenre, upvoteTrack, downvoteTrack } from '../services/api';
 
 export function fetchMusicGenreAction(slug) {
   return dispatch => {
@@ -16,7 +16,14 @@ export function fetchMusicGenreAction(slug) {
 
 export function upvoteTrackAction(trackId, musicGenreId) {
   return dispatch => {
-    dispatch({ type: 'UPVOTE_TRACK', payload: trackId });
+    dispatch({ type: 'TOGGLE_VOTE_TRACK', payload: trackId });
     upvoteTrack(trackId, musicGenreId);
+  };
+}
+
+export function downvoteTrackAction(trackId, musicGenreId) {
+  return dispatch => {
+    dispatch({ type: 'TOGGLE_VOTE_TRACK', payload: trackId });
+    downvoteTrack(trackId, musicGenreId);
   };
 }

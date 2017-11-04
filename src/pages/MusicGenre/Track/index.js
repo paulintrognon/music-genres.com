@@ -36,10 +36,18 @@ export default function Track(props) {
         <p className="track-votes">
           {track.upvotes} vote{track.upvotes > 1 ? 's' : ''}
         </p>
-        <p className={'track-upvote-button' + (track.hasUpvoted ? ' has-upvoted' : '')} onClick={() => props.upvoteTrackHandler(track.id)}>
+        <p className={'track-upvote-button' + (track.hasUpvoted ? ' has-upvoted' : '')} onClick={() => vote(props)}>
           <span>+1</span>
         </p>
       </div>
     </div>
   );
+}
+
+function vote(props) {
+  if (!props.track.hasUpvoted) {
+    props.upvoteTrackHandler(props.track.id);
+  } else {
+    props.downvoteTrackHandler(props.track.id);
+  }
 }

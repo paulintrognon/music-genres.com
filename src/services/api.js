@@ -16,3 +16,7 @@ export function fetchMusicGenre(slug) {
 export function upvoteTrack(trackId, musicGenreId) {
   return api.post(`/tracks/upvote`, { trackId, musicGenreId });
 }
+
+export function downvoteTrack(trackId, musicGenreId) {
+  return api.post(`/tracks/downvote`, { trackId, musicGenreId });
+}
