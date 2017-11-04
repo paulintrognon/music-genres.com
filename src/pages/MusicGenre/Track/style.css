@@ -65,7 +65,7 @@
   font-family: 'Montserrat';
   font-weight: unset;
   text-transform: uppercase;
-  color: #693ffa;
+  color: #8300FC;
   font-size: 26px;
   font-weight: 700;
   text-align: left;
@@ -94,7 +94,7 @@
 }
 
 .track-box .track-upvote-button:hover {
-  background-color: #693ffa;
+  background-color: #2DF178;
 }
 
 .track-box .track-upvote-button span {
@@ -104,5 +104,5 @@
 
 .track-box .track-upvote-button.has-upvoted {
   cursor: default;
-  background-color: #693ffa;
+  background-color: #2DF178;
 }
