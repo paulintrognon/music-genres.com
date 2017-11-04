@@ -8,3 +8,7 @@ export const api = axios.create({
 export function searchMusicGenres(query, limit) {
   return api.get(`/music-genres/search?query=${query}&limit=${limit}`)
 }
+
+export function fetchMusicGenre(slug) {
+  return api.get(`/music-genres/${slug}/with-tracks`);
+}

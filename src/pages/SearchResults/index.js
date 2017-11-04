@@ -12,7 +12,8 @@ import './searchResults.css';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
 import SearchResult from './SearchResult';
-import SearchGenres from '../../components/SearchGenres'
+import SearchGenres from '../../components/SearchGenres';
+import HashtagTitle from '../../components/HashtagTitle';
 
 function mapStoreToProps(store) {
   return {
@@ -34,9 +35,7 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div className="search-results-container">
-        <h2 className="hashtag-title">
-          # {this.props.match.params.query}
-        </h2>
+        <HashtagTitle>{this.props.match.params.query}</HashtagTitle>
         {this.renderResultsDiv()}
         <div className="continue-search">
           <p className="phrase">

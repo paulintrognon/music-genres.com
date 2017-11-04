@@ -7,6 +7,7 @@ import Layout from './components/Layout/Layout.js';
 
 import Homepage from './pages/Homepage';
 import SearchResults from './pages/SearchResults';
+import MusicGenre from './pages/MusicGenre';
 
 import store from './store';
 import history from './history';
@@ -18,7 +19,8 @@ class App extends Component {
         <ConnectedRouter history={history}>
           <Layout>
             <Route path="/" exact={true} component={Homepage}></Route>
-            <Route path="/search/:query" component={SearchResults}></Route>
+            <Route path="/search/:query" exact={true} component={SearchResults}></Route>
+            <Route path="/:slug" exact={true} component={MusicGenre}></Route>
           </Layout>
         </ConnectedRouter>
       </Provider>
