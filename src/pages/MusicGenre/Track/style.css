@@ -57,52 +57,12 @@
   min-height: 100px;
 }
 
-.track-box .track-title {
+.track-box .track-title-component {
   margin-top: 37px;
-  margin-bottom: 0;
   height: 100px;
-  overflow: hidden;
-  font-family: 'Montserrat';
-  font-weight: unset;
-  text-transform: uppercase;
-  color: #8300FC;
-  font-size: 26px;
-  font-weight: 700;
-  text-align: left;
 }
 
-.track-box .track-votes {
+.track-box .track-votes-container .track-votes-count {
   margin-top: 43px;
   margin-bottom: 37px;
-  font-family: Oxygen;
-  color: #5bdc77;
-  font-size: 22px;
-  font-weight: 400;
-  text-align: left;
-  display: inline-block;
-}
-
-.track-box .track-upvote-button {
-  display: inline-block;
-  transform: skew(-20deg);
-  background-color: #62DD7C;
-  margin-left: 20px;
-  cursor: pointer;
-  text-align: center;
-  width: 40px;
-  transition: background-color 100ms;
-}
-
-.track-box .track-upvote-button:hover {
-  background-color: #8300FC;
-}
-
-.track-box .track-upvote-button span {
-  display: inline-block;
-  transform: skew(20deg);
-}
-
-.track-box .track-upvote-button.has-upvoted {
-  cursor: default;
-  background-color: #8300FC;
 }

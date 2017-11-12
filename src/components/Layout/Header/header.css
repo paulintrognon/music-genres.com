@@ -8,6 +8,11 @@
   display: inline-block;
 }
 
+.main-header .main-logo img {
+  z-index: 101;
+  position: relative;
+}
+
 .main-header .side-buttons {
   float: right;
   margin-top: 24px;

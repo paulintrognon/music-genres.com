@@ -1,0 +1,50 @@
+.player-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(105,63,250, 0.9);
+  z-index: 100;
+}
+
+.player-container .player-content {
+  width: 720px;
+  margin: auto;
+  margin-top: 166px;
+}
+
+.player-container .player-content .close-button {
+  float: right;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.player-container .player-content .player-box {
+  background-color: #FFF;
+  width: 100%;
+  border: 2px solid #FFF;
+}
+
+.player-container .player-content .track-information {
+  margin: 37px 15px;
+}
+
+.player-container .player-content .track-title-component {
+  display: inline-block;
+  vertical-align:top;
+  width: 450px;
+}
+
+.player-container .track-votes-container {
+  display: inline-block;
+  vertical-align:top;
+  width: 235px;
+  text-align: right;
+}
+
+.player-container .track-votes-container .track-votes-count {
+  display: block;
+  text-align: right;
+  margin-bottom: 8px;
+}

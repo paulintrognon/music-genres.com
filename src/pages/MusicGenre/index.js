@@ -12,6 +12,7 @@ import LoadingIndicator from '../../components/LoadingIndicator';
 import Plus from '../../components/images/Plus';
 import RectangleButton from '../../components/RectangleButton';
 import Track from './Track';
+import Player from '../../components/Player';
 
 import './musicGenre.css';
 
@@ -33,6 +34,7 @@ class MusicGenre extends React.Component {
   render() {
     return (
       <div className="music-genre-page">
+        <Player></Player>
         {this.renderContent()}
       </div>
     );

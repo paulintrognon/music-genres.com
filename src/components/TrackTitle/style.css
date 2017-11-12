@@ -1,0 +1,11 @@
+.track-title-component {
+  margin-top: 0px;
+  margin-bottom: 0;
+  overflow: hidden;
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  color: #693FFA;
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
+}
