@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  closePlayerAction,
+} from '../../actions/playerActions';
 
 import './styles.css';
 
@@ -12,14 +15,17 @@ function mapStoreToProps(store) {
   return store.player;
 }
 class Player extends React.Component {
+  closePlayer = () => {
+    this.props.dispatch(closePlayerAction())
+  }
 
   renderPlayer = () => {
     return (
       <div className="player-content">
-        <img className="close-button" src={closeImg} alt="close" />
+        <img className="close-button" src={closeImg} alt="close" onClick={this.closePlayer} />
         <HashtagTitle>{this.props.genre.name}</HashtagTitle>
         <div className="player-box">
-          <iframe id="ytplayer" type="text/html" width="720" height="405" frameBorder="0"
+          <iframe id="ytplayer" type="text/html" width="720" height="405" frameBorder="0" title="Youtube Player"
             src={`http://www.youtube.com/embed/${this.props.track.playerTrackId}?autoplay=1&origin=http://www.music-genre.com`}
           />
           <div className="track-information">
@@ -32,7 +38,7 @@ class Player extends React.Component {
   }
 
   render() {
-    if (!this.props.isFetched) {
+    if (!this.props.isActive) {
       return null;
     }
     return (

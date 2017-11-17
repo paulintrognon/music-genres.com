@@ -6,6 +6,9 @@ import {
   upvoteTrackAction,
   downvoteTrackAction,
 } from '../../actions/musicGenreActions';
+import {
+  playTrackAction,
+} from '../../actions/playerActions';
 
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -29,6 +32,9 @@ class MusicGenre extends React.Component {
   }
   downvoteTrack = (trackId) => {
     this.props.dispatch(downvoteTrackAction(trackId, this.props.musicGenre.id));
+  }
+  playTrack = (track) => {
+    this.props.dispatch(playTrackAction(track, this.props.musicGenre));
   }
 
   render() {
@@ -66,14 +72,25 @@ class MusicGenre extends React.Component {
       <div>
         <div className="top-tracks-container">
           {[0,1,2].map(index => (
-            <Track key={index} track={topTracks[index]} index={index} upvoteTrackHandler={this.upvoteTrack} downvoteTrackHandler={this.downvoteTrack}></Track>
+            <Track key={index}
+              track={topTracks[index]}
+              index={index}
+              upvoteTrackHandler={this.upvoteTrack}
+              downvoteTrackHandler={this.downvoteTrack}
+              onPlayHandler={() => this.playTrack(topTracks[index])}
+              ></Track>
           ))}
         </div>
         {this.renderAddTrack()}
         <HashtagTitle className="more-of-title">More from {this.props.musicGenre.name}</HashtagTitle>
         <div className="other-tracks-container">
           {otherTracks.map((track, i) => (
-            <Track key={i} track={track} upvoteTrackHandler={this.upvoteTrack} downvoteTrackHandler={this.downvoteTrack}></Track>
+            <Track key={i}
+              track={track}
+              upvoteTrackHandler={this.upvoteTrack}
+              downvoteTrackHandler={this.downvoteTrack}
+              onPlayHandler={() => this.playTrack(track)}
+              ></Track>
           ))}
         </div>
         {this.renderAddTrack()}

@@ -21,6 +21,7 @@ export default function Track(props) {
       <div className="track-thumb"
         style={{ backgroundImage: `url('https://img.youtube.com/vi/${track.playerTrackId}/hqdefault.jpg')` }}
         title={`Play "${track.title}"`}
+        onClick={props.onPlayHandler}
         >
           <p className="play-button play-button-normal"
             style={{ backgroundImage: `url('${playImage}')` }}
