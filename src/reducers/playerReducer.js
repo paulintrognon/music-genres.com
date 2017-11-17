@@ -2,6 +2,9 @@ const defaultState = {
   isActive: false,
   track: null,
   genre: null,
+  trackIndex: null,
+  hasPreviousTrack: false,
+  hasNextTrack: false,
 };
 
 export default function reducer(state = defaultState, action) {
@@ -13,6 +16,9 @@ export default function reducer(state = defaultState, action) {
         isActive: true,
         track: action.payload.track,
         genre: action.payload.genre,
+        trackIndex: action.payload.trackIndex,
+        hasPreviousTrack: action.payload.hasPreviousTrack,
+        hasNextTrack: action.payload.hasNextTrack,
       };
 
     case 'PLAYER_CLOSE':

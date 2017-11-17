@@ -33,8 +33,8 @@ class MusicGenre extends React.Component {
   downvoteTrack = (trackId) => {
     this.props.dispatch(downvoteTrackAction(trackId, this.props.musicGenre.id));
   }
-  playTrack = (track) => {
-    this.props.dispatch(playTrackAction(track, this.props.musicGenre));
+  playTrack = (trackIndex) => {
+    this.props.dispatch(playTrackAction(trackIndex, this.props.musicGenre));
   }
 
   render() {
@@ -66,18 +66,17 @@ class MusicGenre extends React.Component {
     if (!tracks.length) {
       return <p>No tracks yet.</p>
     }
-    const topTracks = tracks.slice(0,3);
     const otherTracks = tracks.slice(3);
     return (
       <div>
         <div className="top-tracks-container">
           {[0,1,2].map(index => (
             <Track key={index}
-              track={topTracks[index]}
+              track={tracks[index]}
               index={index}
               upvoteTrackHandler={this.upvoteTrack}
               downvoteTrackHandler={this.downvoteTrack}
-              onPlayHandler={() => this.playTrack(topTracks[index])}
+              onPlayHandler={() => this.playTrack(index)}
               ></Track>
           ))}
         </div>
@@ -89,7 +88,7 @@ class MusicGenre extends React.Component {
               track={track}
               upvoteTrackHandler={this.upvoteTrack}
               downvoteTrackHandler={this.downvoteTrack}
-              onPlayHandler={() => this.playTrack(track)}
+              onPlayHandler={() => this.playTrack(i+3)}
               ></Track>
           ))}
         </div>
