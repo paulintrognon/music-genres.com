@@ -34,16 +34,8 @@ export default function Track(props) {
       </div>
       <div className="track-information">
         <TrackTitle title={track.title}></TrackTitle>
-        <Votes upvotes={track.upvotes} hasUpvoted={track.hasUpvoted} onVote={() => vote(props)}></Votes>
+        <Votes track={track} onVote={props.onVoteHandler}></Votes>
       </div>
     </div>
   );
-}
-
-function vote(props) {
-  if (!props.track.hasUpvoted) {
-    props.upvoteTrackHandler(props.track.id);
-  } else {
-    props.downvoteTrackHandler(props.track.id);
-  }
 }

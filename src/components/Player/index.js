@@ -4,6 +4,9 @@ import {
   playTrackAction,
   closePlayerAction,
 } from '../../actions/playerActions';
+import {
+  voteForTrackAction,
+} from '../../actions/musicGenreActions';
 
 import './styles.css';
 
@@ -29,6 +32,10 @@ class Player extends React.Component {
     this.props.dispatch(playTrackAction(trackIndex, this.props.genre));
   }
 
+  upvoteTrack = () => {
+    this.props.dispatch(voteForTrackAction(this.props.track, this.props.genre.id));
+  }
+
   renderPlayer = () => {
     return (
       <div className="player-content">
@@ -40,7 +47,7 @@ class Player extends React.Component {
           />
           <div className="track-information">
             <TrackTitle title={this.props.track.title} maxLength={70} ></TrackTitle>
-            <Votes upvotes={35}></Votes>
+            <Votes track={this.props.track} onVote={this.upvoteTrack}></Votes>
           </div>
         </div>
         {!this.props.hasPreviousTrack ? null : (

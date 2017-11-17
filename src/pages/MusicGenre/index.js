@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   fetchMusicGenreAction,
-  upvoteTrackAction,
-  downvoteTrackAction,
+  voteForTrackAction,
 } from '../../actions/musicGenreActions';
 import {
   playTrackAction,
@@ -27,12 +26,10 @@ class MusicGenre extends React.Component {
     this.props.dispatch(fetchMusicGenreAction(this.props.match.params.slug));
   }
 
-  upvoteTrack = (trackId) => {
-    this.props.dispatch(upvoteTrackAction(trackId, this.props.musicGenre.id));
+  voteForTrack = (track) => {
+    this.props.dispatch(voteForTrackAction(track, this.props.musicGenre.id));
   }
-  downvoteTrack = (trackId) => {
-    this.props.dispatch(downvoteTrackAction(trackId, this.props.musicGenre.id));
-  }
+
   playTrack = (trackIndex) => {
     this.props.dispatch(playTrackAction(trackIndex, this.props.musicGenre));
   }
@@ -74,8 +71,7 @@ class MusicGenre extends React.Component {
             <Track key={index}
               track={tracks[index]}
               index={index}
-              upvoteTrackHandler={this.upvoteTrack}
-              downvoteTrackHandler={this.downvoteTrack}
+              onVoteHandler={() => this.voteForTrack(tracks[index])}
               onPlayHandler={() => this.playTrack(index)}
               ></Track>
           ))}
@@ -86,8 +82,7 @@ class MusicGenre extends React.Component {
           {otherTracks.map((track, i) => (
             <Track key={i}
               track={track}
-              upvoteTrackHandler={this.upvoteTrack}
-              downvoteTrackHandler={this.downvoteTrack}
+              onVoteHandler={() => this.voteForTrack(track)}
               onPlayHandler={() => this.playTrack(i+3)}
               ></Track>
           ))}

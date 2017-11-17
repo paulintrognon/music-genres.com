@@ -14,10 +14,14 @@ export function fetchMusicGenreAction(slug) {
   };
 }
 
-export function upvoteTrackAction(trackId, musicGenreId) {
+export function voteForTrackAction(track, musicGenreId) {
   return dispatch => {
-    dispatch({ type: 'TOGGLE_VOTE_TRACK', payload: trackId });
-    upvoteTrack(trackId, musicGenreId);
+    dispatch({ type: 'TOGGLE_VOTE_TRACK', payload: track.id });
+    if (track.hasUpvoted) {
+      downvoteTrack(track.id, musicGenreId);
+    } else {
+      upvoteTrack(track.id, musicGenreId);
+    }
   };
 }
 

@@ -27,6 +27,16 @@ export default function reducer(state = defaultState, action) {
         isActive: false,
       };
 
+    case 'TOGGLE_VOTE_TRACK':
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          hasUpvoted: !state.track.hasUpvoted,
+          upvotes: state.track.hasUpvoted ? state.track.upvotes-1 : state.track.upvotes+1,
+        },
+      };
+
     default:
       return state;
   }
