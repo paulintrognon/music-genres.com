@@ -38,12 +38,13 @@ class Player extends React.Component {
   }
 
   render() {
+    const classes = ['player-container', 'hidable'];
     if (!this.props.isActive) {
-      return null;
+      classes.push('hidden');
     }
     return (
-      <div className="player-container">
-        {this.renderPlayer()}
+      <div className={classes.join(' ')}>
+        {this.props.isActive ? this.renderPlayer() : null}
       </div>
     );
   }
