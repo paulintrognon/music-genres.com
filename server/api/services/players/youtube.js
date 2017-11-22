@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 const bluebird = require('bluebird');
-const config = require('config').playerServices.youtube;
+const config = require('config/api').playerServices.youtube;
 
 module.exports = createService();
 

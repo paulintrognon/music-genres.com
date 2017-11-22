@@ -1,18 +1,5 @@
 module.exports = {
   host: 'http://localhost:3000',
-  database: {
-    host: "localhost",
-    user: "music-genres",
-    password: "change-me",
-    database: "music-genres",
-  },
-  playerServices: {
-    youtube: {
-      api: {
-        key: "change-me"
-      }
-    }
-  },
   api: {
     baseUrl: 'http://localhost',
     port: 3001,

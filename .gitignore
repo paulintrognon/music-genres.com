@@ -11,6 +11,7 @@
 
 # config
 /config/index.js
+/config/api.js
 
 # misc
 .DS_Store
