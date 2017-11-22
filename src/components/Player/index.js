@@ -3,10 +3,14 @@ import { connect } from 'react-redux';
 import {
   playTrackAction,
   closePlayerAction,
+  playRandomTrackAction,
 } from '../../actions/playerActions';
 import {
   voteForTrackAction,
 } from '../../actions/musicGenreActions';
+import {
+  goToMusicGenre,
+} from '../../actions/navigationActions';
 
 import './styles.css';
 
@@ -17,6 +21,7 @@ import rightArrowImg from './right_arrow.png';
 import rightArrowHoverImg from './right_arrow_hover.png';
 
 import HashtagTitle from '../HashtagTitle';
+import RectangleButton from '../RectangleButton';
 import TrackTitle from '../TrackTitle';
 import Votes from '../Votes';
 
@@ -25,7 +30,7 @@ function mapStoreToProps(store) {
 }
 class Player extends React.Component {
   closePlayer = () => {
-    this.props.dispatch(closePlayerAction())
+    this.props.dispatch(closePlayerAction());
   }
 
   playTrack = (trackIndex) => {
@@ -34,6 +39,15 @@ class Player extends React.Component {
 
   upvoteTrack = () => {
     this.props.dispatch(voteForTrackAction(this.props.track, this.props.genre.id));
+  }
+
+  goToGenre = () => {
+    this.props.dispatch(goToMusicGenre(this.props.genre.slug));
+    this.props.dispatch(closePlayerAction());
+  }
+
+  anotherRandom = () => {
+    this.props.dispatch(playRandomTrackAction());
   }
 
   renderPlayer = () => {
@@ -62,6 +76,16 @@ class Player extends React.Component {
           <div className="arrow-container right-arrow-container" onClick={() => this.playTrack(this.props.trackIndex+1)}>
             <img className="normal" src={rightArrowImg} alt="previous track" />
             <img className="hover" src={rightArrowHoverImg} alt="previous track" />
+          </div>
+        )}
+        {this.inGenre ? null : (
+          <div>
+            <RectangleButton onClick={this.goToGenre}>
+              Gimmi More
+            </RectangleButton>
+            <RectangleButton onClick={this.anotherRandom}>
+              Shiti shiti
+            </RectangleButton>
           </div>
         )}
       </div>
