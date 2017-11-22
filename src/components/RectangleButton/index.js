@@ -4,7 +4,7 @@ import './style.css';
 
 export default function RectangleButton(props) {
   return (
-    <button className="rectangle-button">
+    <button className="rectangle-button" onClick={props.onClick}>
       {props.children}
     </button>
   );

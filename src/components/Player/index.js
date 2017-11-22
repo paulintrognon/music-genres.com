@@ -47,7 +47,9 @@ class Player extends React.Component {
           />
           <div className="track-information">
             <TrackTitle title={this.props.track.title} maxLength={70} ></TrackTitle>
-            <Votes track={this.props.track} onVote={this.upvoteTrack}></Votes>
+            {this.props.track.upvotes === undefined ? null : (
+              <Votes track={this.props.track} onVote={this.upvoteTrack}></Votes>
+            )}
           </div>
         </div>
         {!this.props.hasPreviousTrack ? null : (

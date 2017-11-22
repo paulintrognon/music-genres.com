@@ -86,7 +86,7 @@ function createManager() {
 
   function random() {
     return Track.find({
-      attributes: ['id', 'playerName', 'playerTrackId'],
+      attributes: ['id', 'playerName', 'playerTrackId', 'title'],
       order: [
         Sequelize.fn('RAND'),
       ],
@@ -95,7 +95,27 @@ function createManager() {
         attributes: ['id', 'name', 'slug'],
       },
     })
-      .then(res => res.get({ plain: true }));
+      .then(res => res.get({ plain: true }))
+      .then(res => {
+        const track = {
+          id: res.id,
+          playerName: res.playerName,
+          playerTrackId: res.playerTrackId,
+          title: res.title,
+        };
+        const musicGenresByUpvotes = res.musicGenres.sort((genreA, genreB) => {
+          return genreA.musicGenreTrack.upvotes - genreB.musicGenreTrack.upvotes;
+        });
+        const musicGenre = {
+          id: musicGenresByUpvotes[0].id,
+          name: musicGenresByUpvotes[0].name,
+          slug: musicGenresByUpvotes[0].slug,
+        };
+        return {
+          track,
+          musicGenre,
+        };
+      });
   }
 
   // ------------------------------------------------------

@@ -3,7 +3,8 @@ import { Route } from 'react-router';
 import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 
-import Layout from './components/Layout/Layout.js';
+import Layout from './components/Layout/Layout';
+import Player from './components/Player';
 
 import Homepage from './pages/Homepage';
 import SearchResults from './pages/SearchResults';
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path="/" exact={true} component={Homepage}></Route>
             <Route path="/search/:query" exact={true} component={SearchResults}></Route>
             <Route path="/:slug" exact={true} component={MusicGenre}></Route>
+            <Player></Player>
           </Layout>
         </ConnectedRouter>
       </Provider>

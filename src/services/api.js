@@ -20,3 +20,7 @@ export function upvoteTrack(trackId, musicGenreId) {
 export function downvoteTrack(trackId, musicGenreId) {
   return api.post(`/tracks/downvote`, { trackId, musicGenreId });
 }
+
+export function getRandomTrack() {
+  return api.get(`/tracks/random`);
+}

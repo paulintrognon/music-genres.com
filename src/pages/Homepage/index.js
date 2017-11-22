@@ -4,6 +4,10 @@ import {
   goToSearchResultsAction
 } from '../../actions/searchGenresActions';
 
+import {
+  playRandomTrackAction
+} from '../../actions/playerActions';
+
 import './homepage.css';
 import or from './or.png';
 
@@ -21,6 +25,10 @@ class Homepage extends React.Component {
     this.props.dispatch(goToSearchResultsAction(queryString));
   }
 
+  randomTrackHandler = () => {
+    this.props.dispatch(playRandomTrackAction());
+  }
+
   render() {
     return (
       <div className="homepage-container">
@@ -30,7 +38,7 @@ class Homepage extends React.Component {
             <img src={or} alt="or" />
           </p>
           <p className="random-container">
-            <RectangleButton>
+            <RectangleButton onClick={this.randomTrackHandler}>
               Get surprised
             </RectangleButton>
           </p>
