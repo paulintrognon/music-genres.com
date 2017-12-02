@@ -3,7 +3,6 @@
   background-color: #a6f168;
   text-align: left;
   font-size: 1rem;
-  font-weight: bold;
 }
 
 .search-genres-container .suggestions-container .suggestions-item {
@@ -13,8 +12,8 @@
 
 .search-genres-container .suggestions-container .suggestions-item.selected,
 .search-genres-container .suggestions-container .suggestions-item:hover {
-  color: #fff;
-  background-color: #7672D8;
+  background-color: #BBF987;
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }
 

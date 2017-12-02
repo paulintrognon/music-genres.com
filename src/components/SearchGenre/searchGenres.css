@@ -20,7 +20,6 @@
   transition: width 200ms, height 200ms;
   box-sizing: border-box;
   font-family: 'Oxygen', sans-serif;
-  font-weight: bold;
 }
 
 .search-genres-container .search-input-container .search-icon {
