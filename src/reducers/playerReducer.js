@@ -8,10 +8,12 @@ const defaultState = {
 };
 
 export default function reducer(state = defaultState, action) {
-  switch (action.type) {
+  const body = document.getElementsByTagName('body')[0];
 
+  switch (action.type) {
     case 'PLAYER_PLAY_TRACK':
-      return {
+    body.style.overflow = 'hidden';
+    return {
         ...state,
         isActive: true,
         inGenre: action.payload.inGenre,
@@ -23,6 +25,7 @@ export default function reducer(state = defaultState, action) {
       };
 
     case 'PLAYER_CLOSE':
+      body.style.overflow = 'auto';
       return {
         ...state,
         isActive: false,
