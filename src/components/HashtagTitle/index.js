@@ -3,7 +3,11 @@ import React from 'react';
 import './style.css';
 
 export default function HashtagTitle(props) {
-  let className = 'hashtag-title ' + props.className;
+  let className = 'hashtag-title ';
+
+  if (props.className) {
+    className = className + props.className;
+  }
 
   if (props.clickHandler) {
     className = className + ' clickable';

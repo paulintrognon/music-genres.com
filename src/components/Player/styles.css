@@ -23,6 +23,15 @@
   position: relative;
 }
 
+.player-container .player-content .background-title {
+  top: -66px;
+  font-size: 136px;
+}
+
+.player-container .player-content .hashtag-title {
+  margin-bottom: 25px;
+}
+
 .player-container .player-content .close-button {
   float: right;
   cursor: pointer;

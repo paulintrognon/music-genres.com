@@ -24,6 +24,7 @@ import HashtagTitle from '../HashtagTitle';
 import RectangleButton from '../RectangleButton';
 import TrackTitle from '../TrackTitle';
 import Votes from '../Votes';
+import BackgroundTitle from '../BackgroundTitle';
 
 function mapStoreToProps(store) {
   return store.player;
@@ -53,6 +54,11 @@ class Player extends React.Component {
   renderPlayer = () => {
     return (
       <div className="player-content">
+        {this.props.inGenre ? null : (
+          <BackgroundTitle>
+            Surprise
+          </BackgroundTitle>
+        )}
         <img className="close-button" src={closeImg} alt="close" onClick={this.closePlayer} />
         <HashtagTitle clickHandler={this.props.inGenre ? null : this.goToGenre} title={this.props.inGenre ? null : `Go to ${this.props.genre.name} page`}>
           {this.props.genre.name}
