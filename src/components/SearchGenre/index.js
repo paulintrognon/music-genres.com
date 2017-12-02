@@ -5,8 +5,7 @@ import {
   changeFocusAction,
   suggestGenresAction,
   resetGenresSuggestionsAction,
-  selectSuggestionAction,
-  validSuggestionAction
+  selectSuggestionAction
 } from '../../actions/searchGenresActions';
 
 import SearchGenreSuggestions from './SearchGenreSuggestions';
@@ -46,7 +45,8 @@ class SearchGenre extends React.Component {
     } else if (event.key === 'Enter') {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
-        this.props.dispatch(validSuggestionAction(selectedSuggestion.slug));
+        this.props.selectGenreHandler(selectedSuggestion.slug);
+        this.resetUi();
       } else {
         this.searchGenre();
       }
@@ -70,8 +70,14 @@ class SearchGenre extends React.Component {
   searchGenre() {
     if (this.state.text) {
       this.props.searchGenresHandler(this.state.text);
-      this.setState({ text: '' });
+      this.resetUi();
     }
+  }
+
+  resetUi() {
+    this.inputField.blur();
+    window.scrollTo(0,0);
+    this.setState({ text: '' });
   }
 
   render() {
@@ -80,6 +86,7 @@ class SearchGenre extends React.Component {
         <p>
           <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
             <input
+              ref={(c) => { this.inputField = c; }}
               type="text"
               className="search-input"
               placeholder="Look for a genre"
@@ -100,4 +107,5 @@ export default connect(mapStoreToProps)(SearchGenre);
 
 SearchGenre.propTypes = {
    searchGenresHandler: PropTypes.func.isRequired,
+   selectGenreHandler: PropTypes.func.isRequired,
 }

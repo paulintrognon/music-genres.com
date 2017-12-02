@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   fetchSearchResultsAction,
-  goToSearchResultsAction
+  goToSearchResultsAction,
+  validSuggestionAction
 } from '../../actions/searchGenresActions';
 import {
   goToMusicGenre
@@ -12,7 +13,7 @@ import './searchResults.css';
 
 import LoadingIndicator from '../../components/LoadingIndicator';
 import SearchResult from './SearchResult';
-import SearchGenres from '../../components/SearchGenres';
+import SearchGenre from '../../components/SearchGenre';
 import HashtagTitle from '../../components/HashtagTitle';
 
 function mapStoreToProps(store) {
@@ -32,6 +33,10 @@ class SearchResults extends React.Component {
     this.props.dispatch(fetchSearchResultsAction(queryString));
   }
 
+  selectGenreHandler = (genreSlug) => {
+    this.props.dispatch(validSuggestionAction(genreSlug));
+  }
+
   render() {
     return (
       <div className="search-results-container">
@@ -41,7 +46,7 @@ class SearchResults extends React.Component {
           <p className="phrase">
             Not what you were looking for?
           </p>
-          <SearchGenres searchGenresHandler={this.searchGenresHandler}></SearchGenres>
+          <SearchGenre searchGenresHandler={this.searchGenresHandler} selectGenreHandler={this.selectGenreHandler}></SearchGenre>
         </div>
       </div>
     );

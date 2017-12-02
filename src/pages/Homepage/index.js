@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  goToSearchResultsAction
+  goToSearchResultsAction,
+  validSuggestionAction
 } from '../../actions/searchGenresActions';
 
 import {
@@ -12,7 +13,7 @@ import './homepage.css';
 import or from './or.png';
 
 import RectangleButton from '../../components/RectangleButton';
-import SearchGenre from '../../components/SearchGenres';
+import SearchGenre from '../../components/SearchGenre';
 
 function mapStoreToProps(store) {
   return {
@@ -25,6 +26,10 @@ class Homepage extends React.Component {
     this.props.dispatch(goToSearchResultsAction(queryString));
   }
 
+  selectGenreHandler = (genreSlug) => {
+    this.props.dispatch(validSuggestionAction(genreSlug));
+  }
+
   randomTrackHandler = () => {
     this.props.dispatch(playRandomTrackAction());
   }
@@ -32,7 +37,7 @@ class Homepage extends React.Component {
   render() {
     return (
       <div className="homepage-container">
-        <SearchGenre searchGenresHandler={this.searchGenresHandler}></SearchGenre>
+        <SearchGenre searchGenresHandler={this.searchGenresHandler} selectGenreHandler={this.selectGenreHandler} ></SearchGenre>
         <div className={this.props.isSearchFocused ? 'hidden' : ''}>
           <p className="or-container">
             <img src={or} alt="or" />
