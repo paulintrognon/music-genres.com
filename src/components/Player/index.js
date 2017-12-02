@@ -54,7 +54,9 @@ class Player extends React.Component {
     return (
       <div className="player-content">
         <img className="close-button" src={closeImg} alt="close" onClick={this.closePlayer} />
-        <HashtagTitle>{this.props.genre.name}</HashtagTitle>
+        <HashtagTitle clickHandler={this.props.inGenre ? null : this.goToGenre} title={this.props.inGenre ? null : `Go to ${this.props.genre.name} page`}>
+          {this.props.genre.name}
+        </HashtagTitle>
         <div className="player-box">
           <iframe id="ytplayer" type="text/html" width="720" height="405" frameBorder="0" title="Youtube Player"
             src={`http://www.youtube.com/embed/${this.props.track.playerTrackId}?autoplay=1&origin=http://www.music-genre.com`}
