@@ -28,6 +28,9 @@ export default function reducer(state = defaultState, action) {
       };
 
     case 'TOGGLE_VOTE_TRACK':
+      if (!state.track) {
+        return state;
+      }
       return {
         ...state,
         track: {
