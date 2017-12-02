@@ -14,6 +14,7 @@ export default function reducer(state = defaultState, action) {
       return {
         ...state,
         isActive: true,
+        inGenre: action.payload.inGenre,
         track: action.payload.track,
         genre: action.payload.genre,
         trackIndex: action.payload.trackIndex,

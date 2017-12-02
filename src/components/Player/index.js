@@ -78,7 +78,7 @@ class Player extends React.Component {
             <img className="hover" src={rightArrowHoverImg} alt="previous track" />
           </div>
         )}
-        {this.inGenre ? null : (
+        {this.props.inGenre ? null : (
           <div>
             <RectangleButton onClick={this.goToGenre}>
               Gimmi More
