@@ -1,0 +1,38 @@
+.add-video-container .add-video-content {
+  margin: auto;
+  position: relative;
+  width: 620px;
+  margin-top: 100px;
+}
+
+.add-video-container .add-video-ruler {
+  border: 1px solid #6F59EB;
+  right: 0;
+  left: 0;
+  top: 250px;
+  position: absolute;
+}
+
+.add-video-container.step-1 .add-video-background-title {
+  font-size: 115px;
+  top: -88px;
+}
+
+.add-video-container .step-title {
+  font-family: Montserrat;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.add-video-container .step-title .step-number {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+.add-video-container .step-title .step-step {
+  font-size: 15px;
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+}
