@@ -29,6 +29,8 @@
 }
 
 .player-container .player-content .hashtag-title {
+  display: inline-block;
+  margin-top: 0;
   margin-bottom: 25px;
 }
 

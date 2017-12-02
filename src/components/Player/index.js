@@ -88,10 +88,10 @@ class Player extends React.Component {
         )}
         {this.props.inGenre ? null : (
           <div className="action-buttons">
-            <RectangleButton onClick={this.goToGenre} className="alternative">
+            <RectangleButton onClick={this.anotherRandom} className="alternative">
               Try something else
             </RectangleButton>
-            <RectangleButton onClick={this.anotherRandom} style={{float: 'right'}}>
+            <RectangleButton onClick={this.goToGenre} style={{float: 'right'}}>
               Gimmi more
             </RectangleButton>
           </div>
