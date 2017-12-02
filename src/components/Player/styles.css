@@ -17,15 +17,15 @@
 }
 
 .player-container .player-content {
-  width: 720px;
+  width: 650px;
   margin: auto;
   margin-top: 166px;
   position: relative;
 }
 
 .player-container .player-content .background-title {
-  top: -66px;
-  font-size: 136px;
+  top: -53px;
+  font-size: 122px;
 }
 
 .player-container .player-content .hashtag-title {
@@ -40,7 +40,6 @@
 
 .player-container .player-content .player-box {
   background-color: #FFF;
-  width: 100%;
   border: 2px solid #FFF;
 }
 
@@ -51,7 +50,11 @@
 .player-container .player-content .track-title-component {
   display: inline-block;
   vertical-align:top;
-  width: 450px;
+  width: 350px;
+}
+
+.player-container .player-content .track-title-component.full-width {
+  width: unset;
 }
 
 .player-container .track-votes-container {
@@ -89,4 +92,12 @@
 
 .player-container .arrow-container.right-arrow-container {
   right: -72px;
+}
+
+.player-container .action-buttons {
+  margin: 25px 0;
+}
+
+.player-container .action-buttons .rectangle-button {
+  width: 300px;
 }

@@ -1,18 +1,35 @@
 .rectangle-button {
   text-transform: uppercase;
+  text-align: center;
   color: #FFF;
-  padding: 25px 55px;
+  padding: 25px 0;
   background-color: #7c56fd;
-  border: none;
+  border: 2px solid #7c56fd;
   font-size: 1.2rem;
-  font-family: 'Montserrat Subrayada';
+  font-family: 'Montserrat';
   font-weight: bold;
   box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.19);
   min-width: 300px;
   height: 75px;
   box-sizing: border-box;
+  transition: background-color 200ms, border 200ms, color 200ms;
+}
+
+.rectangle-button.alternative {
+  background-color: unset;
+  border: 2px solid #FFF;
+  text-transform: unset;
 }
 
 .rectangle-button:hover {
   cursor: pointer;
+}
+
+.rectangle-button:not(.alternative):hover {
+  border: 2px solid #FFF;
+}
+
+.rectangle-button.alternative:hover {
+  color: #A6F168;
+  border: 2px solid #A6F168;
 }

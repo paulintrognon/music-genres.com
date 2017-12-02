@@ -64,11 +64,11 @@ class Player extends React.Component {
           {this.props.genre.name}
         </HashtagTitle>
         <div className="player-box">
-          <iframe id="ytplayer" type="text/html" width="720" height="405" frameBorder="0" title="Youtube Player"
+          <iframe id="ytplayer" type="text/html" width="646" height="405" frameBorder="0" title="Youtube Player"
             src={`http://www.youtube.com/embed/${this.props.track.playerTrackId}?autoplay=1&origin=http://www.music-genre.com`}
           />
           <div className="track-information">
-            <TrackTitle title={this.props.track.title} maxLength={70} ></TrackTitle>
+            <TrackTitle title={this.props.track.title} maxLength={70} fullWidth={!this.props.inGenre}></TrackTitle>
             {this.props.track.upvotes === undefined ? null : (
               <Votes track={this.props.track} onVote={this.upvoteTrack}></Votes>
             )}
@@ -87,12 +87,12 @@ class Player extends React.Component {
           </div>
         )}
         {this.props.inGenre ? null : (
-          <div>
-            <RectangleButton onClick={this.goToGenre}>
-              Gimmi More
+          <div className="action-buttons">
+            <RectangleButton onClick={this.goToGenre} className="alternative">
+              Try something else
             </RectangleButton>
-            <RectangleButton onClick={this.anotherRandom}>
-              Shiti shiti
+            <RectangleButton onClick={this.anotherRandom} style={{float: 'right'}}>
+              Gimmi more
             </RectangleButton>
           </div>
         )}
