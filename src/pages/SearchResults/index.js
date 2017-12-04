@@ -24,7 +24,7 @@ function mapStoreToProps(store) {
 class SearchResults extends React.Component {
   componentWillMount() {
     if (!this.props.searchResults) {
-      this.searchGenresHandler(this.props.match.params.query);
+      this.props.dispatch(fetchSearchResultsAction(this.props.match.params.query));
     }
   }
 
