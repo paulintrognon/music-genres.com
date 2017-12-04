@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { validSuggestionAction } from '../../actions/searchGenresActions';
 
 import './suggestions.css';
 import Suggestion from './Suggestion';
@@ -18,11 +17,6 @@ class SearchGenreSuggestions extends React.Component {
     this.state = {
       text: '',
     };
-    this.onClickHandler = this.onClickHandler.bind(this);
-  }
-
-  onClickHandler(value) {
-    this.props.dispatch(validSuggestionAction(value));
   }
 
   render() {
@@ -36,7 +30,7 @@ class SearchGenreSuggestions extends React.Component {
               value={suggestion.slug}
               name={suggestion.name}
               isSelected={i === this.props.selectedSuggestion}
-              onSuggestionClick={this.onClickHandler}
+              onSuggestionClick={this.props.selectGenreHandler}
           ></Suggestion>
         ))}
       </ul>

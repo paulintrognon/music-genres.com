@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {
+  goToAddVideoToGenre
+} from '../../actions/navigationActions';
 
 import BackgroundTitle from '../../components/BackgroundTitle';
 import SearchGenre from '../../components/SearchGenre';
@@ -11,6 +14,10 @@ function mapStoreToProps() {
   return {};
 }
 class AddVideoStep1 extends React.Component {
+
+  onSelectGenreHandler = (genreSlug) => {
+    this.props.dispatch(goToAddVideoToGenre(genreSlug));
+  }
 
   render() {
     return (
@@ -27,7 +34,9 @@ class AddVideoStep1 extends React.Component {
             <span className="step-title">Define a genre related to your video</span>
             <span className="step-step">1/2</span>
           </h2>
-          <SearchGenre></SearchGenre>
+          <SearchGenre searchGenresHandler={this.onSelectGenreHandler} selectGenreHandler={this.onSelectGenreHandler}>
+
+          </SearchGenre>
           <div className="validate-button-container">
             <RectangleButton className="validate-button">
               Define Genre

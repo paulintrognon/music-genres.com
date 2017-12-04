@@ -7,3 +7,7 @@ export function goToMusicGenre(slug) {
 export function search(query) {
   return push(`/search/${query}`);
 }
+
+export function goToAddVideoToGenre(genreSlug) {
+  return push(`/add/${genreSlug}/video`);
+}

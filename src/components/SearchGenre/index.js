@@ -68,10 +68,11 @@ class SearchGenre extends React.Component {
   }
 
   searchGenre() {
-    if (this.state.text) {
-      this.props.searchGenresHandler(this.state.text);
-      this.resetUi();
+    if (!this.state.text) {
+      return;
     }
+    this.props.searchGenresHandler(this.state.text);
+    this.resetUi();
   }
 
   resetUi() {
@@ -98,7 +99,7 @@ class SearchGenre extends React.Component {
             <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" onClick={this.handleSearchClick} />
           </span>
         </p>
-        <SearchGenreSuggestions></SearchGenreSuggestions>
+        <SearchGenreSuggestions selectGenreHandler={this.props.selectGenreHandler}></SearchGenreSuggestions>
       </div>
     );
   }
