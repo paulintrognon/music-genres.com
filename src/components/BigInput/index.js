@@ -7,6 +7,7 @@ export default function BigInput(props) {
     <input
       type="text"
       className={"big-input" + (props.isFocused ? ' focused' : '')}
+      ref={props.refHandler}
       {...props}
     />
   );

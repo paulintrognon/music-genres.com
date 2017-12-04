@@ -88,7 +88,7 @@ class SearchGenre extends React.Component {
         <p>
           <span className="search-input-container">
             <BigInput
-              ref={(c) => { this.inputField = c; }}
+              refHandler={(c) => { this.inputField = c; }}
               isFocused={this.props.isFocused}
               placeholder="Look for a genre"
               onChange={this.handleChange}
