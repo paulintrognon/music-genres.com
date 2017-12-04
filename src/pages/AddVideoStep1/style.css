@@ -23,6 +23,7 @@
   font-weight: 700;
   text-transform: uppercase;
   font-size: 24px;
+  position: relative;
 }
 
 .add-video-container .step-title .step-number {
@@ -35,4 +36,17 @@
   position: absolute;
   right: 0;
   bottom: 3px;
+}
+
+.add-video-container .search-genres-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.add-video-container .validate-button-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.add-video-container .validate-button-container .validate-button {
 }

@@ -15,7 +15,7 @@ export default class Header extends React.Component {
           </Link>
         </div>
         <div className="side-buttons">
-          <Link to={'/tracks/add'} className="side-button">
+          <Link to={'/add/video'} className="side-button">
             Add video
             <Plus></Plus>
           </Link>

@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import BackgroundTitle from '../../components/BackgroundTitle'
+import BackgroundTitle from '../../components/BackgroundTitle';
+import SearchGenre from '../../components/SearchGenre';
+import RectangleButton from '../../components/RectangleButton';
 
 import './style.css';
 
@@ -25,6 +27,12 @@ class AddVideoStep1 extends React.Component {
             <span className="step-title">Define a genre related to your video</span>
             <span className="step-step">1/2</span>
           </h2>
+          <SearchGenre></SearchGenre>
+          <div className="validate-button-container">
+            <RectangleButton className="validate-button">
+              Define Genre
+            </RectangleButton>
+          </div>
         </div>
       </div>
     );
