@@ -7,6 +7,7 @@ import Layout from './components/Layout/Layout';
 import Player from './components/Player';
 
 import AddVideoStep1 from './pages/AddVideoStep1';
+import AddVideoToGenre from './pages/AddVideoToGenre';
 import Homepage from './pages/Homepage';
 import MusicGenre from './pages/MusicGenre';
 import SearchResults from './pages/SearchResults';
@@ -23,6 +24,7 @@ class App extends Component {
             <Route path="/" exact={true} component={Homepage}></Route>
             <Route path="/search/:query" exact={true} component={SearchResults}></Route>
             <Route path="/add/video" exact={true} component={AddVideoStep1}></Route>
+            <Route path="/add/:genre/video" exact={true} component={AddVideoToGenre}></Route>
             <Route path="/:slug" exact={true} component={MusicGenre}></Route>
             <Player></Player>
           </Layout>

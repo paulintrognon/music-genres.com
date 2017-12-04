@@ -8,6 +8,7 @@ import {
   selectSuggestionAction
 } from '../../actions/searchGenresActions';
 
+import BigInput from '../BigInput';
 import SearchGenreSuggestions from './SearchGenreSuggestions';
 import magnifyingGlass from './magnifying-glass.png';
 import './searchGenres.css';
@@ -85,11 +86,10 @@ class SearchGenre extends React.Component {
     return (
       <div className="search-genres-container" onKeyDown={this.handleKeyDown}>
         <p>
-          <span className={"search-input-container " + (this.props.isFocused ? 'focused' : '')}>
-            <input
+          <span className="search-input-container">
+            <BigInput
               ref={(c) => { this.inputField = c; }}
-              type="text"
-              className="search-input"
+              isFocused={this.props.isFocused}
               placeholder="Look for a genre"
               onChange={this.handleChange}
               onFocus={this.onFocus}
