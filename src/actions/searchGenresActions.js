@@ -1,6 +1,10 @@
 import { searchMusicGenres } from '../services/api';
 import { goToMusicGenre, search } from './navigationActions';
 
+export function typeAction(text) {
+  return { type: 'SEARCH_GENRE_TYPE', payload: text };
+}
+
 export function changeFocusAction(focus) {
   if (focus) {
     return { type: 'SEARCH_GENRE_FOCUS' };

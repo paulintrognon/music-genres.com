@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import {
+  typeAction,
   changeFocusAction,
   suggestGenresAction,
   resetGenresSuggestionsAction,
@@ -15,25 +16,19 @@ import './searchGenres.css';
 
 function mapStoreToProps(store) {
   return {
+    text: store.searchGenre.text,
     suggestions: store.searchGenre.suggestions,
     isFocused: store.searchGenre.isFocused,
     selectedSuggestion: store.searchGenre.selectedSuggestion,
   };
 }
 class SearchGenre extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      text: '',
-    };
-  }
-
   onFocus = () => {
     this.props.dispatch(changeFocusAction(true));
   }
 
   onBlur = () => {
-    if (!this.state.text.length) {
+    if (!this.props.text.length) {
       this.props.dispatch(changeFocusAction(false));
     }
   }
@@ -56,7 +51,7 @@ class SearchGenre extends React.Component {
 
   handleChange = (event) => {
     const text = event.target.value;
-    this.setState({ text });
+    this.props.dispatch(typeAction(text));
     if (text.length >= 3) {
       this.props.dispatch(suggestGenresAction(text));
     } else {
@@ -69,17 +64,17 @@ class SearchGenre extends React.Component {
   }
 
   searchGenre() {
-    if (!this.state.text) {
+    if (!this.props.text) {
       return;
     }
-    this.props.searchGenresHandler(this.state.text);
+    this.props.searchGenresHandler(this.props.text);
     this.resetUi();
   }
 
   resetUi() {
     this.inputField.blur();
     window.scrollTo(0,0);
-    this.setState({ text: '' });
+    this.props.dispatch(typeAction(''));
   }
 
   render() {
@@ -94,7 +89,7 @@ class SearchGenre extends React.Component {
               onChange={this.handleChange}
               onFocus={this.onFocus}
               onBlur={this.onBlur}
-              value={this.state.text}
+              value={this.props.text}
             />
             <img src={magnifyingGlass} className="search-icon" alt="Search music genres!" onClick={this.handleSearchClick} />
           </span>

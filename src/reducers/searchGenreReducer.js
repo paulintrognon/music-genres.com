@@ -1,4 +1,5 @@
 const defaultState = {
+  text: null,
   isFocused: false,
   suggestions: [],
   selectedSuggestion: -1,
@@ -7,6 +8,9 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'SEARCH_GENRE_TYPE':
+      return { ...state, text: action.payload };
+
     case 'SEARCH_GENRE_RESET':
       return { ...state, isFocused: false, suggestions: [], selectedSuggestion: -1, results: null };
 
