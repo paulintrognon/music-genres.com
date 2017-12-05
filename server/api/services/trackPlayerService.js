@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 module.exports = createService();
 
 function createService() {
@@ -34,7 +36,8 @@ function createService() {
     if (!track) {
       return false;
     }
-    return getTrackPropertiesFromPlayer(track);
+    return getTrackPropertiesFromPlayer(track)
+      .then(res => _.merge(track, res));
   }
 
   function getTrackPropertiesFromPlayer(track) {

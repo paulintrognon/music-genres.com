@@ -24,3 +24,7 @@ export function downvoteTrack(trackId, musicGenreId) {
 export function getRandomTrack() {
   return api.get(`/tracks/random`);
 }
+
+export function parseTrackUrl(trackUrl) {
+  return api.post(`/tracks/parseUrl`, { trackUrl });
+}
