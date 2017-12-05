@@ -14,7 +14,7 @@ export default function HashtagTitle(props) {
   }
 
   return (
-    <h2 className={className} onClick={props.clickHandler} title={props.title}>
+    <h2 className={className} onClick={props.clickHandler} title={props.title} style={props.style}>
       # {props.children}
     </h2>
   );

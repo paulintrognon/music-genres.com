@@ -3,6 +3,11 @@
   top: -85px;
 }
 
+.add-video-container.step-2 .hashtag-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
 .add-video-container.step-2 .validate-button {
   position: absolute;
 }
