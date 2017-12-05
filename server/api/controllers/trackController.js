@@ -2,6 +2,7 @@
 
 const trackService = require('../services/trackService');
 const trackManager = require('../managers/trackManager');
+const trackPlayerService = require('../services/trackPlayerService');
 
 const userService = require('../services/user');
 
@@ -14,6 +15,7 @@ function createController() {
   controller.getRandomTrack = getRandomTrack;
   controller.upvoteTrack = upvoteTrack;
   controller.downvoteTrack = downvoteTrack;
+  controller.parseTrackUrl = parseTrackUrl;
 
   return controller;
 
@@ -55,5 +57,9 @@ function createController() {
       trackId,
       musicGenreId,
     });
+  }
+
+  function parseTrackUrl(req) {
+    return trackPlayerService.extractTrackPropertiesFromUrl(req.body.trackUrl);
   }
 }

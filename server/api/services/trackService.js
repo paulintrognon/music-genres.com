@@ -22,11 +22,7 @@ function createService() {
   function addToGenre(data) {
     const musicGenreId = data.musicGenreId;
     const trackUrl = data.track.url;
-    const trackService = trackPlayerService.parseTrackUrl(trackUrl);
-    const trackToCreate = {
-      playerName: trackService.name,
-      playerTrackId: trackService.trackId,
-    };
+    const trackToCreate = trackPlayerService.parseTrackUrl(trackUrl);
 
     return bluebird.props({
       musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),

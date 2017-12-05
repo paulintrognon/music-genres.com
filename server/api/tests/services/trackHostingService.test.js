@@ -14,8 +14,8 @@ function parseTrackUrlSuite() {
 
   function youtubeTests() {
     const expectedResult = {
-      name: 'youtube',
-      trackId: 'DwpedKWwS3w',
+      playerName: 'youtube',
+      playerTrackId: 'DwpedKWwS3w',
     };
     const urls = [
       'https://www.youtube.com/watch?v=DwpedKWwS3w',

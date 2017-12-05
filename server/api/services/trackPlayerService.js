@@ -21,12 +21,21 @@ function createService() {
     },
   ];
 
+  service.extractTrackPropertiesFromUrl = extractTrackPropertiesFromUrl;
   service.getTrackPropertiesFromPlayer = getTrackPropertiesFromPlayer;
   service.parseTrackUrl = parseTrackUrl;
 
   return service;
 
   // ------------------------------------------------------
+
+  function extractTrackPropertiesFromUrl(url) {
+    const track = parseTrackUrl(url);
+    if (!track) {
+      return false;
+    }
+    return getTrackPropertiesFromPlayer(track);
+  }
 
   function getTrackPropertiesFromPlayer(track) {
     return service.players[track.playerName].getTrackPropertiesFromId(track.playerTrackId);
@@ -46,8 +55,8 @@ function createService() {
     const matches = url.match(regex);
     const trackId = matches[1];
     return {
-      trackId,
-      name: 'youtube',
+      playerName: 'youtube',
+      playerTrackId: trackId,
     };
   }
 }
