@@ -6,6 +6,8 @@ export function addTrackToGenreAction(url, genre) {
     addTrack()
       .then(res => {
         dispatch(goToMusicGenre(res.data.result.musicGenre.slug));
+      }, err => {
+        dispatch({type: 'ADD_TRACK_ADD_ERROR', payload: err.response.data });
       });
   };
 
@@ -41,8 +43,8 @@ export function parseTrackUrlAction(url) {
     parseTrackUrl(url)
       .then(res => {
         dispatch({ type: 'ADD_TRACK_PARSE_URL_FETCHED', payload: { id: res.data.result.playerTrackId, title: res.data.result.title } });
-      }, () => {
-        dispatch({ type: 'ADD_TRACK_PARSE_URL_ERROR' });
+      }, err => {
+        dispatch({ type: 'ADD_TRACK_PARSE_URL_ERROR', payload: err.response.data });
       });
   };
 }

@@ -22,13 +22,20 @@ function createManager() {
   // ------------------------------------------------------
 
   function create(data) {
-    return bluebird.map(data.parentIds || [], checkMusicGenreExistance)
-      .then(parents => {
+    const slug = _.kebabCase(data.name);
+    return bluebird.props({
+      parents: bluebird.map(data.parentIds || [], checkMusicGenreExistance),
+      musicGenre: MusicGenre.findOne({ where: { slug } }),
+    })
+      .then(res => {
+        if (res.musicGenre) {
+          return res.musicGenre;
+        }
         return MusicGenre.create({
           name: data.name,
           slug: _.kebabCase(data.name),
         })
-          .then(musicGenre => addParents(musicGenre, parents));
+          .then(musicGenre => addParents(musicGenre, res.parents));
       });
   }
 

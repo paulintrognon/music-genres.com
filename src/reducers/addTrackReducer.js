@@ -24,7 +24,10 @@ export default function reducer(state = defaultState, action) {
       return { ...state, isLoading: false, track: { id: action.payload.id, title: action.payload.title } };
 
     case 'ADD_TRACK_PARSE_URL_ERROR':
-      return { ...state, isLoading: false, track: { id: null, title: null }, error: true };
+      return { ...state, isLoading: false, error: action.payload };
+
+    case 'ADD_TRACK_ADD_ERROR':
+      return { ...state, isLoading: false, error: action.payload };
 
     default:
       return state;

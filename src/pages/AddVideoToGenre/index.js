@@ -57,13 +57,6 @@ class AddVideoToGenre extends React.Component {
         </p>
       )
     }
-    if (this.props.error) {
-      return (
-        <p style={{textAlign: 'center', marginTop: '30px'}}>
-          Could not recognise track
-        </p>
-      )
-    }
     if (!this.props.track.id) {
       return null;
     }
@@ -74,6 +67,17 @@ class AddVideoToGenre extends React.Component {
         >
       </VideoPreview>
     );
+  }
+
+  renderError() {
+    if (!this.props.error) {
+      return null;
+    }
+    return (
+      <p style={{textAlign: 'center', marginTop: '30px'}}>
+        {this.props.error.message}
+      </p>
+    )
   }
 
   renderContent() {
@@ -91,6 +95,7 @@ class AddVideoToGenre extends React.Component {
           onChange={this.handleChange}
         />
         {this.renderPreview()}
+        {this.renderError()}
         <div className="validate-button-container">
           <RectangleButton className="validate-button alternative" onClick={this.goBack}>
             Change Genre
