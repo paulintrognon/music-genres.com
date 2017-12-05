@@ -32,9 +32,7 @@ class SearchGenre extends React.Component {
   }
 
   onBlur = () => {
-    if (!this.props.text.length) {
-      this.props.dispatch(changeFocusAction(false));
-    }
+    this.props.dispatch(changeFocusAction(false));
   }
 
   handleKeyDown = (event) => {
