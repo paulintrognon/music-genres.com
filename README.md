@@ -9,12 +9,12 @@
 ### Setup
 
 #### Shared config
-- `cp server/config.json.example server/config.json`
-- `nano server/config.json`
+- `cp config/index.js.example config/index.js`
+- `nano config/index.js`
 
 #### Api config
-- `cp server/api.json.example server/api.json`
-- `nano server/api.json`
+- `cp config/api.js.example config/api.js`
+- `nano config/api.js`
 
 You need to fill in `database` fields accordigly, pointing to an empty MySQL or MariaDB database.
 
