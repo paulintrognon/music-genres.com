@@ -19,3 +19,17 @@
 You need to fill in `database` fields accordigly, pointing to an empty MySQL or MariaDB database.
 
 - `npm run update-db`
+
+## Start
+
+### Api
+
+- `npm run api`
+
+### Front
+
+- `npm start`
+
+## Build for prod
+
+- `npm run build`
