@@ -1,6 +1,7 @@
 'use strict';
 
 const _ = require('lodash');
+const bluebird = require('bluebird');
 
 module.exports = createService();
 
@@ -34,7 +35,10 @@ function createService() {
   function extractTrackPropertiesFromUrl(url) {
     const track = parseTrackUrl(url);
     if (!track) {
-      return false;
+      return bluebird.reject({
+        code: 'url-not-recognized',
+        message: 'The url has not been recognized. Please make sure it is a valid youtube url.',
+      });
     }
     return getTrackPropertiesFromPlayer(track)
       .then(res => _.merge(track, res));
