@@ -5,13 +5,13 @@
   height: 50px;
   line-height: 50px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #FFF;
 }
 
 .main-footer-content {
   max-width: 660px;
-  border-top: 1px #a0fdf7 solid;
+  border-top: 1px #fff solid;
   margin: auto;
 }
 
