@@ -15,7 +15,7 @@ export default function reducer(state = defaultState, action) {
       return defaultState;
 
     case 'ADD_TRACK_LOAD_GENRE':
-      return { ...state, genre: { id: action.payload.id, name: action.payload.name } };
+      return { ...state, genre: { id: action.payload.id, name: action.payload.name }, error: false };
 
     case 'ADD_TRACK_PARSE_URL_FETCHING':
       return { ...state, isLoading: true, url: action.payload, error: false };
