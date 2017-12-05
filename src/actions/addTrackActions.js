@@ -6,6 +6,7 @@ export function addTrackToGenreAction(url, genre) {
     addTrack()
       .then(res => {
         dispatch(goToMusicGenre(res.data.result.musicGenre.slug));
+        dispatch({type: 'ADD_TRACK_RESET'});
       }, err => {
         dispatch({type: 'ADD_TRACK_ADD_ERROR', payload: err.response.data });
       });
@@ -21,7 +22,6 @@ export function addTrackToGenreAction(url, genre) {
       });
   }
 }
-
 
 export function loadGenreAction(genre) {
   return dispatch => {
