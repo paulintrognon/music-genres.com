@@ -2,8 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
+  goToAddVideo,
+} from '../../actions/navigationActions';
+import {
   loadGenreAction,
-  parseTrackUrlAction
+  parseTrackUrlAction,
+  addTrackToGenreAction
 } from '../../actions/addTrackActions';
 
 import BigInput from '../../components/BigInput';
@@ -30,8 +34,19 @@ class AddVideoToGenre extends React.Component {
   }
 
   handleChange = (event) => {
-    const url = event.target.value;
+    const url = event.target.value.trim();
     this.props.dispatch(parseTrackUrlAction(url));
+  }
+
+  goBack = () => {
+    this.props.dispatch(goToAddVideo());
+  }
+
+  validateTrack = () => {
+    if (!this.props.url) {
+      return;
+    }
+    this.props.dispatch(addTrackToGenreAction(this.props.url, this.props.genre));
   }
 
   renderPreview() {
@@ -77,10 +92,10 @@ class AddVideoToGenre extends React.Component {
         />
         {this.renderPreview()}
         <div className="validate-button-container">
-          <RectangleButton className="validate-button alternative">
+          <RectangleButton className="validate-button alternative" onClick={this.goBack}>
             Change Genre
           </RectangleButton>
-          <RectangleButton className="validate-button">
+          <RectangleButton className="validate-button" onClick={this.validateTrack}>
             Add video
           </RectangleButton>
         </div>

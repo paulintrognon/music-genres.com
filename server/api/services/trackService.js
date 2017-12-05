@@ -23,12 +23,14 @@ function createService() {
     const musicGenreId = data.musicGenreId;
     const trackUrl = data.track.url;
     const trackToCreate = trackPlayerService.parseTrackUrl(trackUrl);
+    let musicGenre;
 
     return bluebird.props({
       musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
       track: Track.findOne({ where: trackToCreate }),
     })
       .then(res => {
+        musicGenre = res.musicGenre;
         if (res.track) {
           return res.musicGenre.addTrack(res.track).return(res.track);
         }
@@ -38,7 +40,11 @@ function createService() {
             trackToCreate.description = trackDataFromPlayer.description;
             return trackManager.create(trackToCreate, res.musicGenre);
           });
-      });
+      })
+      .then(track => ({
+        track,
+        musicGenre,
+      }));
   }
 
   function verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId) {

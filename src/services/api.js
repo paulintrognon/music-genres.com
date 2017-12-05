@@ -28,3 +28,14 @@ export function getRandomTrack() {
 export function parseTrackUrl(trackUrl) {
   return api.post(`/tracks/parseUrl`, { trackUrl });
 }
+
+export function createGenre(name) {
+  return api.post(`/music-genres/create`, { name });
+}
+
+export function addTrackToGenre(url, musicGenreId) {
+  return api.post(`/tracks/add`, {
+    url,
+    musicGenreId,
+  });
+}

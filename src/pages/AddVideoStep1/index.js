@@ -16,7 +16,6 @@ function mapStoreToProps(store) {
   };
 }
 class AddVideoStep1 extends React.Component {
-
   onSelectGenreHandler = (genreSlug) => {
     this.props.dispatch(goToAddVideoToGenre(genreSlug));
   }
@@ -39,7 +38,7 @@ class AddVideoStep1 extends React.Component {
           <SearchGenre searchGenresHandler={this.onSelectGenreHandler} selectGenreHandler={this.onSelectGenreHandler}></SearchGenre>
           <div className="validate-button-container">
             <RectangleButton className="validate-button" onClick={() => this.onSelectGenreHandler(this.props.genreTyped)}>
-              Select Genre
+              Create Genre
             </RectangleButton>
           </div>
         </div>

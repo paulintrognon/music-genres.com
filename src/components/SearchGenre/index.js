@@ -23,6 +23,10 @@ function mapStoreToProps(store) {
   };
 }
 class SearchGenre extends React.Component {
+  componentWillMount() {
+    this.props.dispatch(resetGenresSuggestionsAction());
+  }
+
   onFocus = () => {
     this.props.dispatch(changeFocusAction(true));
   }
@@ -52,7 +56,7 @@ class SearchGenre extends React.Component {
   handleChange = (event) => {
     const text = event.target.value;
     this.props.dispatch(typeAction(text));
-    if (text.length >= 3) {
+    if (text.length > 0) {
       this.props.dispatch(suggestGenresAction(text));
     } else {
       this.props.dispatch(resetGenresSuggestionsAction());

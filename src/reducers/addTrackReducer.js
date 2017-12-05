@@ -11,6 +11,9 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'ADD_TRACK_RESET':
+      return defaultState;
+
     case 'ADD_TRACK_LOAD_GENRE':
       return { ...state, genre: { id: action.payload.id, name: action.payload.name } };
 

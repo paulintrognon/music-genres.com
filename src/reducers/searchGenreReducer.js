@@ -1,5 +1,5 @@
 const defaultState = {
-  text: null,
+  text: '',
   isFocused: false,
   suggestions: [],
   selectedSuggestion: -1,
@@ -24,7 +24,7 @@ export default function reducer(state = defaultState, action) {
       return { ...state, suggestions: action.payload };
 
     case 'SEARCH_GENRE_SUGGESTIONS_RESET':
-      return { ...state, suggestions: [], selectedSuggestion: -1 };
+      return { ...state, text: '', suggestions: [], selectedSuggestion: -1 };
 
     case 'SEARCH_GENRE_SUGGESTIONS_SELECT': {
       let newSuggestionSelected;
