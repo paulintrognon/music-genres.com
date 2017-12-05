@@ -8,9 +8,14 @@
 
 ### Setup
 
+#### Shared config
 - `cp server/config.json.example server/config.json`
 - `nano server/config.json`
 
-You need to fill in `database` fields accordigly, pointing to an empty database.
+#### Api config
+- `cp server/api.json.example server/api.json`
+- `nano server/api.json`
+
+You need to fill in `database` fields accordigly, pointing to an empty MySQL or MariaDB database.
 
 - `npm run update-db`
