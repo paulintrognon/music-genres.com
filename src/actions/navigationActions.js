@@ -1,5 +1,9 @@
 import { push } from 'react-router-redux';
 
+export function resetAllAction() {
+  return {type: 'FULL_RESET'};
+}
+
 export function goToMusicGenre(slug) {
   return push(`/${slug}`);
 }

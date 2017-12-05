@@ -7,6 +7,9 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'FULL_RESET':
+      return defaultState;
+
     case 'MUSIC_GENRE_FETCH_START':
       return { ...state, isFetched: false, isFetching: true };
 

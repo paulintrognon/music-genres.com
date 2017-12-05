@@ -11,6 +11,9 @@ export default function reducer(state = defaultState, action) {
   const body = document.getElementsByTagName('body')[0];
 
   switch (action.type) {
+    case 'FULL_RESET':
+      return defaultState;
+
     case 'PLAYER_PLAY_TRACK':
     body.style.overflow = 'hidden';
     return {

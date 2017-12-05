@@ -11,6 +11,7 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
+    case 'FULL_RESET':
     case 'ADD_TRACK_RESET':
       return defaultState;
 
