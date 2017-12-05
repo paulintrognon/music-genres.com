@@ -46,10 +46,10 @@ class SearchGenre extends React.Component {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
         this.props.selectGenreHandler(selectedSuggestion.slug);
-        this.resetUi();
       } else {
         this.searchGenre();
       }
+      this.resetUi();
     }
   }
 
@@ -79,6 +79,7 @@ class SearchGenre extends React.Component {
     this.inputField.blur();
     window.scrollTo(0,0);
     this.props.dispatch(typeAction(''));
+    this.props.dispatch(changeFocusAction(false));
   }
 
   render() {
