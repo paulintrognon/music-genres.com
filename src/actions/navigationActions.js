@@ -12,6 +12,6 @@ export function goToAddVideo() {
   return push(`/add/video`);
 }
 
-export function goToAddVideoToGenre(genreSlug) {
-  return push(`/add/${genreSlug}/video`);
+export function goToAddVideoToGenre(genreSlug, lockGenre) {
+  return push(`/add/video/${genreSlug}` + (lockGenre ? '/lock' : ''));
 }

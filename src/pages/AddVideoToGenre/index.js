@@ -109,19 +109,20 @@ class AddVideoToGenre extends React.Component {
   }
 
   render() {
+    const lock = this.props.match.params.from === 'lock';
     return (
       <div className="add-video-container step-2">
         <div className="add-video-ruler-container">
           <hr className="add-video-ruler"/>
         </div>
         <div className="add-video-content">
-          <BackgroundTitle className="add-video-background-title">
-            Step Two
+          <BackgroundTitle className={'add-video-background-title ' + (lock ? 'lock' : '')}>
+            {lock?'add video':'Step Two'}
           </BackgroundTitle>
           <h3 className="step-title">
-            <span className="step-number">#2</span>
+            {lock?null:<span className="step-number">#2</span>}
             <span className="step-title">Link a video related to your genre</span>
-            <span className="step-step">2/2</span>
+            {lock?null:<span className="step-step">2/2</span>}
           </h3>
           {this.renderContent()}
         </div>

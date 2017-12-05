@@ -13,6 +13,11 @@
   position: absolute;
 }
 
+.add-video-container .add-video-background-title {
+  text-align: center;
+  width: 100%;
+}
+
 .add-video-container.step-1 .add-video-background-title {
   font-size: 115px;
   top: -88px;
@@ -24,11 +29,14 @@
   text-transform: uppercase;
   font-size: 24px;
   position: relative;
+  text-align: center;
 }
 
 .add-video-container .step-title .step-number {
-  font-size: 20px;
-  padding-right: 10px;
+  font-size: 19px;
+  position: absolute;
+  left: 0;
+  bottom: 2px;
 }
 
 .add-video-container .step-title .step-step {

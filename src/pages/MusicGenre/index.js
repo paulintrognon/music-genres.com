@@ -37,7 +37,7 @@ class MusicGenre extends React.Component {
   }
 
   addVideoToThisGenre = () => {
-    this.props.dispatch(goToAddVideoToGenre(this.props.musicGenre.slug));
+    this.props.dispatch(goToAddVideoToGenre(this.props.musicGenre.slug, true));
   }
 
   render() {

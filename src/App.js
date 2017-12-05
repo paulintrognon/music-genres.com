@@ -24,7 +24,7 @@ class App extends Component {
             <Route path="/" exact={true} component={Homepage}></Route>
             <Route path="/search/:query" exact={true} component={SearchResults}></Route>
             <Route path="/add/video" exact={true} component={AddVideoStep1}></Route>
-            <Route path="/add/:genre/video" exact={true} component={AddVideoToGenre}></Route>
+            <Route path="/add/video/:genre/:from?" exact={true} component={AddVideoToGenre}></Route>
             <Route path="/:slug" exact={true} component={MusicGenre}></Route>
             <Player></Player>
           </Layout>
