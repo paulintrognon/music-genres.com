@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
+  goToAddVideoToGenre
+} from '../../actions/navigationActions';
+import {
   fetchMusicGenreAction,
   voteForTrackAction,
 } from '../../actions/musicGenreActions';
@@ -31,6 +34,10 @@ class MusicGenre extends React.Component {
 
   playTrack = (trackIndex) => {
     this.props.dispatch(playTrackAction(trackIndex, this.props.musicGenre));
+  }
+
+  addVideoToThisGenre = () => {
+    this.props.dispatch(goToAddVideoToGenre(this.props.musicGenre.slug));
   }
 
   render() {
@@ -93,8 +100,8 @@ class MusicGenre extends React.Component {
   renderAddTrack = () => {
     return (
       <div className="add-track-row">
-        <RectangleButton>
-          Add a track&nbsp;<Plus></Plus>
+        <RectangleButton onClick={this.addVideoToThisGenre}>
+          Add video&nbsp;<Plus></Plus>
         </RectangleButton>
       </div>
     );
