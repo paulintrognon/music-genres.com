@@ -5,6 +5,7 @@ import {
   typeAction,
   changeFocusAction,
   suggestGenresAction,
+  resetAction,
   resetGenresSuggestionsAction,
   selectSuggestionAction
 } from '../../actions/searchGenresActions';
@@ -24,7 +25,7 @@ function mapStoreToProps(store) {
 }
 class SearchGenre extends React.Component {
   componentWillMount() {
-    this.props.dispatch(resetGenresSuggestionsAction());
+    this.props.dispatch(resetAction());
   }
 
   onFocus = () => {
@@ -32,6 +33,9 @@ class SearchGenre extends React.Component {
   }
 
   onBlur = () => {
+    if (this.props.text.length > 0) {
+      return;
+    }
     this.props.dispatch(changeFocusAction(false));
   }
 
@@ -40,6 +44,8 @@ class SearchGenre extends React.Component {
       this.props.dispatch(selectSuggestionAction('down'));
     } else if (event.key === 'ArrowUp') {
       this.props.dispatch(selectSuggestionAction('up'));
+    } else if (event.key === 'Escape') {
+      this.resetUi();
     } else if (event.key === 'Enter') {
       const selectedSuggestion = this.props.suggestions[this.props.selectedSuggestion];
       if (selectedSuggestion) {
@@ -76,8 +82,7 @@ class SearchGenre extends React.Component {
   resetUi() {
     this.inputField.blur();
     window.scrollTo(0,0);
-    this.props.dispatch(typeAction(''));
-    this.props.dispatch(changeFocusAction(false));
+    this.props.dispatch(resetAction());
   }
 
   render() {

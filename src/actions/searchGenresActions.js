@@ -27,6 +27,10 @@ export function resetGenresSuggestionsAction() {
   return { type: 'SEARCH_GENRE_SUGGESTIONS_RESET' };
 }
 
+export function resetAction() {
+  return { type: 'SEARCH_GENRE_RESET' };
+}
+
 export function selectSuggestionAction(direction) {
   return {
     type: 'SEARCH_GENRE_SUGGESTIONS_SELECT',
@@ -36,14 +40,14 @@ export function selectSuggestionAction(direction) {
 
 export function validSuggestionAction(slug) {
   return dispatch => {
-    dispatch({ type: 'SEARCH_GENRE_RESET' });
+    dispatch(resetAction());
     dispatch(goToMusicGenre(slug));
   };
 }
 
 export function goToSearchResultsAction(query) {
   return dispatch => {
-    dispatch({ type: 'SEARCH_GENRE_RESET' });
+    dispatch(resetAction());
     dispatch(search(query));
   };
 }
