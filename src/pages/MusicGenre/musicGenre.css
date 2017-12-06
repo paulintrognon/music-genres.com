@@ -12,13 +12,19 @@
 }
 
 .music-genre-page .other-tracks-container {
-  margin-left: -1.5%;
-  margin-right: -1.5%;
+  margin-top: 100px;
 }
 
-.music-genre-page .other-tracks-container .track-box {
-  margin-top: 100px;
-  width: 30%;
-  margin-left: 1.66%;
-  margin-right: 1.66%;
+@media (max-width: 700px) {
+  .music-genre-page .top-tracks-container,
+  .music-genre-page .other-tracks-container {
+    margin-top: 30px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .music-genre-page .add-track-row,
+  .music-genre-page .more-of-title {
+    margin-top: 50px;
+  }
 }

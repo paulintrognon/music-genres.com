@@ -12,12 +12,10 @@ export default function Track(props) {
     return null;
   }
   const track = props.track;
-  const marginTop = props.index * 70;
-  const style = {
-    marginTop: `${marginTop}px`,
-  };
+  const className = 'index-' + (props.index+1);
   return (
-    <div className="track-box" style={style}>
+    <div className={'track-box-container ' + className}>
+    <div className="track-box">
       <div className="track-thumb"
         style={{ backgroundImage: `url('https://img.youtube.com/vi/${track.playerTrackId}/hqdefault.jpg')` }}
         title={`Play "${track.title}"`}
@@ -36,6 +34,7 @@ export default function Track(props) {
         <TrackTitle title={track.title}></TrackTitle>
         <Votes track={track} onVote={props.onVoteHandler}></Votes>
       </div>
+    </div>
     </div>
   );
 }

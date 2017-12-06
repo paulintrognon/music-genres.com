@@ -1,16 +1,20 @@
-.track-box {
-  background-color: #FFF;
-  display: inline-block;
-  margin: 0;
-  vertical-align:top;
+.track-box-container {
   width: 33.33%;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align:top;
 }
 
-.track-box.index-2 {
-  margin-top: 20px;
+.track-box-container.index-2 {
+  margin-top: 70px;
 }
-.track-box.index-3 {
-  margin-top: 40px;
+.track-box-container.index-3 {
+  margin-top: 140px;
+}
+
+.track-box {
+  background-color: #FFF;
+  margin: 0;
 }
 
 .track-box .track-thumb {
@@ -65,4 +69,33 @@
 .track-box .track-votes-container .track-votes-count {
   margin-top: 43px;
   margin-bottom: 37px;
+}
+
+@media (max-width: 700px) {
+  .track-box-container {
+    width: 50%;
+    padding: 10px;
+  }
+  .track-box-container.index-2 {
+    margin-top: 0;
+  }
+  .track-box-container.index-3 {
+    margin-top: 0;
+  }
+
+  .track-box .track-title-component {
+    margin-top: 20px;
+    height: unset;
+  }
+
+  .track-box .track-votes-container .track-votes-count {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .track-box-container {
+    width: 100%;
+  }
 }
