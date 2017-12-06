@@ -1,7 +1,6 @@
 {
   "name": "music-genres.com",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0-alpha",
   "dependencies": {
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
