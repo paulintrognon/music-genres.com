@@ -4,3 +4,7 @@
   padding: 3px;
   height: 360px;
 }
+
+.video-preview iframe {
+  max-width: 100%;
+}
