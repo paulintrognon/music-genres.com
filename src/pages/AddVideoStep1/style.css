@@ -2,6 +2,7 @@
   margin: auto;
   position: relative;
   width: 620px;
+  max-width: 95%;
   margin-top: 70px;
 }
 
@@ -54,4 +55,17 @@
 .add-video-container .validate-button-container {
   text-align: center;
   margin-top: 30px;
+}
+
+@media (max-width: 700px) {
+  .add-video-container .add-video-ruler {
+    display: none;
+  }
+
+  .add-video-container .validate-button-container .validate-button.alternative {
+    display: none;
+  }
+  .add-video-container .validate-button-container .validate-button:not(.alternative) {
+    width: 100%;
+  }
 }
