@@ -14,3 +14,9 @@
   cursor: pointer;
   background-color: #a6f168;
 }
+
+@media (max-width: 600px) {
+  .search-genres-container {
+    max-width: 100%;
+  }
+}
