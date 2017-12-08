@@ -18,6 +18,15 @@ function createService() {
   function getTrackPropertiesFromId(id) {
     return axios(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${config.api.key}`)
       .then(res => {
+        if (!res.data.items[0]) {
+          return bluebird.reject({
+            code: 'item-not-found',
+            message: 'Video not found when getting video info',
+            payload: {
+              id,
+            },
+          });
+        }
         const videoProperies = res.data.items[0].snippet;
         return {
           title: videoProperies.title,
