@@ -12,6 +12,7 @@ import {
   playTrackAction,
 } from '../../actions/playerActions';
 
+import { Helmet } from 'react-helmet';
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import Plus from '../../components/images/Plus';
@@ -56,10 +57,16 @@ class MusicGenre extends React.Component {
       return <p>Erreur !</p>;
     }
     if (this.props.isFetched) {
-      return <div>
-        <HashtagTitle>{this.props.musicGenre.name}</HashtagTitle>
-        {this.renderTracks(this.props.musicGenre.tracks)}
-      </div>;
+      return (
+        <div>
+          <Helmet>
+           <title>{this.props.musicGenre.name} Examples - Music Genres</title>
+           <meta name="description" content={`Musical examples of ${this.props.musicGenre.name}. Go findout what ${this.props.musicGenre.name} is by listening to it!`} />
+         </Helmet>
+         <HashtagTitle>{this.props.musicGenre.name}</HashtagTitle>
+         {this.renderTracks(this.props.musicGenre.tracks)}
+         </div>
+      );
     }
     return null;
   }
