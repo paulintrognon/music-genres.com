@@ -12,6 +12,7 @@ import {
   playTrackAction,
 } from '../../actions/playerActions';
 
+import { Helmet } from 'react-helmet';
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import Plus from '../../components/images/Plus';
@@ -56,10 +57,16 @@ class MusicGenre extends React.Component {
       return <p>Erreur !</p>;
     }
     if (this.props.isFetched) {
-      return <div>
-        <HashtagTitle>{this.props.musicGenre.name}</HashtagTitle>
-        {this.renderTracks(this.props.musicGenre.tracks)}
-      </div>;
+      return (
+        <div>
+          <Helmet>
+           <title>{this.props.musicGenre.name} Examples - Music Genres</title>
+           <meta name="description" content={`Musical examples of ${this.props.musicGenre.name}. Go findout what ${this.props.musicGenre.name} is by listening to it!`} />
+         </Helmet>
+         <HashtagTitle>{this.props.musicGenre.name}</HashtagTitle>
+         {this.renderTracks(this.props.musicGenre.tracks)}
+         </div>
+      );
     }
     return null;
   }
@@ -82,6 +89,24 @@ class MusicGenre extends React.Component {
           ))}
         </div>
         {this.renderAddTrack()}
+        {otherTracks.length > 0 ? this.renderExtraTracks(otherTracks) : null}
+      </div>
+    );
+  }
+
+  renderAddTrack = () => {
+    return (
+      <div className="add-track-row">
+        <RectangleButton onClick={this.addVideoToThisGenre}>
+          Add video&nbsp;<Plus></Plus>
+        </RectangleButton>
+      </div>
+    );
+  }
+
+  renderExtraTracks = (otherTracks) => {
+    return (
+      <div>
         <HashtagTitle className="more-of-title">More from {this.props.musicGenre.name}</HashtagTitle>
         <div className="other-tracks-container">
           {otherTracks.map((track, i) => (
@@ -93,16 +118,6 @@ class MusicGenre extends React.Component {
           ))}
         </div>
         {this.renderAddTrack()}
-      </div>
-    );
-  }
-
-  renderAddTrack = () => {
-    return (
-      <div className="add-track-row">
-        <RectangleButton onClick={this.addVideoToThisGenre}>
-          Add video&nbsp;<Plus></Plus>
-        </RectangleButton>
       </div>
     );
   }
