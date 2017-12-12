@@ -86,7 +86,6 @@ CREATE TABLE `votes` (
   `userHash` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  `deletedAt` datetime DEFAULT NULL,
   `trackId` int(11) DEFAULT NULL,
   `musicGenreId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

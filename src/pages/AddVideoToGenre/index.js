@@ -10,6 +10,7 @@ import {
   addTrackToGenreAction
 } from '../../actions/addTrackActions';
 
+import { Helmet } from 'react-helmet';
 import BigInput from '../../components/BigInput';
 import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -110,8 +111,12 @@ class AddVideoToGenre extends React.Component {
 
   render() {
     const lock = this.props.match.params.from === 'lock';
+    const genreName = this.props.genre ? this.props.genre.name : '';
     return (
       <div className="add-video-container step-2">
+        <Helmet>
+         <title>Add video to {genreName} - Music Genres</title>
+       </Helmet>
         <div className="add-video-ruler-container">
           <hr className="add-video-ruler"/>
         </div>

@@ -194,6 +194,7 @@ function createManager() {
 
     return bluebird.props({
       vote: Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
+      musicGenreTrack: MusicGenreTrack.findOne({ where: { trackId, musicGenreId } }),
     })
       .then(res => {
         if (!res.vote) {
@@ -203,8 +204,24 @@ function createManager() {
             payload: { data },
           });
         }
+        if (!res.musicGenreTrack) {
+          return bluebird.reject({
+            status: 404,
+            code: 'musicGenreTrack-not-found',
+            message: 'The link between the genre and the track has not been found.',
+            payload: { data },
+          });
+        }
 
-        return res.vote.destroy();
+        return bluebird.props({
+          destroy: res.vote.destroy(),
+          decrement: decrementVoteCount(res.musicGenreTrack),
+        });
       });
+  }
+
+  function decrementVoteCount(musicGenreTrack) {
+    musicGenreTrack.upvotes -= 1;
+    return musicGenreTrack.save();
   }
 }
