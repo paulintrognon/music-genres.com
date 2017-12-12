@@ -1,4 +1,9 @@
-##v1.0.0-alpha2
+##v1.0.0-alpha4
+
+- Fix downvote counts
+- Fix page title when adding new videos
+
+##v1.0.0-alpha3
 
 - Hide "extra tracks" section if there are no extra tracks to show
 - Add custom meta (title & desc) on Genre Page

@@ -8,6 +8,9 @@ const Vote = sequelize.define('vote', {
     notEmpty: true,
     len: 100,
   },
+}, {
+  deletedAt: false,
+  paranoid: false,
 });
 
 module.exports = Vote;
