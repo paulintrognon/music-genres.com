@@ -7,6 +7,7 @@ import {
 import BackgroundTitle from '../../components/BackgroundTitle';
 import SearchGenre from '../../components/SearchGenre';
 import RectangleButton from '../../components/RectangleButton';
+import { Helmet } from 'react-helmet';
 
 import './style.css';
 
@@ -23,6 +24,9 @@ class AddVideoStep1 extends React.Component {
   render() {
     return (
       <div className="add-video-container step-1">
+        <Helmet>
+         <title>Add new video - Select genre - Music Genres</title>
+       </Helmet>
         <div className="add-video-ruler-container">
           <hr className="add-video-ruler"/>
         </div>
