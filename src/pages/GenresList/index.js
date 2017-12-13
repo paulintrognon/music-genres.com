@@ -11,6 +11,10 @@ export default class GenresList extends React.Component {
          <title>List of all music Genres</title>
          <meta name="description" content="Musical examples of all musical genres and styles." />
        </Helmet>
+       <div className="row">
+         <div className="col-6">test</div>
+         <div className="col-6">test</div>
+       </div>
       </div>
     );
   }
