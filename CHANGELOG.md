@@ -1,3 +1,7 @@
+#v1.0.0
+
+- First Major Release
+
 ##v1.0.0-alpha4
 
 - Fix downvote counts
