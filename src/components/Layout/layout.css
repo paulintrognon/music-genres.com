@@ -7,6 +7,13 @@
   margin-bottom: 100px;
 }
 
+h1 {
+  font-family: 'Montserrat';
+  text-transform: uppercase;
+  font-size: 36px;
+  text-align: left;
+}
+
 .hidable {
   opacity: 1;
   visibility: visible;

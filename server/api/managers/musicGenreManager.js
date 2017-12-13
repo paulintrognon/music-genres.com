@@ -13,6 +13,7 @@ function createManager() {
   const manager = {};
 
   manager.create = create;
+  manager.getAll = getAll;
   manager.getOrFail = getOrFail;
   manager.getWithTracks = getWithTracks;
   manager.search = search;
@@ -37,6 +38,13 @@ function createManager() {
         })
           .then(musicGenre => addParents(musicGenre, res.parents));
       });
+  }
+
+  function getAll() {
+    return MusicGenre.findAll({
+      attributes: ['id', 'name', 'slug'],
+      order: ['name'],
+    });
   }
 
   function getOrFail(id) {
