@@ -17,5 +17,6 @@ export function goToAddVideo() {
 }
 
 export function goToAddVideoToGenre(genreSlug, lockGenre) {
-  return push(`/add/video/${genreSlug}` + (lockGenre ? '/lock' : ''));
+  const encodedGenre = encodeURIComponent(genreSlug);
+  return push(`/add/video/${encodedGenre}` + (lockGenre ? '/lock' : ''));
 }
