@@ -1,13 +1,16 @@
 import { getRandomTrack } from '../services/api';
+import { goToMusicGenrePlayTrack } from './navigationActions';
 
 export function playTrackAction(trackIndex, genre) {
   return (dispatch, getState) => {
     const tracks = getState().musicGenre.musicGenre.tracks;
+    const track = tracks[trackIndex];
+    dispatch(goToMusicGenrePlayTrack(genre, track));
     dispatch({ type: 'PLAYER_PLAY_TRACK', payload: {
       inGenre: true,
       trackIndex,
       genre,
-      track: tracks[trackIndex],
+      track,
       hasPreviousTrack: tracks[trackIndex-1] !== undefined,
       hasNextTrack: tracks[trackIndex+1] !== undefined,
     } });

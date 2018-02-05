@@ -12,6 +12,10 @@ export function goToMusicGenre(slug) {
   return push(`/${slug}`);
 }
 
+export function goToMusicGenrePlayTrack(genre, track) {
+  return push(`/${genre.slug}/${track.title}`);
+}
+
 export function search(query) {
   return push(`/search/${query}`);
 }
