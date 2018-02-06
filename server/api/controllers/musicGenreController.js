@@ -13,6 +13,7 @@ function createController() {
   const controller = {};
 
   controller.createMusicGenre = createMusicGenre;
+  controller.getAll = getAll;
   controller.getWithTracks = getWithTracks;
   controller.search = search;
 
@@ -28,6 +29,10 @@ function createController() {
       name: req.body.name,
       parentIds: _.uniq(parentId.concat(parentIds)).sort(),
     });
+  }
+
+  function getAll() {
+    return musicGenreManager.getAll();
   }
 
   function getWithTracks(req) {

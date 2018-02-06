@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './layout.css';
+import './grid-system.css';
 import Header from './Header';
 import Footer from './Footer';
 
