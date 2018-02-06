@@ -1,3 +1,7 @@
+
+- Add a page that lists all musical genres
+- Random genre is now a page on its own
+
 #v1.0.0
 
 - First Major Release
