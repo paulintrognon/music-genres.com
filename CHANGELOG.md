@@ -1,3 +1,7 @@
+
+- Add a page that lists all musical genres
+- Random genre is now a page on its own
+
 #v1.0.1
 
 - Fix genre names with slashes

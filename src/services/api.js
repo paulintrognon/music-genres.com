@@ -39,3 +39,7 @@ export function addTrackToGenre(url, musicGenreId) {
     musicGenreId,
   });
 }
+
+export function getAllGenres() {
+  return api.get('/music-genres/all');
+}

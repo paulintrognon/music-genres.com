@@ -4,10 +4,11 @@ import {
   goToSearchResultsAction,
   validSuggestionAction
 } from '../../actions/searchGenresActions';
-
 import {
-  playRandomTrackAction
+  closePlayerAction,
 } from '../../actions/playerActions';
+
+import { goToRandomPage } from '../../actions/navigationActions';
 
 import './homepage.css';
 import or from './or.png';
@@ -22,6 +23,10 @@ function mapStoreToProps(store) {
 }
 class Homepage extends React.Component {
 
+  componentWillMount() {
+    this.props.dispatch(closePlayerAction());
+  }
+
   searchGenresHandler = (queryString) => {
     this.props.dispatch(goToSearchResultsAction(queryString));
   }
@@ -31,7 +36,7 @@ class Homepage extends React.Component {
   }
 
   randomTrackHandler = () => {
-    this.props.dispatch(playRandomTrackAction());
+    this.props.dispatch(goToRandomPage());
   }
 
   render() {

@@ -9,6 +9,7 @@ import {
   voteForTrackAction,
 } from '../../actions/musicGenreActions';
 import {
+  goToHomePage,
   goToMusicGenre,
 } from '../../actions/navigationActions';
 
@@ -32,6 +33,11 @@ function mapStoreToProps(store) {
 class Player extends React.Component {
   closePlayer = () => {
     this.props.dispatch(closePlayerAction());
+    if (this.props.inGenre) {
+      this.props.dispatch(goToMusicGenre(this.props.genre.slug));
+    } else {
+      this.props.dispatch(goToHomePage(this.props.genre.slug));
+    }
   }
 
   playTrack = (trackIndex) => {
