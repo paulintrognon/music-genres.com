@@ -23,7 +23,8 @@ export function addTrackToGenreAction(url, genre) {
   }
 }
 
-export function loadGenreAction(genre) {
+export function loadGenreAction(encodedGenre) {
+  const genre = decodeURIComponent(encodedGenre);
   return dispatch => {
     fetchMusicGenre(genre)
       .then(res => {
