@@ -9,10 +9,9 @@
 
 .search-genres-container .search-input-container .search-icon {
   position: absolute;
-  right: 30px;
-  bottom: 1px;
+  right: 25px;
+  bottom: 0px;
   cursor: pointer;
-  background-color: #a6f168;
 }
 
 @media (max-width: 600px) {

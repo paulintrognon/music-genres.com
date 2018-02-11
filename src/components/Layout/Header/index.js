@@ -5,7 +5,6 @@ import store from '../../../store';
 
 import './header.css';
 import logo from './logo.png';
-import Plus from '../../images/Plus';
 
 export default class Header extends React.Component {
   resetAll = () => {
@@ -26,7 +25,6 @@ export default class Header extends React.Component {
           </Link>
           <Link to={'/add/video'} className="side-button">
             Add video
-            <Plus></Plus>
           </Link>
         </div>
       </header>

@@ -3,12 +3,12 @@
   text-align: center;
   color: #FFF;
   padding: 25px 0;
-  background-color: #7c56fd;
-  border: 2px solid #7c56fd;
+  background-color: #5936d5;
+  border: none;
   font-size: 1.2rem;
   font-family: 'Montserrat';
   font-weight: bold;
-  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 9px 10px 0px rgba(0, 0, 0, 0.23);
   min-width: 300px;
   height: 75px;
   box-sizing: border-box;
@@ -26,10 +26,9 @@
 }
 
 .rectangle-button:not(.alternative):hover {
-  border: 2px solid #FFF;
+  background-color: #6946e5;
 }
 
 .rectangle-button.alternative:hover {
-  color: #A6F168;
-  border: 2px solid #A6F168;
+  background-color: #6946e5;
 }
