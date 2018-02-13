@@ -3,18 +3,19 @@
   position: relative;
   width: 620px;
   max-width: 95%;
-  margin-top: 70px;
+  margin-top: 125px;
 }
 
 .add-video-container .add-video-ruler {
   border: 1px solid #6F59EB;
   right: 0;
   left: 0;
-  top: 220px;
+  top: 275px;
   position: absolute;
 }
 
 .add-video-container .add-video-background-title {
+  color: #5d43c5;
   text-align: center;
   width: 100%;
 }
