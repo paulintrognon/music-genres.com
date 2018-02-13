@@ -2,15 +2,14 @@
   text-transform: uppercase;
   text-align: center;
   color: #FFF;
-  padding: 25px 0;
   background-color: #5936d5;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: 'Montserrat';
   font-weight: bold;
   box-shadow: 0px 9px 10px 0px rgba(0, 0, 0, 0.23);
-  min-width: 300px;
-  height: 75px;
+  min-width: 250px;
+  height: 60px;
   box-sizing: border-box;
   transition: background-color 200ms, border 200ms, color 200ms;
 }

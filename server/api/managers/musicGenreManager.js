@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const bluebird = require('bluebird');
+const Sequelize = require('sequelize');
 
 const MusicGenre = require('../../db/models/MusicGenre');
 const trackManager = require('./trackManager');
@@ -15,6 +16,7 @@ function createManager() {
   manager.create = create;
   manager.getAll = getAll;
   manager.getOrFail = getOrFail;
+  manager.getSomeRandom = getSomeRandom;
   manager.getWithTracks = getWithTracks;
   manager.search = search;
 
@@ -60,6 +62,14 @@ function createManager() {
           payload: { id },
         });
       });
+  }
+
+  function getSomeRandom(limit = 5) {
+    return MusicGenre.findAll({
+      limit,
+      attributes: ['id', 'name', 'slug'],
+      order: [Sequelize.fn('RAND')],
+    });
   }
 
   function getWithTracks(slug) {
