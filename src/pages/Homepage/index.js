@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
+  fetchRandomGenres,
+} from '../../services/api';
+import {
   goToSearchResultsAction,
-  validSuggestionAction
+  validSuggestionAction,
 } from '../../actions/searchGenresActions';
 import {
   closePlayerAction,
@@ -24,8 +27,19 @@ function mapStoreToProps(store) {
 }
 class Homepage extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      examples: [],
+    };
+  }
+
   componentWillMount() {
     this.props.dispatch(closePlayerAction());
+    fetchRandomGenres()
+      .then(res => {
+        this.setState({ examples: res.data.result });
+      })
   }
 
   searchGenresHandler = (queryString) => {
@@ -40,6 +54,20 @@ class Homepage extends React.Component {
     this.props.dispatch(goToRandomPage());
   }
 
+  renderExamples = () => {
+    if (!this.state.examples.length) {
+      return '';
+    }
+    return (
+      <p>
+        Examples:
+        {this.state.examples.map(example => (
+          <Link key={example.id} to={example.slug} className="homepage__example">{example.name}</Link>
+        ))}
+      </p>
+    );
+  }
+
   render() {
     return (
       <div className="homepage-container">
@@ -51,13 +79,9 @@ class Homepage extends React.Component {
         </p>
         <SearchGenre searchGenresHandler={this.searchGenresHandler} selectGenreHandler={this.selectGenreHandler} ></SearchGenre>
         <div className={this.props.isSearchFocused ? 'hidden' : ''}>
-          <p className="homepage__examples">
-            Examples:
-            <Link to={'salsa'} className="homepage__example">Salsa</Link>
-            <Link to={'rock'} className="homepage__example">Rock</Link>
-            <Link to={'blues'} className="homepage__example">Blues</Link>
-            <Link to={'electro'} className="homepage__example">Electro</Link>
-          </p>
+          <div className="homepage__examples">
+            {this.renderExamples()}
+          </div>
           <p className="or-container">
             <img src={or} alt="or" />
           </p>

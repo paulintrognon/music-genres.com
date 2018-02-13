@@ -1,6 +1,6 @@
 .track-votes-container .track-votes-count {
   font-family: Oxygen;
-  color: #693FFA;
+  color: #3E2594;
   font-size: 22px;
   font-weight: 400;
   text-align: left;
@@ -10,7 +10,7 @@
 .track-votes-container .track-upvote-button {
   display: inline-block;
   transform: skew(-20deg);
-  background-color: #693FFA;
+  background-color: #3E2594;
   margin-left: 20px;
   cursor: pointer;
   text-align: center;

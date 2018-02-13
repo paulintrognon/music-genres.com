@@ -13,6 +13,10 @@ export function fetchMusicGenre(slug) {
   return api.get(`/music-genres/${slug}/with-tracks`);
 }
 
+export function fetchRandomGenres() {
+  return api.get('/music-genres/random');
+}
+
 export function upvoteTrack(trackId, musicGenreId) {
   return api.post(`/tracks/upvote`, { trackId, musicGenreId });
 }
