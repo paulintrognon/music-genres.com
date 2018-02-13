@@ -62,13 +62,13 @@
 }
 
 .track-box .track-title-component {
-  margin-top: 37px;
-  height: 100px;
+  margin-top: 20px;
+  height: 50px;
 }
 
 .track-box .track-votes-container .track-votes-count {
-  margin-top: 43px;
-  margin-bottom: 37px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 @media (max-width: 700px) {

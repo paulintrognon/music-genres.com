@@ -1,4 +1,4 @@
-
+- New home page design
 - Add a page that lists all musical genres
 - Random genre is now a page on its own
 

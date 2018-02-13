@@ -1,6 +1,6 @@
 .track-votes-container .track-votes-count {
   font-family: Oxygen;
-  color: #5bdc77;
+  color: #693FFA;
   font-size: 22px;
   font-weight: 400;
   text-align: left;
@@ -10,7 +10,7 @@
 .track-votes-container .track-upvote-button {
   display: inline-block;
   transform: skew(-20deg);
-  background-color: #62DD7C;
+  background-color: #693FFA;
   margin-left: 20px;
   cursor: pointer;
   text-align: center;
@@ -19,7 +19,7 @@
 }
 
 .track-votes-container .track-upvote-button:hover {
-  background-color: #693FFA;
+  background-color: #2fda59;
 }
 
 .track-votes-container .track-upvote-button span {
@@ -29,7 +29,7 @@
 
 .track-votes-container .track-upvote-button.has-upvoted {
   cursor: default;
-  background-color: #693FFA;
+  background-color: #2fda59;
 }
 
 @media (max-width: 700px) {
