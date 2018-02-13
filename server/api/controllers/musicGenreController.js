@@ -14,6 +14,7 @@ function createController() {
 
   controller.createMusicGenre = createMusicGenre;
   controller.getAll = getAll;
+  controller.getSomeRandom = getSomeRandom;
   controller.getWithTracks = getWithTracks;
   controller.search = search;
 
@@ -33,6 +34,11 @@ function createController() {
 
   function getAll() {
     return musicGenreManager.getAll();
+  }
+
+  function getSomeRandom(req) {
+    const nb = req.params.nb || 3;
+    return musicGenreManager.getSomeRandom(nb);
   }
 
   function getWithTracks(req) {

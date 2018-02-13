@@ -9,5 +9,6 @@ router.post('/create', (req, res, next) => next(musicGenreController.createMusic
 router.get('/all', (req, res, next) => next(musicGenreController.getAll(req)));
 router.get('/:slug/with-tracks', (req, res, next) => next(musicGenreController.getWithTracks(req)));
 router.get('/search', (req, res, next) => next(musicGenreController.search(req)));
+router.get('/random', (req, res, next) => next(musicGenreController.getSomeRandom(req)));
 
 module.exports = router;
