@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 
 import { getAllGenres } from '../../services/api';
-import { goToMusicGenre } from '../../actions/navigationActions';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import HashtagTitle from '../../components/HashtagTitle';
