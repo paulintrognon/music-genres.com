@@ -1,3 +1,8 @@
+## v2.1.0
+
+- Genre examples are now random
+- Styling fixes
+
 # v2.0.0
 
 - New home page design
