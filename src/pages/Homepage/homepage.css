@@ -1,6 +1,6 @@
 .homepage-container {
   text-align: center;
-  padding-top: 120px;
+  padding-top: 100px;
 }
 
 .homepage-container>div {
@@ -17,7 +17,38 @@
 }
 
 .homepage-container .or-container {
-  margin: 75px;
+  margin: 60px;
+}
+
+.homepage__baseline {
+  text-transform: uppercase;
+  font-family: 'BebasNeue';
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.homepage__subbaseline {
+  margin-bottom: 40px;
+  font-size: 0.9em;
+}
+
+.homepage__examples {
+  margin-top: 15px;
+  line-height: 30px;
+  font-size: 0.8em;
+}
+
+.homepage__example {
+  margin: 0 5px;
+  background-color: #2f356b;
+  box-shadow: 0px 9px 10px 0px rgba(0, 0, 0, 0.23);
+  width: 103px;
+  height: 30px;
+  display: inline-block;
+}
+
+.homepage__example:first-child {
+  margin-left: 15px;
 }
 
 @media (max-width: 800px) {

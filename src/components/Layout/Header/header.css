@@ -14,18 +14,15 @@
 
 .main-header .side-buttons {
   float: right;
-  margin-top: 24px;
 }
 
 .main-header .side-buttons .side-button {
-  border: 2px solid white;
-  padding: 10px 22px;
+  border: none;
+  padding: 10px;
   margin-left: 20px;
-}
-
-.main-header .side-buttons .side-button img {
-  margin-left: 10px;
-  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.85em;
 }
 
 @media (max-width: 500px) {

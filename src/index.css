@@ -3,8 +3,14 @@ html {
   position: relative;
 }
 
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('/fonts/BebasNeueRegular.woff');
+}
+
 body {
-  background-color: #693ffa;
+  background: #2a1964; /* Old browsers */
+  background: linear-gradient(45deg, #2a1964 0%,#2a1964 20%,#693ffa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   color: #fff;
   font-family: 'Oxygen', sans-serif;
   margin: 0;
