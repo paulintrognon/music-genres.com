@@ -13,6 +13,7 @@ import MusicGenre from './pages/MusicGenre';
 import SearchResults from './pages/SearchResults';
 import GenresList from './pages/GenresList';
 import Random from './pages/Random';
+import NotFound from './pages/NotFound';
 
 import store from './store';
 import history from './history';
@@ -31,6 +32,7 @@ class App extends Component {
               <Route path="/add/video/:genre/:from?" exact={true} component={AddVideoToGenre}></Route>
               <Route path="/list-all-musical-genres" exact={true} component={GenresList}></Route>
               <Route path="/:slug" exact={true} component={MusicGenre}></Route>
+              <Route component={NotFound}></Route>
             </Switch>
             <Player></Player>
           </Layout>

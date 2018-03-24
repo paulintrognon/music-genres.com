@@ -17,6 +17,7 @@ import HashtagTitle from '../../components/HashtagTitle';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import Plus from '../../components/images/Plus';
 import RectangleButton from '../../components/RectangleButton';
+import NotFound from '../../components/NotFound';
 import Track from './Track';
 
 import './musicGenre.css';
@@ -54,6 +55,9 @@ class MusicGenre extends React.Component {
       return <LoadingIndicator></LoadingIndicator>;
     }
     if (this.props.error) {
+      if (this.props.error.status === 404) {
+        return <NotFound></NotFound>;
+      }
       return <p>Erreur !</p>;
     }
     if (this.props.isFetched) {

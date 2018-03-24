@@ -10,6 +10,8 @@ export function fetchMusicGenreAction(slug) {
         } else {
           dispatch({ type: 'MUSIC_GENRE_FETCH_ERROR', payload: res.data.error });
         }
+      }, err => {
+        dispatch({ type: 'MUSIC_GENRE_FETCH_ERROR', payload: err.response });
       });
   };
 }
