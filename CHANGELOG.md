@@ -1,3 +1,9 @@
+## v2.2.0
+
+- Add 404 page
+- Styling fixes
+- Add robots.txt
+
 ## v2.1.0
 
 - Genre examples are now random
