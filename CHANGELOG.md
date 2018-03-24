@@ -1,3 +1,7 @@
+### v2.2.1
+
+- Fix not found style
+
 ## v2.2.0
 
 - Add 404 page
