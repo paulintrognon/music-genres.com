@@ -1,3 +1,10 @@
+# v3.0.0
+
+- Add prettier and new eslint rules
+- New db service
+- Api code completely re-written
+- Add crons base code
+
 ### v2.2.1
 
 - Fix not found style
