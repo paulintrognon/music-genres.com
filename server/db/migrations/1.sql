@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 26, 2019 at 04:07 AM
+-- Generation Time: Jul 26, 2019 at 07:26 AM
 -- Server version: 10.1.38-MariaDB-0+deb9u1
 -- PHP Version: 7.1.30-2+0~20190710.21+debian9~1.gbp011d3c
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -26,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `musicGenreParents`
+-- Table structure for table `MusicGenreParents`
 --
 
-CREATE TABLE `musicGenreParents` (
+CREATE TABLE `MusicGenreParents` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `musicGenreId` int(11) NOT NULL,
@@ -39,10 +38,10 @@ CREATE TABLE `musicGenreParents` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `musicGenres`
+-- Table structure for table `MusicGenres`
 --
 
-CREATE TABLE `musicGenres` (
+CREATE TABLE `MusicGenres` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
@@ -54,10 +53,10 @@ CREATE TABLE `musicGenres` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `musicGenreTracks`
+-- Table structure for table `MusicGenreTracks`
 --
 
-CREATE TABLE `musicGenreTracks` (
+CREATE TABLE `MusicGenreTracks` (
   `upvotes` int(11) NOT NULL DEFAULT '0',
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
@@ -69,10 +68,10 @@ CREATE TABLE `musicGenreTracks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tracks`
+-- Table structure for table `Tracks`
 --
 
-CREATE TABLE `tracks` (
+CREATE TABLE `Tracks` (
   `id` int(11) NOT NULL,
   `playerName` varchar(255) NOT NULL,
   `playerTrackId` varchar(255) NOT NULL,
@@ -87,10 +86,10 @@ CREATE TABLE `tracks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `votes`
+-- Table structure for table `Votes`
 --
 
-CREATE TABLE `votes` (
+CREATE TABLE `Votes` (
   `id` int(11) NOT NULL,
   `userHash` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL,
@@ -105,16 +104,16 @@ CREATE TABLE `votes` (
 --
 
 --
--- Indexes for table `musicGenreParents`
+-- Indexes for table `MusicGenreParents`
 --
-ALTER TABLE `musicGenreParents`
+ALTER TABLE `MusicGenreParents`
   ADD PRIMARY KEY (`musicGenreId`,`ParentId`),
   ADD KEY `ParentId` (`ParentId`);
 
 --
--- Indexes for table `musicGenres`
+-- Indexes for table `MusicGenres`
 --
-ALTER TABLE `musicGenres`
+ALTER TABLE `MusicGenres`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`),
   ADD UNIQUE KEY `slug` (`slug`),
@@ -122,22 +121,22 @@ ALTER TABLE `musicGenres`
   ADD UNIQUE KEY `musicGenres_slug_unique` (`slug`);
 
 --
--- Indexes for table `musicGenreTracks`
+-- Indexes for table `MusicGenreTracks`
 --
-ALTER TABLE `musicGenreTracks`
+ALTER TABLE `MusicGenreTracks`
   ADD PRIMARY KEY (`trackId`,`musicGenreId`),
   ADD KEY `musicGenreId` (`musicGenreId`);
 
 --
--- Indexes for table `tracks`
+-- Indexes for table `Tracks`
 --
-ALTER TABLE `tracks`
+ALTER TABLE `Tracks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `votes`
+-- Indexes for table `Votes`
 --
-ALTER TABLE `votes`
+ALTER TABLE `Votes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `trackId` (`trackId`),
   ADD KEY `musicGenreId` (`musicGenreId`);
@@ -147,21 +146,21 @@ ALTER TABLE `votes`
 --
 
 --
--- AUTO_INCREMENT for table `musicGenres`
+-- AUTO_INCREMENT for table `MusicGenres`
 --
-ALTER TABLE `musicGenres`
+ALTER TABLE `MusicGenres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tracks`
+-- AUTO_INCREMENT for table `Tracks`
 --
-ALTER TABLE `tracks`
+ALTER TABLE `Tracks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `votes`
+-- AUTO_INCREMENT for table `Votes`
 --
-ALTER TABLE `votes`
+ALTER TABLE `Votes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -169,26 +168,25 @@ ALTER TABLE `votes`
 --
 
 --
--- Constraints for table `musicGenreParents`
+-- Constraints for table `MusicGenreParents`
 --
-ALTER TABLE `musicGenreParents`
-  ADD CONSTRAINT `musicGenreParents_ibfk_1` FOREIGN KEY (`musicGenreId`) REFERENCES `musicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `musicGenreParents_ibfk_2` FOREIGN KEY (`ParentId`) REFERENCES `musicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `MusicGenreParents`
+  ADD CONSTRAINT `MusicGenreParents_ibfk_1` FOREIGN KEY (`musicGenreId`) REFERENCES `MusicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `MusicGenreParents_ibfk_2` FOREIGN KEY (`ParentId`) REFERENCES `MusicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `musicGenreTracks`
+-- Constraints for table `MusicGenreTracks`
 --
-ALTER TABLE `musicGenreTracks`
-  ADD CONSTRAINT `musicGenreTracks_ibfk_1` FOREIGN KEY (`trackId`) REFERENCES `tracks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `musicGenreTracks_ibfk_2` FOREIGN KEY (`musicGenreId`) REFERENCES `musicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `MusicGenreTracks`
+  ADD CONSTRAINT `MusicGenreTracks_ibfk_1` FOREIGN KEY (`trackId`) REFERENCES `Tracks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `MusicGenreTracks_ibfk_2` FOREIGN KEY (`musicGenreId`) REFERENCES `MusicGenres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `votes`
+-- Constraints for table `Votes`
 --
-ALTER TABLE `votes`
-  ADD CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`trackId`) REFERENCES `tracks` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `votes_ibfk_2` FOREIGN KEY (`musicGenreId`) REFERENCES `musicGenres` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
-SET FOREIGN_KEY_CHECKS=1;
+ALTER TABLE `Votes`
+  ADD CONSTRAINT `Votes_ibfk_1` FOREIGN KEY (`trackId`) REFERENCES `Tracks` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `Votes_ibfk_2` FOREIGN KEY (`musicGenreId`) REFERENCES `MusicGenres` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

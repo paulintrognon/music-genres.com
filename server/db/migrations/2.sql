@@ -1,2 +1,2 @@
-ALTER TABLE `votes` DROP `deletedAt`;
-ALTER TABLE `musicGenreTracks` DROP `deletedAt`;
+ALTER TABLE `Votes` DROP `deletedAt`;
+ALTER TABLE `MusicGenreTracks` DROP `deletedAt`;
