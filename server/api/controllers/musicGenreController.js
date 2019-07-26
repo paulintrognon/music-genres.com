@@ -5,60 +5,48 @@ const musicGenreManager = require('../managers/musicGenreManager');
 const userService = require('../services/user');
 const trackService = require('../services/trackService');
 
-module.exports = createController();
+module.exports = {
+  createMusicGenre,
+  getAll,
+  getSomeRandom,
+  getWithTracks,
+  search,
+};
 
-function createController() {
-  const controller = {};
+function createMusicGenre(req) {
+  const parentId = req.body.parentId ? _.castArray(req.body.parentId) : [];
+  const parentIds = req.body.parentIds ? _.castArray(req.body.parentIds) : [];
 
-  controller.createMusicGenre = createMusicGenre;
-  controller.getAll = getAll;
-  controller.getSomeRandom = getSomeRandom;
-  controller.getWithTracks = getWithTracks;
-  controller.search = search;
+  return musicGenreManager.create({
+    name: req.body.name,
+    parentIds: _.uniq(parentId.concat(parentIds)).sort(),
+  });
+}
 
-  return controller;
+function getAll() {
+  return musicGenreManager.getAll();
+}
+function getSomeRandom(req) {
+  const nb = req.params.nb || 3;
+  return musicGenreManager.getSomeRandom(nb);
+}
 
-  // ------------------------------------------------------
+async function getWithTracks(req) {
+  const { musicGenre, userHash } = await bluebird.props({
+    musicGenre: musicGenreManager.getWithTracks(req.params.slug),
+    userHash: userService.getUserHashFromRequest(req),
+  });
+  const tracks = await trackService.checkIfUserHasUpvotedTheTracks(
+    musicGenre.tracks,
+    userHash
+  );
+  musicGenre.tracks = tracks;
+  return musicGenre;
+}
 
-  function createMusicGenre(req) {
-    const parentId = req.body.parentId ? _.castArray(req.body.parentId) : [];
-    const parentIds = req.body.parentIds ? _.castArray(req.body.parentIds) : [];
-
-    return musicGenreManager.create({
-      name: req.body.name,
-      parentIds: _.uniq(parentId.concat(parentIds)).sort(),
-    });
-  }
-
-  function getAll() {
-    return musicGenreManager.getAll();
-  }
-
-  function getSomeRandom(req) {
-    const nb = req.params.nb || 3;
-    return musicGenreManager.getSomeRandom(nb);
-  }
-
-  function getWithTracks(req) {
-    return bluebird
-      .props({
-        musicGenre: musicGenreManager.getWithTracks(req.params.slug),
-        userHash: userService.getUserHashFromRequest(req),
-      })
-      .then(res => {
-        return trackService
-          .checkIfUserHasUpvotedTheTracks(res.musicGenre.tracks, res.userHash)
-          .then(tracks => {
-            res.musicGenre.tracks = tracks;
-            return res.musicGenre;
-          });
-      });
-  }
-
-  function search(req) {
-    return musicGenreManager.search(
-      req.query.query,
-      parseInt(req.query.limit, 10)
-    );
-  }
+function search(req) {
+  return musicGenreManager.search(
+    req.query.query,
+    parseInt(req.query.limit, 10)
+  );
 }

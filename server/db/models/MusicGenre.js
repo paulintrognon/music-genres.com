@@ -1,21 +1,36 @@
-const Sequelize = require('sequelize');
-const { sequelize } = require('../db.js');
+module.exports = (sequelize, DataTypes) => {
+  const MusicGenre = sequelize.define(
+    'MusicGenre',
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        notEmpty: true,
+        len: [2, 100],
+        unique: true,
+      },
+      slug: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        notEmpty: true,
+        len: [2, 100],
+        unique: true,
+      },
+    },
+    {
+      timestamps: true,
+    }
+  );
 
-const MusicGenre = sequelize.define('musicGenre', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    notEmpty: true,
-    len: [2, 100],
-    unique: true,
-  },
-  slug: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    notEmpty: true,
-    len: [2, 100],
-    unique: true,
-  },
-});
+  MusicGenre.associate = models => {
+    MusicGenre.hasMany(models.MusicGenreTrack);
+    MusicGenre.hasMany(models.Vote);
+    MusicGenre.belongsToMany(models.Track, { through: models.MusicGenreTrack });
+    MusicGenre.belongsToMany(MusicGenre, {
+      as: 'Parents',
+      through: 'MusicGenreParents',
+    });
+  };
 
-module.exports = MusicGenre;
+  return MusicGenre;
+};

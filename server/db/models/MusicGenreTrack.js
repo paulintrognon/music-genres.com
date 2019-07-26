@@ -1,12 +1,18 @@
-const Sequelize = require('sequelize');
-const { sequelize } = require('../db.js');
+module.exports = (sequelize, DataTypes) => {
+  const MusicGenreTrack = sequelize.define(
+    'MusicGenreTrack',
+    {
+      upvotes: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+    },
+    {
+      deletedAt: false,
+      paranoid: false,
+    }
+  );
 
-const MusicGenreTrack = sequelize.define('musicGenreTrack', {
-  upvotes: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  },
-});
-
-module.exports = MusicGenreTrack;
+  return MusicGenreTrack;
+};

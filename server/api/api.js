@@ -19,8 +19,8 @@ const config = require('config'); // eslint-disable-line import/no-extraneous-de
 const cors = require('cors');
 const express = require('express');
 const http = require('http');
-const db = require('../db/db');
 const logger = require('../logger');
+const crons = require('../crons/crons');
 
 /**
  * Creating the app
@@ -39,24 +39,28 @@ app.set('port', port);
  * Connecting to MySQL
  * /!\ We need to connect to mysql first thing in order to have sequelize initialized
  */
-db.connect().then(() => {
-  /**
-   * Adding the routes
-   */
-  require('./routes/routes')(app);
+/**
+ * Adding the routes
+ */
+require('./routes/routes')(app);
 
-  /**
-   * Adding the response middleware
-   */
-  const response = require('./response');
-  app.use(response);
+/**
+ * Adding the response middleware
+ */
+const response = require('./response');
 
-  /**
-   * Starting the app
-   */
-  const server = http.createServer(app);
-  server.listen(port, () => {
-    const address = server.address();
-    logger.info(`API up and running on ${address.address}:${address.port}`);
-  });
+app.use(response);
+
+/**
+ * Starting the app
+ */
+const server = http.createServer(app);
+server.listen(port, () => {
+  const address = server.address();
+  logger.info(`API up and running on ${address.address}:${address.port}`);
 });
+
+/**
+ * Starting the crons
+ */
+crons.startCrons();
