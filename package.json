@@ -1,7 +1,7 @@
 {
   "name": "music-genres.com",
   "license": "MPL-2.0",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "dependencies": {
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
