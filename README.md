@@ -4,7 +4,7 @@
 
 - `git clone git@github.com:paulintrognon/music-genres.com.git`
 - `cd music-genres.com`
-- `npm install`
+- `yarn`
 
 ### Setup
 
@@ -18,18 +18,18 @@
 
 You need to fill in `database` fields accordigly, pointing to an empty MySQL or MariaDB database.
 
-- `npm run update-db`
+- `yarn update-db`
 
 ## Start
 
 ### Api
 
-- `npm run api`
+- `yarn api`
 
 ### Front
 
-- `npm start`
+- `yarn front`
 
 ## Build for prod
 
-- `npm run build`
+- `yarn build`
