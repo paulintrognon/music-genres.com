@@ -89,36 +89,27 @@ function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
 
 // ------------------------------------------------------
 
-function random() {
-  return db.Track.find({
+async function random() {
+  const track = (await db.Track.find({
     attributes: ['id', 'playerName', 'playerTrackId', 'title'],
     order: [db.Sequelize.fn('RAND')],
     include: {
       model: db.MusicGenre,
       attributes: ['id', 'name', 'slug'],
     },
-  })
-    .then(res => res.get({ plain: true }))
-    .then(res => {
-      const track = {
-        id: res.id,
-        playerName: res.playerName,
-        playerTrackId: res.playerTrackId,
-        title: res.title,
-      };
-      const musicGenresByUpvotes = res.musicGenres.sort((genreA, genreB) => {
-        return genreA.MusicGenreTrack.upvotes - genreB.MusicGenreTrack.upvotes;
-      });
-      const musicGenre = {
-        id: musicGenresByUpvotes[0].id,
-        name: musicGenresByUpvotes[0].name,
-        slug: musicGenresByUpvotes[0].slug,
-      };
-      return {
-        track,
-        musicGenre,
-      };
-    });
+  })).get({ plain: true });
+  const musicGenresByUpvotes = track.MusicGenres.sort((genreA, genreB) => {
+    return genreA.MusicGenreTrack.upvotes - genreB.MusicGenreTrack.upvotes;
+  });
+  const musicGenre = {
+    id: musicGenresByUpvotes[0].id,
+    name: musicGenresByUpvotes[0].name,
+    slug: musicGenresByUpvotes[0].slug,
+  };
+  return {
+    track: _.omit(track, 'musicGenre'),
+    musicGenre,
+  };
 }
 
 // ------------------------------------------------------
