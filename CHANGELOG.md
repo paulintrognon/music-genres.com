@@ -1,3 +1,8 @@
+### v3.0.1
+
+- Fix Random Genre button
+- Fix migrations
+
 # v3.0.0
 
 - Add prettier and new eslint rules
