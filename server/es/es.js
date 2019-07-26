@@ -1,10 +1,8 @@
-'use strict';
-
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const config = require('config').index;
-const logger = require('./../logger.js');
+const config = require('config').index; // eslint-disable-line import/no-extraneous-dependencies
 const elasticsearch = require('elasticsearch');
+const logger = require('./../logger.js');
 
 const settings = require('./settings.json');
 const musicGenreTypeMapping = require('./mappings/music-genre');
@@ -29,10 +27,15 @@ function createIndex() {
       host: config.host,
     });
 
-    es.client = new elasticsearch.Client(_.assign({
-      host: config.host,
-      log: 'info',
-    }, options));
+    es.client = new elasticsearch.Client(
+      _.assign(
+        {
+          host: config.host,
+          log: 'info',
+        },
+        options
+      )
+    );
 
     return bluebird.resolve(es.client);
   }

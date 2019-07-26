@@ -1,16 +1,24 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../db.js').sequelize;
+module.exports = (sequelize, DataTypes) => {
+  const Vote = sequelize.define(
+    'Vote',
+    {
+      userHash: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        notEmpty: true,
+        len: 100,
+      },
+    },
+    {
+      deletedAt: false,
+      paranoid: false,
+    }
+  );
 
-const Vote = sequelize.define('vote', {
-  userHash: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    notEmpty: true,
-    len: 100,
-  },
-}, {
-  deletedAt: false,
-  paranoid: false,
-});
+  Vote.associate = models => {
+    Vote.belongsTo(models.Track);
+    Vote.belongsTo(models.MusicGenre);
+  };
 
-module.exports = Vote;
+  return Vote;
+};

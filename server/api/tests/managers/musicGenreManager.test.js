@@ -1,5 +1,3 @@
-'use strict';
-
 const bluebird = require('bluebird');
 const proxyquire = require('proxyquire').noCallThru();
 const sinon = require('sinon');
@@ -28,7 +26,8 @@ function createSuite() {
     const modelResult = {};
     MusicGenreStub.create = sinon.stub().returns(bluebird.resolve(modelResult));
 
-    model.create(data)
+    model
+      .create(data)
       .then(res => {
         should(MusicGenreStub.create.callCount).equal(1);
         should(MusicGenreStub.create.firstCall.args).eql([

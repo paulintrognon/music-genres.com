@@ -1,5 +1,3 @@
-'use strict';
-
 const bluebird = require('bluebird');
 const proxyquire = require('proxyquire').noCallThru();
 const sinon = require('sinon');
@@ -20,24 +18,27 @@ describe('musicGenreController', () => {
 
 function createMusicGenreSuite() {
   it('should call musicGenreManager.create', callManagerTest);
-  it('should make work no parentId', testParentIds(
-    {},
-    []));
-  it('should make work with parentId singular', testParentIds(
-    { parentId: 1 },
-    [1]));
-  it('should make work with a mix of parentId and parentIds', testParentIds(
-    { parentIds: [1, 2], parentId: 3 },
-    [1, 2, 3]));
-  it('should make parentIds uniq', testParentIds(
-    { parentIds: [1, 2, 2], parentId: 1 },
-    [1, 2]));
-  it('should work with singular parentIds', testParentIds(
-    { parentIds: 1 },
-    [1]));
-  it('should work with several parentId', testParentIds(
-    { parentId: [1, 2, 3] },
-    [1, 2, 3]));
+  it('should make work no parentId', testParentIds({}, []));
+  it(
+    'should make work with parentId singular',
+    testParentIds({ parentId: 1 }, [1])
+  );
+  it(
+    'should make work with a mix of parentId and parentIds',
+    testParentIds({ parentIds: [1, 2], parentId: 3 }, [1, 2, 3])
+  );
+  it(
+    'should make parentIds uniq',
+    testParentIds({ parentIds: [1, 2, 2], parentId: 1 }, [1, 2])
+  );
+  it(
+    'should work with singular parentIds',
+    testParentIds({ parentIds: 1 }, [1])
+  );
+  it(
+    'should work with several parentId',
+    testParentIds({ parentId: [1, 2, 3] }, [1, 2, 3])
+  );
 
   function callManagerTest(done) {
     const req = {
@@ -49,7 +50,8 @@ function createMusicGenreSuite() {
     const res = {};
     musicGenreManagerStub.create = sinon.stub().returns(bluebird.resolve(res));
 
-    controller.createMusicGenre(req)
+    controller
+      .createMusicGenre(req)
       .then(result => {
         should(musicGenreManagerStub.create.callCount).equal(1);
         should(musicGenreManagerStub.create.firstCall.args[0]).eql({
@@ -66,9 +68,12 @@ function createMusicGenreSuite() {
       const req = { body };
       musicGenreManagerStub.create = sinon.stub().returns(bluebird.resolve());
 
-      controller.createMusicGenre(req)
+      controller
+        .createMusicGenre(req)
         .then(() => {
-          should(musicGenreManagerStub.create.firstCall.args[0].parentIds).eql(expectedParentIds);
+          should(musicGenreManagerStub.create.firstCall.args[0].parentIds).eql(
+            expectedParentIds
+          );
         })
         .then(done, done);
     };

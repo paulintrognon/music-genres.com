@@ -1,227 +1,234 @@
-'use strict';
-
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const Sequelize = require('sequelize');
+const db = require('../../db/db');
 
-const MusicGenre = require('../../db/models/MusicGenre');
-const Track = require('../../db/models/Track');
-const MusicGenreTrack = require('../../db/models/MusicGenreTrack');
-const Vote = require('../../db/models/Vote');
+module.exports = {
+  create,
+  getById,
+  getFromPlayerTrackData,
+  random,
+  upvote,
+  downvote,
+  hasUserUpvotedTheTrack,
+  formatWithUpvotes,
+  verifyIfTrackDoesNotAlreadyExistsInGenre,
+};
 
-module.exports = createManager();
+function create(trackToAdd, musicGenre) {
+  return db.Track.create(trackToAdd).then(track =>
+    musicGenre.addTrack(track).return(track)
+  );
+}
 
-function createManager() {
-  const manager = {};
+// ------------------------------------------------------
 
-  manager.create = create;
-  manager.random = random;
-  manager.upvote = upvote;
-  manager.downvote = downvote;
-  manager.hasUserUpvotedTheTrack = hasUserUpvotedTheTrack;
-  manager.formatWithUpvotes = formatWithUpvotes;
-  manager.verifyIfTrackDoesNotAlreadyExistsInGenre = verifyIfTrackDoesNotAlreadyExistsInGenre;
+function getById(id) {
+  return db.Track.getById(id);
+}
 
-  return manager;
+// ------------------------------------------------------
 
-  // ------------------------------------------------------
+function getFromPlayerTrackData({ playerName, playerTrackId }) {
+  return db.Track.findOne({ where: { playerName, playerTrackId } });
+}
 
-  function create(trackToAdd, musicGenre) {
-    return Track.create(trackToAdd)
-      .then(track => musicGenre.addTrack(track).return(track));
-  }
+// ------------------------------------------------------
 
-  // ------------------------------------------------------
-
-  function hasUserUpvotedTheTrack(trackId, userHash) {
-    return Vote.count({ where: {
+function hasUserUpvotedTheTrack(trackId, userHash) {
+  return db.Vote.count({
+    where: {
       trackId,
       userHash,
-    } })
-      .then(count => count > 0);
-  }
+    },
+  }).then(count => count > 0);
+}
 
-  // ------------------------------------------------------
+// ------------------------------------------------------
 
-  function formatWithUpvotes(tracks) {
-    return tracks.sort((a, b) => {
-      return b.musicGenreTrack.upvotes - a.musicGenreTrack.upvotes;
-    }).map(musicGenre => {
-      musicGenre.upvotes = musicGenre.musicGenreTrack.upvotes;
-      return _.omit(musicGenre, 'musicGenreTrack');
-    });
-  }
+function formatWithUpvotes(tracks) {
+  return tracks
+    .sort((a, b) => {
+      return b.MusicGenreTrack.upvotes - a.MusicGenreTrack.upvotes;
+    })
+    .map(musicGenre => ({
+      upvotes: musicGenre.MusicGenreTrack.upvotes,
+      ..._.omit(musicGenre, 'MusicGenreTrack'),
+    }));
+}
 
-  // ------------------------------------------------------
+// ------------------------------------------------------
 
-  function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
-    return Track.findOne({
-      attributes: ['id'],
-      where: {
-        playerName: trackToCreate.playerName,
-        playerTrackId: trackToCreate.playerTrackId,
-      },
-      include: [{
-        model: MusicGenre,
+function verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre) {
+  return db.Track.findOne({
+    attributes: ['id'],
+    where: {
+      playerName: trackToCreate.playerName,
+      playerTrackId: trackToCreate.playerTrackId,
+    },
+    include: [
+      {
+        model: db.MusicGenre,
         where: { id: musicGenre.id },
         attributes: ['id', 'name', 'slug'],
-      }],
-    })
-      .then(track => {
-        if (!track) {
-          return musicGenre;
-        }
-        return bluebird.reject({
-          message: `Track already listed in "${musicGenre.name}"`,
-          code: 'track-already-listed',
-          payload: {
-            trackToCreate,
-            musicGenre: musicGenre.get({ plain: true }),
-          },
-        });
-      });
-  }
-
-  // ------------------------------------------------------
-
-  function random() {
-    return Track.find({
-      attributes: ['id', 'playerName', 'playerTrackId', 'title'],
-      order: [
-        Sequelize.fn('RAND'),
-      ],
-      include: {
-        model: MusicGenre,
-        attributes: ['id', 'name', 'slug'],
       },
-    })
-      .then(res => res.get({ plain: true }))
-      .then(res => {
-        const track = {
-          id: res.id,
-          playerName: res.playerName,
-          playerTrackId: res.playerTrackId,
-          title: res.title,
-        };
-        const musicGenresByUpvotes = res.musicGenres.sort((genreA, genreB) => {
-          return genreA.musicGenreTrack.upvotes - genreB.musicGenreTrack.upvotes;
-        });
-        const musicGenre = {
-          id: musicGenresByUpvotes[0].id,
-          name: musicGenresByUpvotes[0].name,
-          slug: musicGenresByUpvotes[0].slug,
-        };
-        return {
-          track,
-          musicGenre,
-        };
+    ],
+  }).then(track => {
+    if (!track) {
+      return musicGenre;
+    }
+    return bluebird.reject({
+      message: `Track already listed in "${musicGenre.name}"`,
+      code: 'track-already-listed',
+      payload: {
+        trackToCreate,
+        musicGenre: musicGenre.get({ plain: true }),
+      },
+    });
+  });
+}
+
+// ------------------------------------------------------
+
+function random() {
+  return db.Track.find({
+    attributes: ['id', 'playerName', 'playerTrackId', 'title'],
+    order: [db.Sequelize.fn('RAND')],
+    include: {
+      model: db.MusicGenre,
+      attributes: ['id', 'name', 'slug'],
+    },
+  })
+    .then(res => res.get({ plain: true }))
+    .then(res => {
+      const track = {
+        id: res.id,
+        playerName: res.playerName,
+        playerTrackId: res.playerTrackId,
+        title: res.title,
+      };
+      const musicGenresByUpvotes = res.musicGenres.sort((genreA, genreB) => {
+        return genreA.MusicGenreTrack.upvotes - genreB.MusicGenreTrack.upvotes;
       });
-  }
+      const musicGenre = {
+        id: musicGenresByUpvotes[0].id,
+        name: musicGenresByUpvotes[0].name,
+        slug: musicGenresByUpvotes[0].slug,
+      };
+      return {
+        track,
+        musicGenre,
+      };
+    });
+}
 
-  // ------------------------------------------------------
+// ------------------------------------------------------
 
-  function upvote(data) {
-    const trackId = data.trackId;
-    const musicGenreId = data.musicGenreId;
-    const userHash = data.userHash;
+function upvote(data) {
+  const { trackId, musicGenreId, userHash } = data;
 
-    return bluebird.props({
-      vote: Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
-      track: Track.findById(trackId, { attributes: ['id'] }),
-      musicGenre: MusicGenre.findById(musicGenreId, { attributes: ['id'] }),
-      musicGenreTrack: MusicGenreTrack.findOne({ where: { trackId, musicGenreId } }),
+  return bluebird
+    .props({
+      vote: db.Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
+      track: db.Track.findById(trackId, { attributes: ['id'] }),
+      musicGenre: db.MusicGenre.findById(musicGenreId, { attributes: ['id'] }),
+      musicGenreTrack: db.MusicGenreTrack.findOne({
+        where: { trackId, musicGenreId },
+      }),
     })
-      .then(res => {
-        if (!res.track) {
-          return bluebird.reject({
-            status: 404,
-            code: 'track-not-found',
-            message: 'The track to upvote has not been found.',
-            payload: { data },
-          });
-        }
-        if (!res.musicGenre) {
-          return bluebird.reject({
-            status: 404,
-            code: 'musicGenre-not-found',
-            message: 'The musicGenre in which to upvote the track has not been found.',
-            payload: { data },
-          });
-        }
-        if (!res.musicGenreTrack) {
-          return bluebird.reject({
-            status: 404,
-            code: 'musicGenreTrack-not-found',
-            message: 'The link between the genre and the track has not been found.',
-            payload: { data },
-          });
-        }
-        if (res.vote) {
-          return bluebird.reject({
-            message: 'This client has already voted for that track in that genre',
-            code: 'already-voted',
-            payload: { data },
-          });
-        }
-
-        return bluebird.props({
-          registerVote: registerVote(res.track, res.musicGenre, userHash),
-          incrementVoteCount: incrementVoteCount(res.musicGenreTrack),
+    .then(res => {
+      if (!res.track) {
+        return bluebird.reject({
+          status: 404,
+          code: 'track-not-found',
+          message: 'The track to upvote has not been found.',
+          payload: { data },
         });
-      })
-      .then(res => {
-        return { upvotes: res.incrementVoteCount.upvotes };
+      }
+      if (!res.musicGenre) {
+        return bluebird.reject({
+          status: 404,
+          code: 'musicGenre-not-found',
+          message:
+            'The musicGenre in which to upvote the track has not been found.',
+          payload: { data },
+        });
+      }
+      if (!res.musicGenreTrack) {
+        return bluebird.reject({
+          status: 404,
+          code: 'musicGenreTrack-not-found',
+          message:
+            'The link between the genre and the track has not been found.',
+          payload: { data },
+        });
+      }
+      if (res.vote) {
+        return bluebird.reject({
+          message: 'This client has already voted for that track in that genre',
+          code: 'already-voted',
+          payload: { data },
+        });
+      }
+
+      return bluebird.props({
+        registerVote: registerVote(res.track, res.musicGenre, userHash),
+        incrementVoteCount: incrementVoteCount(res.musicGenreTrack),
       });
-  }
-
-  function registerVote(track, musicGenre, userHash) {
-    return Vote.create({ userHash })
-      .then(vote => track.addVote(vote).return(vote))
-      .then(vote => musicGenre.addVote(vote));
-  }
-
-  function incrementVoteCount(musicGenreTrack) {
-    musicGenreTrack.upvotes += 1;
-    return musicGenreTrack.save();
-  }
-
-  // ------------------------------------------------------
-
-  function downvote(data) {
-    const trackId = data.trackId;
-    const musicGenreId = data.musicGenreId;
-    const userHash = data.userHash;
-
-    return bluebird.props({
-      vote: Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
-      musicGenreTrack: MusicGenreTrack.findOne({ where: { trackId, musicGenreId } }),
     })
-      .then(res => {
-        if (!res.vote) {
-          return bluebird.reject({
-            message: 'This client has not voted for that track in that genre',
-            code: 'vote-not-found',
-            payload: { data },
-          });
-        }
-        if (!res.musicGenreTrack) {
-          return bluebird.reject({
-            status: 404,
-            code: 'musicGenreTrack-not-found',
-            message: 'The link between the genre and the track has not been found.',
-            payload: { data },
-          });
-        }
+    .then(res => {
+      return { upvotes: res.incrementVoteCount.upvotes };
+    });
+}
 
-        return bluebird.props({
-          destroy: res.vote.destroy(),
-          decrement: decrementVoteCount(res.musicGenreTrack),
+function registerVote(track, musicGenre, userHash) {
+  return db.Vote.create({ userHash })
+    .then(vote => track.addVote(vote).return(vote))
+    .then(vote => musicGenre.addVote(vote));
+}
+
+function incrementVoteCount(musicGenreTrack) {
+  musicGenreTrack.upvotes += 1;
+  return musicGenreTrack.save();
+}
+
+// ------------------------------------------------------
+
+function downvote(data) {
+  const { trackId, musicGenreId, userHash } = data;
+
+  return bluebird
+    .props({
+      vote: db.Vote.findOne({ where: { userHash, trackId, musicGenreId } }),
+      musicGenreTrack: db.MusicGenreTrack.findOne({
+        where: { trackId, musicGenreId },
+      }),
+    })
+    .then(res => {
+      if (!res.vote) {
+        return bluebird.reject({
+          message: 'This client has not voted for that track in that genre',
+          code: 'vote-not-found',
+          payload: { data },
         });
-      });
-  }
+      }
+      if (!res.musicGenreTrack) {
+        return bluebird.reject({
+          status: 404,
+          code: 'musicGenreTrack-not-found',
+          message:
+            'The link between the genre and the track has not been found.',
+          payload: { data },
+        });
+      }
 
-  function decrementVoteCount(musicGenreTrack) {
-    musicGenreTrack.upvotes -= 1;
-    return musicGenreTrack.save();
-  }
+      return bluebird.props({
+        destroy: res.vote.destroy(),
+        decrement: decrementVoteCount(res.musicGenreTrack),
+      });
+    });
+}
+
+function decrementVoteCount(musicGenreTrack) {
+  musicGenreTrack.upvotes -= 1;
+  return musicGenreTrack.save();
 }
