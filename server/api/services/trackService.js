@@ -4,66 +4,63 @@ const trackPlayerService = require('./trackPlayerService');
 const musicGenreManager = require('../managers/musicGenreManager');
 const trackManager = require('../managers/trackManager');
 
-module.exports = createService();
+module.exports = {
+  addToGenre,
+  checkIfUserHasUpvotedTheTracks,
+};
 
-function createService() {
-  const service = {};
+async function addToGenre(data) {
+  const { musicGenreId } = data;
+  const trackUrl = data.track.url;
+  const trackToCreate = trackPlayerService.parseTrackUrl(trackUrl);
 
-  service.addToGenre = addToGenre;
-  service.checkIfUserHasUpvotedTheTracks = checkIfUserHasUpvotedTheTracks;
+  const { musicGenre, track } = await bluebird.props({
+    musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
+    track: trackManager.getFromPlayerTrackData(trackToCreate),
+  });
 
-  return service;
-
-  // ------------------------------------------------------
-
-  function addToGenre(data) {
-    const { musicGenreId } = data;
-    const trackUrl = data.track.url;
-    const trackToCreate = trackPlayerService.parseTrackUrl(trackUrl);
-    let musicGenre;
-
-    return bluebird
-      .props({
-        musicGenre: verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId),
-        track: trackManager.getFromPlayerTrackData(trackToCreate),
-      })
-      .then(res => {
-        musicGenre = res.musicGenre;
-        if (res.track) {
-          return res.musicGenre.addTrack(res.track).return(res.track);
-        }
-        return trackPlayerService
-          .getTrackPropertiesFromPlayer(trackToCreate)
-          .then(trackDataFromPlayer => {
-            trackToCreate.title = trackDataFromPlayer.title;
-            trackToCreate.description = trackDataFromPlayer.description;
-            return trackManager.create(trackToCreate, res.musicGenre);
-          });
-      })
-      .then(track => ({
-        track,
-        musicGenre,
-      }));
-  }
-
-  function verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId) {
-    return musicGenreManager.getOrFail(musicGenreId).then(musicGenre => {
-      return trackManager
-        .verifyIfTrackDoesNotAlreadyExistsInGenre(trackToCreate, musicGenre)
-        .return(musicGenre);
+  // If the track already exists, we just attach the new genre to the track
+  if (track) {
+    return musicGenre.addTrack(track).return({
+      track,
+      musicGenre,
     });
   }
 
-  // ------------------------------------------------------
+  // If the track does not exist yet, we create it
+  const trackDataFromPlayer = await trackPlayerService.getTrackPropertiesFromPlayer(
+    trackToCreate
+  );
+  trackToCreate.title = trackDataFromPlayer.title;
+  trackToCreate.description = trackDataFromPlayer.description;
+  const newCreatedTrack = await trackManager.create(trackToCreate, musicGenre);
 
-  function checkIfUserHasUpvotedTheTracks(tracks, userHash) {
-    return bluebird.map(tracks, track => {
-      return trackManager
-        .hasUserUpvotedTheTrack(track.id, userHash)
-        .then(result => {
-          track.hasUpvoted = result;
-          return track;
-        });
-    });
-  }
+  return {
+    track: newCreatedTrack,
+    musicGenre,
+  };
+}
+
+async function verifyIfCanAddTrackToGenre(trackToCreate, musicGenreId) {
+  const musicGenre = await musicGenreManager.getOrFail(musicGenreId);
+  await trackManager.verifyIfTrackDoesNotAlreadyExistsInGenre(
+    trackToCreate,
+    musicGenre
+  );
+  return musicGenre;
+}
+
+// ------------------------------------------------------
+
+async function checkIfUserHasUpvotedTheTracks(tracks, userHash) {
+  return bluebird.map(tracks, async track => {
+    const hasUpvoted = await trackManager.hasUserUpvotedTheTrack(
+      track.id,
+      userHash
+    );
+    return {
+      ...track,
+      hasUpvoted,
+    };
+  });
 }
