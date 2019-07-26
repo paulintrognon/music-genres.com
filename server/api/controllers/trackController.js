@@ -1,5 +1,3 @@
-'use strict';
-
 const trackService = require('../services/trackService');
 const trackManager = require('../managers/trackManager');
 const trackPlayerService = require('../services/trackPlayerService');
@@ -22,7 +20,7 @@ function createController() {
   // ------------------------------------------------------
 
   function addTrack(req) {
-    const musicGenreId = req.body.musicGenreId;
+    const { musicGenreId } = req.body;
     const track = {
       url: req.body.url,
     };
@@ -39,8 +37,7 @@ function createController() {
 
   function upvoteTrack(req) {
     const userHash = userService.getUserHashFromRequest(req);
-    const trackId = req.body.trackId;
-    const musicGenreId = req.body.musicGenreId;
+    const { trackId, musicGenreId } = req.body;
     return trackManager.upvote({
       userHash,
       trackId,
@@ -50,8 +47,7 @@ function createController() {
 
   function downvoteTrack(req) {
     const userHash = userService.getUserHashFromRequest(req);
-    const trackId = req.body.trackId;
-    const musicGenreId = req.body.musicGenreId;
+    const { trackId, musicGenreId } = req.body;
     return trackManager.downvote({
       userHash,
       trackId,

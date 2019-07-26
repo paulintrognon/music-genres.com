@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 const bluebird = require('bluebird');
 
@@ -37,15 +35,17 @@ function createService() {
     if (!track) {
       return bluebird.reject({
         code: 'url-not-recognized',
-        message: 'The url has not been recognized. Please make sure it is a valid youtube url.',
+        message:
+          'The url has not been recognized. Please make sure it is a valid youtube url.',
       });
     }
-    return getTrackPropertiesFromPlayer(track)
-      .then(res => _.merge(track, res));
+    return getTrackPropertiesFromPlayer(track).then(res => _.merge(track, res));
   }
 
   function getTrackPropertiesFromPlayer(track) {
-    return service.players[track.playerName].getTrackPropertiesFromId(track.playerTrackId);
+    return service.players[track.playerName].getTrackPropertiesFromId(
+      track.playerTrackId
+    );
   }
 
   function parseTrackUrl(url) {

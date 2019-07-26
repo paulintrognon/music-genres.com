@@ -1,9 +1,7 @@
-'use strict';
-
 const bluebird = require('bluebird');
-const config = require('config/api').database;
-const logger = require('./../logger.js');
+const config = require('config/api').database; // eslint-disable-line import/no-extraneous-dependencies
 const Sequelize = require('sequelize');
+const logger = require('./../logger.js');
 
 module.exports = createDb();
 
@@ -21,26 +19,31 @@ function createDb() {
   // ------------------------------------------------------
 
   function connect(options = {}) {
-    db.sequelize = new Sequelize(config.database, config.user, config.password, {
-      host: config.host,
-      dialect: 'mysql',
-      logging: false,
+    db.sequelize = new Sequelize(
+      config.database,
+      config.user,
+      config.password,
+      {
+        host: config.host,
+        dialect: 'mysql',
+        logging: false,
 
-      dialectOptions: {
-        socketPath: '/var/run/mysqld/mysqld.sock',
-        multipleStatements: options.multipleStatements,
-      },
+        dialectOptions: {
+          socketPath: '/var/run/mysqld/mysqld.sock',
+          multipleStatements: options.multipleStatements,
+        },
 
-      define: {
-        paranoid: true,
-      },
+        define: {
+          paranoid: true,
+        },
 
-      pool: {
-        max: 5,
-        min: 0,
-        idle: 10000,
-      },
-    });
+        pool: {
+          max: 5,
+          min: 0,
+          idle: 10000,
+        },
+      }
+    );
 
     logger.debug('Connecting to database...', {
       database: config.database,
@@ -48,7 +51,8 @@ function createDb() {
       host: config.host,
     });
 
-    return db.sequelize.authenticate()
+    return db.sequelize
+      .authenticate()
       .then(() => {
         logger.info('Successfull connection to database', {
           database: config.database,

@@ -1,5 +1,3 @@
-'use strict';
-
 const logger = require('../logger');
 
 module.exports = responseMiddleware;
@@ -16,9 +14,7 @@ function responseMiddleware(promise, req, res, next) {
     return;
   }
 
-  promise
-    .then(handleSuccess, handleError)
-    .catch(next);
+  promise.then(handleSuccess, handleError).catch(next);
 
   function handleSuccess(result) {
     res.status(200).send({

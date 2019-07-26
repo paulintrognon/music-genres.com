@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 const bluebird = require('bluebird');
 const path = require('path');
@@ -17,7 +15,7 @@ function runMigrationFiles() {
 
   if (!start) {
     console.error('No version specified');
-    return;
+    return null;
   }
 
   const range = _.range(start, end);
@@ -27,12 +25,14 @@ function runMigrationFiles() {
 }
 
 function runMigrationFile(version) {
-  return readFile(path.join(__dirname, `${version}.sql`))
-    .then(buffer => {
+  return readFile(path.join(__dirname, `${version}.sql`)).then(
+    buffer => {
       console.log(`Running ${version}.sql`);
       const sql = buffer.toString();
       return db.sequelize.query(sql, { raw: true });
-    }, err => {
+    },
+    err => {
       console.warn(err.message);
-    });
+    }
+  );
 }

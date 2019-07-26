@@ -1,26 +1,24 @@
-'use strict';
-
 const winston = require('winston');
-const config = require('config').api.logger;
+const config = require('config').api.logger; // eslint-disable-line import/no-extraneous-dependencies
 
 const transports = [];
 
 if (config.console) {
-  const transport = new (winston.transports.Console)({
+  const transport = new winston.transports.Console({
     level: config.console.level,
   });
   transports.push(transport);
 }
 
 if (config.file) {
-  const transport = new (winston.transports.File)({
+  const transport = new winston.transports.File({
     filename: config.file.filename,
     level: config.file.level,
   });
   transports.push(transport);
 }
 
-const logger = new (winston.Logger)({
+const logger = new winston.Logger({
   transports,
 });
 

@@ -1,5 +1,3 @@
-'use strict';
-
 const _ = require('lodash');
 const bluebird = require('bluebird');
 const Sequelize = require('sequelize');
@@ -26,10 +24,11 @@ function createManager() {
 
   function create(data) {
     const slug = _.kebabCase(data.name);
-    return bluebird.props({
-      parents: bluebird.map(data.parentIds || [], checkMusicGenreExistance),
-      musicGenre: MusicGenre.findOne({ where: { slug } }),
-    })
+    return bluebird
+      .props({
+        parents: bluebird.map(data.parentIds || [], checkMusicGenreExistance),
+        musicGenre: MusicGenre.findOne({ where: { slug } }),
+      })
       .then(res => {
         if (res.musicGenre) {
           return res.musicGenre;
@@ -37,8 +36,7 @@ function createManager() {
         return MusicGenre.create({
           name: data.name,
           slug: _.kebabCase(data.name),
-        })
-          .then(musicGenre => addParents(musicGenre, res.parents));
+        }).then(musicGenre => addParents(musicGenre, res.parents));
       });
   }
 
@@ -50,18 +48,17 @@ function createManager() {
   }
 
   function getOrFail(id) {
-    return MusicGenre.findById(id)
-      .then(musicGenre => {
-        if (musicGenre) {
-          return musicGenre;
-        }
-        return bluebird.reject({
-          status: 404,
-          code: 'music-genre-not-found',
-          message: `The music genre with id ${id} does not exist.`,
-          payload: { id },
-        });
+    return MusicGenre.findById(id).then(musicGenre => {
+      if (musicGenre) {
+        return musicGenre;
+      }
+      return bluebird.reject({
+        status: 404,
+        code: 'music-genre-not-found',
+        message: `The music genre with id ${id} does not exist.`,
+        payload: { id },
       });
+    });
   }
 
   function getSomeRandom(limit = 5) {
@@ -76,10 +73,12 @@ function createManager() {
     return MusicGenre.findOne({
       where: { slug },
       attributes: ['id', 'name', 'slug'],
-      include: [{
-        model: Track,
-        attributes: ['id', 'title', 'playerName', 'playerTrackId'],
-      }],
+      include: [
+        {
+          model: Track,
+          attributes: ['id', 'title', 'playerName', 'playerTrackId'],
+        },
+      ],
     })
       .then(res => {
         if (!res) {
@@ -117,22 +116,22 @@ function createManager() {
   // ------------------------------------------------------
 
   function addParents(musicGenre, parents) {
-    return bluebird.map(parents, parent => musicGenre.addParent(parent))
+    return bluebird
+      .map(parents, parent => musicGenre.addParent(parent))
       .return(musicGenre);
   }
 
   function checkMusicGenreExistance(musicGenreId) {
-    return MusicGenre.findById(musicGenreId)
-      .then(musicGenre => {
-        if (musicGenre) {
-          return musicGenre;
-        }
-        return bluebird.reject({
-          status: 404,
-          code: 'music-genre-not-found',
-          message: `Music genre with ID ${musicGenreId} not found`,
-          payload: { musicGenreId },
-        });
+    return MusicGenre.findById(musicGenreId).then(musicGenre => {
+      if (musicGenre) {
+        return musicGenre;
+      }
+      return bluebird.reject({
+        status: 404,
+        code: 'music-genre-not-found',
+        message: `Music genre with ID ${musicGenreId} not found`,
+        payload: { musicGenreId },
       });
+    });
   }
 }

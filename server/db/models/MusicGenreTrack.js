@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db.js').sequelize;
+const { sequelize } = require('../db.js');
 
 const MusicGenreTrack = sequelize.define('musicGenreTrack', {
   upvotes: {

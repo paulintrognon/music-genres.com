@@ -1,5 +1,3 @@
-'use strict';
-
 const axios = require('axios');
 const bluebird = require('bluebird');
 const config = require('config/api').playerServices.youtube;
@@ -16,8 +14,10 @@ function createService() {
   // ------------------------------------------------------
 
   function getTrackPropertiesFromId(id) {
-    return axios(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${config.api.key}`)
-      .then(res => {
+    return axios(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${config.api.key}`
+    ).then(
+      res => {
         if (!res.data.items[0]) {
           return bluebird.reject({
             code: 'item-not-found',
@@ -37,13 +37,15 @@ function createService() {
             id: videoProperies.channelId,
           },
         };
-      }, error => {
+      },
+      error => {
         return bluebird.reject({
           status: error.response.status,
           code: 'call-to-youtube-api-failed',
           message: 'Error while calling Youtube API',
           payload: error.response.data,
         });
-      });
+      }
+    );
   }
 }

@@ -1,5 +1,6 @@
 {
   "name": "music-genres.com",
+  "license": "MPL-2.0",
   "version": "2.2.1",
   "dependencies": {
     "axios": "^0.16.2",
@@ -39,11 +40,16 @@
     "test-api": "./node_modules/mocha/bin/mocha --recursive ./server/api/tests --watch"
   },
   "devDependencies": {
-    "babel-eslint": "^8.0.1",
     "eslint": "^4.4.1",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
     "mocha": "^3.5.0",
     "nodemon": "^1.12.0",
+    "prettier": "^1.18.2",
     "proxyquire": "^1.8.0",
     "should": "^11.2.1",
     "sinon": "^3.2.0"
