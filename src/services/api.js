@@ -2,11 +2,11 @@ import axios from 'axios';
 import config from 'config';
 
 export const api = axios.create({
-  baseURL: `${config.api.baseUrl}:${config.api.port}/api`,
+  baseURL: config.api.baseUrl,
 });
 
 export function searchMusicGenres(query, limit) {
-  return api.get(`/music-genres/search?query=${query}&limit=${limit}`)
+  return api.get(`/music-genres/search?query=${query}&limit=${limit}`);
 }
 
 export function fetchMusicGenre(slug) {

@@ -4,7 +4,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const configPath = path.join(__dirname, '../../config/index.js');
+const configPath = path.join(__dirname, '../../config/api.js');
 if (!fs.existsSync(configPath)) {
   throw new Error(
     'You need to create the config/index.js file from index.js.example'
@@ -15,10 +15,10 @@ if (!fs.existsSync(configPath)) {
  * Loading dependencies
  */
 const bodyParser = require('body-parser');
-const config = require('config'); // eslint-disable-line import/no-extraneous-dependencies
 const cors = require('cors');
 const express = require('express');
 const http = require('http');
+const config = require('../../config/api');
 const logger = require('../logger');
 const crons = require('../crons/crons');
 
