@@ -1,3 +1,7 @@
+### v3.0.2
+
+- Better api port handling
+
 ### v3.0.1
 
 - Fix Random Genre button
