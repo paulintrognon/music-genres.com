@@ -6,7 +6,7 @@
     "axios": "^0.16.2",
     "bluebird": "^3.5.0",
     "history": "^4.7.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "music-genres-list": "git+https://git@github.com/paulintrognon/music-genres-list.git",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
