@@ -17,7 +17,6 @@ services:
             DB_NAME: ${DB_NAME}
             DB_USER: ${DB_USER}
             DB_PASSWORD: ${DB_PASSWORD}
-            DB_NAME: ${DB_NAME}
             DB_PORT: ${DB_PORT:-3306}
             DB_HOST: mariadb
             DB_SOCKET_PATH: ${DB_SOCKET_PATH}
