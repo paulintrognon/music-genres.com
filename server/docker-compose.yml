@@ -9,7 +9,7 @@ services:
             dockerfile: Dockerfile
         image: musicgenres/musicgenres-api
         ports:
-            - ${API_PORT:-3001}:${API_PORT:-3001}
+            - 127.0.0.1:${API_PORT:-3001}:${API_PORT:-3001}
         links:
             - mariadb
         environment:
@@ -39,7 +39,7 @@ services:
         restart: always
         image: phpmyadmin/phpmyadmin
         ports:
-            - ${PMA_PORT:-8000}:80
+            - 127.0.0.1:${PMA_PORT:-8000}:80
         links:
             - mariadb
         environment: 
