@@ -11,7 +11,7 @@ export default function VideoPreview(props) {
         height="360"
         frameBorder="0"
         title="Youtube Player"
-        src={`http://www.youtube.com/embed/${props.trackId}?origin=https://www.music-genre.com`}
+        src={`https://www.youtube.com/embed/${props.trackId}?origin=https://www.music-genres.com`}
       />
     </div>
   );

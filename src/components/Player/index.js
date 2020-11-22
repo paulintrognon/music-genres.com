@@ -80,7 +80,7 @@ class Player extends React.Component {
             height="405"
             frameBorder="0"
             title="Youtube Player"
-            src={`http://www.youtube.com/embed/${this.props.track.playerTrackId}?autoplay=1&origin=https://www.music-genres.com`}
+            src={`https://www.youtube.com/embed/${this.props.track.playerTrackId}?autoplay=1&origin=https://www.music-genres.com`}
           />
           <div className="track-information">
             <TrackTitle
