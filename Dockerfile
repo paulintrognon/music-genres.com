@@ -18,6 +18,6 @@ COPY --from=build-deps /usr/src/app/build /var/www
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
+EXPOSE 81
 
 ENTRYPOINT ["nginx","-g","daemon off;"]
