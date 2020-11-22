@@ -1,9 +1,8 @@
 const fs = require('fs');
-const _ = require('lodash');
 const path = require('path');
 const Sequelize = require('sequelize');
 const logger = require('../logger');
-const config = require('../../config/api.js').database;
+const config = require('../config').database;
 
 const db = {};
 
@@ -13,7 +12,7 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
   logging: str => logger.debug(str),
 
   dialectOptions: {
-    socketPath: '/var/run/mysqld/mysqld.sock',
+    socketPath: config.socketPath,
   },
 
   define: {

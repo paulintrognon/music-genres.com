@@ -87,16 +87,6 @@
   left: -72px;
 }
 
-.player-container .arrow-container img.hover {
-  display: none;
-}
-.player-container .arrow-container:hover img.hover {
-  display: inline;
-}
-.player-container .arrow-container:hover img.normal {
-  display: none;
-}
-
 .player-container .arrow-container.right-arrow-container {
   right: -72px;
 }

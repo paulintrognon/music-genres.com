@@ -4,13 +4,6 @@
 const path = require('path');
 const fs = require('fs');
 
-const configPath = path.join(__dirname, '../../config/api.js');
-if (!fs.existsSync(configPath)) {
-  throw new Error(
-    'You need to create the config/index.js file from index.js.example'
-  );
-}
-
 /**
  * Loading dependencies
  */
@@ -18,7 +11,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
 const http = require('http');
-const config = require('../../config/api');
+const config = require('../config');
 const logger = require('../logger');
 const crons = require('../crons/crons');
 
@@ -32,7 +25,7 @@ app.use(bodyParser.json()); // for parsing application/json
 /**
  * Configuring the app
  */
-const port = (config.api && config.api.port) || 3001;
+const port = (config && config.port) || 3001;
 app.set('port', port);
 
 /**

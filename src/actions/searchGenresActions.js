@@ -14,12 +14,14 @@ export function changeFocusAction(focus) {
 
 export function suggestGenresAction(text) {
   return dispatch => {
-    searchMusicGenres(text, 5)
-      .then(res => {
-        if (!res.data.error) {
-          dispatch({ type: 'SEARCH_GENRE_SUGGESTIONS_SET', payload: res.data.result });
-        }
-      });
+    searchMusicGenres(text, 5).then(res => {
+      if (!res.data.error) {
+        dispatch({
+          type: 'SEARCH_GENRE_SUGGESTIONS_SET',
+          payload: res.data.result,
+        });
+      }
+    });
   };
 }
 
@@ -55,11 +57,13 @@ export function goToSearchResultsAction(query) {
 export function fetchSearchResultsAction(query) {
   return dispatch => {
     dispatch({ type: 'SEARCH_RESULTS_FETCH' });
-    searchMusicGenres(query)
-      .then(res => {
-        if (!res.data.error) {
-          dispatch({ type: 'SEARCH_RESULTS_FULFILLED', payload: res.data.result });
-        }
-      })
+    searchMusicGenres(query).then(res => {
+      if (!res.data.error) {
+        dispatch({
+          type: 'SEARCH_RESULTS_FULFILLED',
+          payload: res.data.result,
+        });
+      }
+    });
   };
 }

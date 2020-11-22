@@ -1,15 +1,11 @@
 .track-box-container {
-  width: 33.33%;
+  width: 30%;
   display: inline-block;
   box-sizing: border-box;
   vertical-align:top;
 }
-
-.track-box-container.index-2 {
-  margin-top: 70px;
-}
-.track-box-container.index-3 {
-  margin-top: 140px;
+.track-box-container {
+  margin-right: 3.33%;
 }
 
 .track-box {
@@ -27,6 +23,7 @@
   box-sizing: border-box;
   text-align: center;
   position: relative;
+  border: none;
 }
 
 .track-box .track-thumb .play-button {
@@ -39,19 +36,6 @@
   background-position: center;
   transition: opacity 200ms;
   cursor: pointer;
-}
-
-.track-box .track-thumb .play-button.play-button-normal {
-  opacity: 1;
-}
-.track-box .track-thumb:hover .play-button.play-button-normal {
-  opacity: 0;
-}
-.track-box .track-thumb .play-button.play-button-hover {
-  opacity: 0;
-}
-.track-box .track-thumb:hover .play-button.play-button-hover {
-  opacity: 1;
 }
 
 .track-box .track-information {

@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const bluebird = require('bluebird');
-const config = require('config').index; // eslint-disable-line import/no-extraneous-dependencies
+const config = require('../config').index;
 const elasticsearch = require('elasticsearch');
 const logger = require('./../logger.js');
 

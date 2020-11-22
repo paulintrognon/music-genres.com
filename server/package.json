@@ -1,0 +1,33 @@
+{
+  "name": "music-genres.com",
+  "license": "MPL-2.0",
+  "version": "3.0.2",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "cron": "^1.7.1",
+    "elasticsearch": "^13.3.1",
+    "express": "^4.15.4",
+    "history": "^4.7.2",
+    "lodash": "^4.17.4",
+    "music-genres-list": "git+https://git@github.com/paulintrognon/music-genres-list.git",
+    "mysql2": "^1.4.0",
+    "sequelize": "^4.4.2",
+    "winston": "^2.3.1"
+  },
+  "scripts": {
+    "start": "node ./api/api.js",
+    "update-db": "node ./db/migrations/run.js",
+    "test": "./node_modules/mocha/bin/mocha --recursive ./api/tests --watch"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "nodemon": "^1.12.0",
+    "prettier": "^1.18.2",
+    "proxyquire": "^1.8.0",
+    "should": "^11.2.1",
+    "sinon": "^3.2.0"
+  }
+}

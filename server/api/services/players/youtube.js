@@ -1,6 +1,6 @@
 const axios = require('axios');
 const bluebird = require('bluebird');
-const config = require('config/api').playerServices.youtube; // eslint-disable-line import/no-extraneous-dependencies
+const config = require('../../../config').playerServices.youtube;
 
 module.exports = {
   getTrackPropertiesFromId,

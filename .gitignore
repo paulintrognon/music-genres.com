@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/server/node_modules
 
 # testing
 /coverage
@@ -10,8 +11,8 @@
 /build
 
 # config
-/config/index.js
-/config/api.js
+.env
+/server/.env
 
 # misc
 .DS_Store

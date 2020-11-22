@@ -1,6 +1,8 @@
 .rectangle-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   text-transform: uppercase;
-  text-align: center;
   color: #FFF;
   background-color: #5936d5;
   border: none;

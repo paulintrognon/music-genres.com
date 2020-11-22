@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+    api:
+        container_name: musicgenres-api
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: musicgenres/musicgenres-api
+        ports:
+            - ${API_PORT:-3001}:${API_PORT:-3001}
+        links:
+            - mariadb
+        environment:
+            API_PORT: ${API_PORT}
+            DB_NAME: ${DB_NAME}
+            DB_USER: ${DB_USER}
+            DB_PASSWORD: ${DB_PASSWORD}
+            DB_NAME: ${DB_NAME}
+            DB_PORT: ${DB_PORT:-3306}
+            DB_HOST: mariadb
+            DB_SOCKET_PATH: ${DB_SOCKET_PATH}
+
+    mariadb:
+        container_name: musicgenres-mariadb
+        restart: always
+        image: mariadb:10.4
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_USER}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - musicgenres-db:/var/lib/mysql
+
+    phpmyadmin:
+        container_name: musicgenres-pma
+        restart: always
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - ${PMA_PORT:-8000}:80
+        links:
+            - mariadb
+        environment: 
+            PMA_HOST: mariadb
+            PMA_ABSOLUTE_URI: ${PMA_URL}
+
+volumes:
+    musicgenres-db:

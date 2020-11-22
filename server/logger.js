@@ -1,5 +1,5 @@
 const winston = require('winston');
-const config = require('config').api.logger; // eslint-disable-line import/no-extraneous-dependencies
+const config = require('./config').logger;
 
 const transports = [];
 
