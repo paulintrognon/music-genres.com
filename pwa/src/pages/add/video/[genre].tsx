@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
 import { Layout } from '../../../components/Layout/Layout'
 import SelectVideoPage from '../../../components/Pages/AddVideo/SelectVideoPage/SelectVideoPage/SelectVideoPage'
 import { get } from '../../../services/api/api'
@@ -10,6 +11,9 @@ interface Props {
 }
 const AddVideoIndex: NextPage<Props> = ({ genre, genreName }) => (
   <Layout>
+    <Head>
+      <title>Add a video to {genre?.name || genreName} | Music Genre</title>
+    </Head>
     <SelectVideoPage genre={genre} genreName={genreName} />
   </Layout>
 )
@@ -27,17 +31,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  if (!context.query.genre) {
-    return { notFound: true }
+  return {
+    props: {
+      genreName: context.query.genre,
+    },
   }
-
-  if (response.status === 400) {
-    return {
-      props: {
-        genreName: context.query.genre,
-      },
-    }
-  }
-
-  throw new Error(response.statusText)
 }
