@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
 import { Layout } from '../../components/Layout/Layout'
 import GenrePage from '../../components/Pages/GenrePage/GenrePage/GenrePage'
 import { get } from '../../services/api/api'
@@ -9,6 +10,9 @@ interface Props {
 }
 const Page: NextPage<Props> = ({ genre }) => (
   <Layout>
+    <Head>
+      <title>{genre.name} | Music Genre</title>
+    </Head>
     <GenrePage genre={genre} />
   </Layout>
 )

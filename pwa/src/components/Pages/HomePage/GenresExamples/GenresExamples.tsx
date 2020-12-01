@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import useSWR from 'swr'
+import { genreLink } from '../../../../services/links/links'
 import { ExampleGenresApiResponseType } from '../../../../types/Api/ExampleGenresApiResponseType'
 import Loader from '../../../Atoms/Loader/Loader'
 import classes from './GenresExamples.module.scss'
@@ -30,7 +31,7 @@ const GenresExamples: React.FC = () => {
         </>
       ) : (
         data.result.map((genre) => (
-          <Link key={genre.slug} href={`/genre/${genre.slug}`}>
+          <Link key={genre.slug} href={genreLink(genre.slug)}>
             <a className={classes.example}>{genre.name}</a>
           </Link>
         ))

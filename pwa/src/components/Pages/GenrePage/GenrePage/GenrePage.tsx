@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { MusicGenreDetailsType } from '../../../../types/MusicGenre/MusicGenreDetailsType'
 import SquareButton from '../../../Atoms/Buttons/SquareButton/SquareButton'
-import Heading1 from '../../../Atoms/Headings/Heading1/Heading1'
+import HashtagTitle from '../../../Atoms/Titles/HashtagTitle/HashtagTitle'
 import PlusIcon from '../../../Atoms/Icons/PlusIcon/PlusIcon'
 import TrackCard from '../TrackCard/TrackCard'
 import classes from './GenrePage.module.scss'
@@ -13,7 +13,7 @@ const GenrePage: React.FC<Props> = ({ genre }) => {
   return (
     <div className={classes.container}>
       {/* Heading */}
-      <Heading1># {genre.name}</Heading1>
+      <HashtagTitle>{genre.name}</HashtagTitle>
 
       {/* Tracks listing */}
       <div className={classes.tracks}>

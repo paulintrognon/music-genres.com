@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { addTrack } from '../../../../../services/api/addTrack'
 import { createGenre } from '../../../../../services/api/createGenre'
+import { genreLink } from '../../../../../services/links/links'
 import { MusicGenreBaseType } from '../../../../../types/MusicGenre/MusicGenreBaseType'
 import SquareButton from '../../../../Atoms/Buttons/SquareButton/SquareButton'
 import classes from './AddTrack.module.scss'
@@ -28,7 +29,7 @@ const AddTrack: React.FC<Props> = ({ url, genre, genreName }) => {
     const response = await addTrack(url, genre.id)
 
     if (response.ok || response.parsedBody.code === 'track-already-listed') {
-      router.push(`/genre/${genre.slug}`)
+      router.push(genreLink(genre.slug))
     }
     setIsAddingTrack(false)
   }

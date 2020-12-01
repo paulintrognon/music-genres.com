@@ -23,7 +23,7 @@ exports[`should render the Header 1`] = `
   >
     <a
       className="sideButton"
-      href="/list-all-musical-genres"
+      href="/all"
       onClick={[Function]}
       onMouseEnter={[Function]}
     >
