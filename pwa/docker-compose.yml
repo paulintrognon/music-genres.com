@@ -9,9 +9,10 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     environment:
-      - NODE_ENV=development
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
     ports:
-      - ${DEV_PORT:-3000}:3000
+      - ${PORT:-3000}:3000
       - 35729:35729
     volumes:
       - .:/usr/src/app
@@ -24,6 +25,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
     ports:
       - 127.0.0.1:${PORT:-80}:3000
