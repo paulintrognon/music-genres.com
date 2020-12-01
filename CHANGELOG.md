@@ -1,3 +1,9 @@
+# v4.0.0
+
+- Complete rewrite of pwa in TypeScript using Next.js
+- Add `Dockerfile`s
+- Add front CI
+
 ### v3.0.2
 
 - Better api port handling
