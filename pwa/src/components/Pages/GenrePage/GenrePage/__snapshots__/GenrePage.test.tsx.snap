@@ -4,10 +4,9 @@ exports[`should render the GenrePage 1`] = `
 <div
   className="container"
 >
-  <Heading1>
-    # 
+  <HashtagTitle>
     Super Genre
-  </Heading1>
+  </HashtagTitle>
   <div
     className="tracks"
   >

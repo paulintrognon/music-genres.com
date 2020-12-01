@@ -13,10 +13,10 @@ const Header: React.FunctionComponent = () => {
         </Link>
       </h1>
       <div className={classes.sideButtons}>
-        <Link href={'/list-all-musical-genres'}>
+        <Link href="/all">
           <a className={classes.sideButton}>All genres</a>
         </Link>
-        <Link href={'/add/video'}>
+        <Link href="/add/video">
           <a className={classes.sideButton}>Add genre</a>
         </Link>
       </div>

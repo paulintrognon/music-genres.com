@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { genreLink } from '../../../../services/links/links'
 import SearchGenres from '../../../Organisms/SearchGenres/SearchGenres/SearchGenres'
 import GenresExamples from './../GenresExamples/GenresExamples'
 import classes from './HomePage.module.scss'
@@ -20,7 +21,7 @@ const HomePage: React.FC = () => {
         Music Genres gives you a sonore definition of musical genres by listening to YouTube videos.
       </p>
       <SearchGenres
-        slugToHref={(slug) => `/genre/${slug}`}
+        slugToHref={genreLink}
         onDirty={handleOnChangeSearchFocus(true)}
         onClean={handleOnChangeSearchFocus(false)}
       />
