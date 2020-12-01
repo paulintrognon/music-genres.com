@@ -1,5 +1,7 @@
 # music-genres.com
 
+[![Actions Status](https://github.com/paulintrognon/music-genres.com/workflows/CI/badge.svg)](https://github.com/paulintrognon/music-genres.com/actions)
+
 ## Get started
 
 - `git clone git@github.com:paulintrognon/music-genres.com.git`
