@@ -1,35 +1,22 @@
 # music-genres.com
 
-## Install
+## Get started
 
 - `git clone git@github.com:paulintrognon/music-genres.com.git`
 - `cd music-genres.com`
 - `yarn`
 
-### Setup
+### Configurations
 
-#### Shared config
-- `cp config/index.js.example config/index.js`
-- `nano config/index.js`
+There are two configurations files to add:
 
-#### Api config
-- `cp config/api.js.example config/api.js`
-- `nano config/api.js`
+- `cp server/.env.example server/.env`
+- `cp pwa/.env.example pwa/.env`
 
-You need to fill in `database` fields accordigly, pointing to an empty MySQL or MariaDB database.
+### Start server
 
-- `yarn update-db`
+`cd server && docker-compose up`
 
-## Start
+### Start pwa
 
-### Api
-
-- `yarn api`
-
-### Front
-
-- `yarn front`
-
-## Build for prod
-
-- `yarn build`
+`cd pwa && docker-compose up`
