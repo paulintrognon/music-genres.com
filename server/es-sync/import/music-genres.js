@@ -1,13 +1,11 @@
-const bluebird = require('bluebird');
-const MusicGenre = require('../../db/models/MusicGenre');
-const es = require('../../es/es');
+const bluebird = require('bluebird')
+const MusicGenre = require('../../db/models/MusicGenre')
+const es = require('../../es/es')
 
-module.exports = importMusicGenres;
+module.exports = importMusicGenres
 
 function importMusicGenres() {
-  return MusicGenre.findAll().then(musicGenres =>
-    bluebird.map(musicGenres, importMusicGenre)
-  );
+  return MusicGenre.findAll().then((musicGenres) => bluebird.map(musicGenres, importMusicGenre))
 }
 
 function importMusicGenre(musicGenre) {
@@ -18,5 +16,5 @@ function importMusicGenre(musicGenre) {
     body: {
       name: musicGenre.name,
     },
-  });
+  })
 }

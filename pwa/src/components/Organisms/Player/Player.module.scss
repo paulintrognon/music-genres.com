@@ -1,0 +1,21 @@
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(57, 63, 127,.9);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeContainer {
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+.closeIcon {
+  position: relative;
+}

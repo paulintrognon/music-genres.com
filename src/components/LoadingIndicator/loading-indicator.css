@@ -1,6 +1,0 @@
-.loading-indicator-image {
-  animation:spin 2s linear infinite;
-  width: 25px;
-}
-
-@keyframes spin { 100% { transform:rotate(360deg); } }

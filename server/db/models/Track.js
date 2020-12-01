@@ -28,12 +28,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0,
     },
-  });
+  })
 
-  Track.associate = models => {
-    Track.belongsToMany(models.MusicGenre, { through: models.MusicGenreTrack });
-    Track.hasMany(models.Vote);
-  };
+  Track.associate = (models) => {
+    Track.belongsToMany(models.MusicGenre, { through: models.MusicGenreTrack })
+    Track.hasMany(models.Vote)
+  }
 
-  return Track;
-};
+  return Track
+}

@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+  max-width: 100%;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.backgroundText {
+  font-weight: 900;
+  font-size: 6.75rem;
+  line-height: 5.625rem;
+  color: var(--color-tertiary);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+
+  &.one {
+    font-size: 7.25rem;
+  }
+  &.two {
+    font-size: 7.25rem;
+    letter-spacing: -0.475rem;
+  }
+}
+
+.foregroundText {
+  position: absolute;
+  bottom: 0;
+  font-family: 'Montserrat';
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.stepText {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}

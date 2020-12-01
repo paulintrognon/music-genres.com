@@ -1,0 +1,20 @@
+:root {
+  /* Colors */
+  --color-primary: #fff;
+  --color-secondary: #2f356b;
+  --color-secondary-light: #3f457b;
+  --color-tertiary: #5936d5;
+  --color-tertiary-light: #6946e5;
+
+  // background gradient
+  --color-bg-1: #2a1964;
+  --color-bg-2: #693ffa;
+
+  /* --font-sizes */
+  @for $i from 12 through 32 {
+    --font-size-#{$i}: #{$i/16}rem;
+  }
+
+  /* Size */
+  --max-width: 64rem;
+}

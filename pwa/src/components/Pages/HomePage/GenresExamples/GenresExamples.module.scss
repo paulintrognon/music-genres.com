@@ -1,0 +1,19 @@
+.container {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: var(--font-size-14);
+}
+
+.example {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  box-shadow: 0 9px 10px 0 rgba(0,0,0,.23);
+  padding: 0.35rem 0.75rem;
+  margin-left: 1rem;
+  margin-bottom: 0.5rem;
+  transition: background-color 200ms;
+
+  &:hover {
+    background-color: var(--color-secondary-light);
+  }
+}

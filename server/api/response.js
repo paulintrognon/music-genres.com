@@ -1,30 +1,30 @@
-const logger = require('../logger');
+const logger = require('../logger')
 
-module.exports = responseMiddleware;
+module.exports = responseMiddleware
 
 function responseMiddleware(promise, req, res, next) {
   if (promise instanceof Error) {
-    handleError(promise);
-    return;
+    handleError(promise)
+    return
   }
 
   if (!promise.then) {
-    handleSuccess(promise);
-    next();
-    return;
+    handleSuccess(promise)
+    next()
+    return
   }
 
-  promise.then(handleSuccess, handleError).catch(next);
+  promise.then(handleSuccess, handleError).catch(next)
 
   function handleSuccess(result) {
     res.status(200).send({
       status: 200,
       result,
-    });
+    })
   }
 
   function handleError(error) {
-    logger.error(error);
+    logger.error(error)
     res.status(error.status || 400).send({
       error: true,
       status: error.status,
@@ -33,6 +33,6 @@ function responseMiddleware(promise, req, res, next) {
       code: error.code,
       errors: error.errors,
       payload: error.payload,
-    });
+    })
   }
 }

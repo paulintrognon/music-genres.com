@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the SquareButton 1`] = `
+<span
+  className="container"
+>
+  Content
+</span>
+`;
+
+exports[`should render with a loader if loading 1`] = `
+<span
+  className="container"
+>
+  <Loader />
+</span>
+`;

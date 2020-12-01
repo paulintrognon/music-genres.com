@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the Header 1`] = `
+<header
+  className="container"
+>
+  <h1
+    className="logo"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      <img
+        alt="Music Genres"
+        src="/images/logo.png"
+      />
+    </a>
+  </h1>
+  <div
+    className="sideButtons"
+  >
+    <a
+      className="sideButton"
+      href="/list-all-musical-genres"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      All genres
+    </a>
+    <a
+      className="sideButton"
+      href="/add/video"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Add genre
+    </a>
+  </div>
+</header>
+`;

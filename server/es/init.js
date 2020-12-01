@@ -1,5 +1,5 @@
-const es = require('./es');
+const es = require('./es')
 
 es.connect()
   .then(() => es.init())
-  .then(() => es.close());
+  .then(() => es.close())

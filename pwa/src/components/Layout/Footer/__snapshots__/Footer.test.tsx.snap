@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the Footer 1`] = `
+<footer
+  className="container"
+>
+  <div
+    className="content"
+  >
+    <p>
+      <a
+        href="https://fr.linkedin.com/in/margotbrun"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Design by Margot Brun
+      </a>
+    </p>
+    <img
+      alt="-"
+      className="plus"
+      src="plus.png"
+    />
+    <p>
+      <a
+        href="https://github.com/paulintrognon/music-genres.com"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Code
+      </a>
+       
+      by
+       
+      <a
+        href="https://paulintrognon.fr/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Paulin Trognon
+      </a>
+    </p>
+  </div>
+</footer>
+`;

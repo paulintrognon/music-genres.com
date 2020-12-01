@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the TrackCard 1`] = `
+<button
+  className="container"
+  onClick={[Function]}
+  title="Super Track"
+  type="button"
+>
+  <div
+    className="play"
+    style={
+      Object {
+        "backgroundImage": "url(\\"https://img.youtube.com/vi/abcb123/hqdefault.jpg\\")",
+      }
+    }
+  >
+    <div
+      className="playIconContainer"
+    >
+      <PlayIcon />
+    </div>
+  </div>
+</button>
+`;

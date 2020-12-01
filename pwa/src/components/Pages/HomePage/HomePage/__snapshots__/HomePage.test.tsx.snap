@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the HomePage 1`] = `
+<section
+  className="container"
+>
+  <h2
+    className="title"
+  >
+    Discover genres by listening to what they sound
+  </h2>
+  <p
+    className="subtitle"
+  >
+    Music Genres gives you a sonore definition of musical genres by listening to YouTube videos.
+  </p>
+  <SearchGenres
+    onClean={[Function]}
+    onDirty={[Function]}
+    slugToHref={[Function]}
+  />
+  <div
+    data-cy="HomePage_BellowSearchElements"
+    style={
+      Object {
+        "opacity": 1,
+        "transition": "opacity 200ms",
+      }
+    }
+  >
+    <GenresExamples />
+  </div>
+</section>
+`;

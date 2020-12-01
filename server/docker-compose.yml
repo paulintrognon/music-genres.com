@@ -20,6 +20,7 @@ services:
             DB_PORT: ${DB_PORT:-3306}
             DB_HOST: mariadb
             DB_SOCKET_PATH: ${DB_SOCKET_PATH}
+            YOUTUBE_API_KEY: ${YOUTUBE_API_KEY}
 
     mariadb:
         container_name: musicgenres-mariadb

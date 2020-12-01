@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the InputWithIcon 1`] = `
+<form
+  className="container"
+  onSubmit={[Function]}
+>
+  <TextInput />
+  <button
+    className="icon"
+    type="submit"
+  >
+    <span
+      className="the-icon"
+    />
+  </button>
+</form>
+`;

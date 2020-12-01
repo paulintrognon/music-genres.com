@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    paths:
+      - '**.ts'
+      - '**.tsx'
+      - '**.js'
+      - '**.json'
+      - '**.yml'
+jobs:
+  # Run ESLint on all files
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: yarn
+    - name: Run ESLint
+      run: yarn lint .
+
+  # TypeScript checks & tests for PWA
+  pwa:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install modules
+      working-directory: pwa
+      run: yarn
+    - name: Run TypeScript Checks
+      working-directory: pwa
+      run: yarn type-check
+    - name: Run Unit tests
+      working-directory: pwa
+      run: yarn test:unit
+
+

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SearchGenres 1`] = `
+<div
+  className="container"
+>
+  <InputWithIcon
+    className="searchInput"
+    icon={<MagnifyingGlassIcon />}
+    onChange={[Function]}
+    onSubmit={[Function]}
+    placeholder="Start looking for a genre"
+  />
+</div>
+`;
