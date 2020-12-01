@@ -1,0 +1,22 @@
+.container {
+  width: 38rem;
+  max-width: 100%;
+  margin: auto;
+}
+
+.genreName {
+  display: inline-block;
+  max-width: 24rem;
+  height: 1.25rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.urlInput {
+  margin: 1.5rem 0;
+}
+
+.addButtonContainer {
+  text-align: center;
+}

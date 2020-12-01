@@ -18,8 +18,8 @@ module.exports = {
   playerServices: {
     youtube: {
       api: {
-        key: 'CHANGE-ME',
+        key: process.env.YOUTUBE_API_KEY,
       },
     },
   },
-};
+}

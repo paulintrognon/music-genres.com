@@ -13,12 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       deletedAt: false,
       paranoid: false,
     }
-  );
+  )
 
-  Vote.associate = models => {
-    Vote.belongsTo(models.Track);
-    Vote.belongsTo(models.MusicGenre);
-  };
+  Vote.associate = (models) => {
+    Vote.belongsTo(models.Track)
+    Vote.belongsTo(models.MusicGenre)
+  }
 
-  return Vote;
-};
+  return Vote
+}

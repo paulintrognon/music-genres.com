@@ -1,0 +1,16 @@
+.suggestion {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-secondary);
+  
+  a {
+    text-decoration: underline;
+  }
+}
+
+.hover:hover {
+  background-color: var(--color-secondary-light);
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,.19);
+  position: relative;
+}

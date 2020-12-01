@@ -1,0 +1,22 @@
+.container {
+  display: inline-flex;
+  background-color: var(--color-tertiary);
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 9px 10px 0 rgba(0,0,0,.23);
+  padding: 1rem 3rem;
+  transition: background-color .2s,border .2s,color .2s;
+  text-transform: uppercase;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 1.1rem;
+  width: auto;
+
+  img {
+    margin-right: 0.5rem;
+  }
+  
+  &:hover {
+    background-color: var(--color-tertiary-light);
+  }
+}

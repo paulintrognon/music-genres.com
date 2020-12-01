@@ -1,43 +1,43 @@
-const bluebird = require('bluebird');
-const proxyquire = require('proxyquire').noCallThru();
-const sinon = require('sinon');
-const should = require('should');
+const bluebird = require('bluebird')
+const proxyquire = require('proxyquire').noCallThru()
+const sinon = require('sinon')
+const should = require('should')
 
-const MusicGenreStub = {};
-const TrackStub = {};
-const trackManagerStub = {};
+const MusicGenreStub = {}
+const TrackStub = {}
+const trackManagerStub = {}
 const model = proxyquire('../../managers/musicGenreManager.js', {
   '../../db/models/MusicGenre': MusicGenreStub,
   '../../db/models/Track': TrackStub,
   './trackManager': trackManagerStub,
-});
+})
 
 describe('musicGenreManager', () => {
-  describe('.create', createSuite);
-});
+  describe('.create', createSuite)
+})
 
 function createSuite() {
-  it('should call the model with an added slug', test);
+  it('should call the model with an added slug', test)
 
   function test(done) {
     const data = {
       name: 'Super weird Style.genre~lol^^',
-    };
-    const modelResult = {};
-    MusicGenreStub.create = sinon.stub().returns(bluebird.resolve(modelResult));
+    }
+    const modelResult = {}
+    MusicGenreStub.create = sinon.stub().returns(bluebird.resolve(modelResult))
 
     model
       .create(data)
-      .then(res => {
-        should(MusicGenreStub.create.callCount).equal(1);
+      .then((res) => {
+        should(MusicGenreStub.create.callCount).equal(1)
         should(MusicGenreStub.create.firstCall.args).eql([
           {
             name: data.name,
             slug: 'super-weird-style-genre-lol',
           },
-        ]);
-        should(res).equal(modelResult);
+        ])
+        should(res).equal(modelResult)
       })
-      .then(done, done);
+      .then(done, done)
   }
 }

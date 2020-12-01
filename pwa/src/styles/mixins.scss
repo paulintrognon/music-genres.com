@@ -1,0 +1,30 @@
+$breakpoints: (
+  phone: 32rem,
+);
+
+@mixin breakpoint($minBreakpoint, $maxBreakpoint: null) {
+  $min: null;
+  $max: null;
+
+  @if map-has-key($breakpoints, $minBreakpoint) {
+    $min: map-get($breakpoints, $minBreakpoint);
+  } @else {
+    $min: $minBreakpoint;
+  }
+
+  @if map-has-key($breakpoints, $maxBreakpoint) {
+    $max: map-get($breakpoints, $maxBreakpoint) - 0.0625;
+  } @else {
+    $max: $maxBreakpoint;
+  }
+
+  @if $max {
+    @media screen and (min-width: #{$min}) and (max-width: #{$max}) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: #{$min}) {
+      @content;
+    }
+  }
+}

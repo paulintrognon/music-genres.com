@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render examples after fetch 1`] = `
+<div
+  className="container"
+>
+  Examples:
+  <Link
+    href="/genre/genre-1"
+  >
+    <a
+      className="example"
+    >
+      Genre 1
+    </a>
+  </Link>
+  <Link
+    href="/genre/genre-2"
+  >
+    <a
+      className="example"
+    >
+      Genre 2
+    </a>
+  </Link>
+  <Link
+    href="/genre/genre-3"
+  >
+    <a
+      className="example"
+    >
+      Genre 3
+    </a>
+  </Link>
+</div>
+`;
+
+exports[`should render with loaders if loading 1`] = `
+<div
+  className="container"
+>
+  Examples:
+  <React.Fragment>
+    <a
+      className="example"
+    >
+      <Loader />
+    </a>
+    <a
+      className="example"
+    >
+      <Loader />
+    </a>
+    <a
+      className="example"
+    >
+      <Loader />
+    </a>
+  </React.Fragment>
+</div>
+`;

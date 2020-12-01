@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SelectGenrePage 1`] = `
+<div
+  className="container"
+>
+  <StepHeading
+    step={1}
+  >
+    Select a genre related to your video
+  </StepHeading>
+  <SearchGenres
+    onChange={[Function]}
+    onSubmit={[Function]}
+    slugToHref={[Function]}
+  />
+</div>
+`;

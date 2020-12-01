@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the StepHeading (step 1) 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="backgroundText one"
+  >
+    Step 
+    one
+  </div>
+  <div
+    className="stepText"
+  >
+    1
+    /2
+  </div>
+  <h2
+    className="foregroundText"
+  >
+    Super heading
+  </h2>
+</div>
+`;
+
+exports[`should render the StepHeading (step 2) 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="backgroundText two"
+  >
+    Step 
+    two
+  </div>
+  <div
+    className="stepText"
+  >
+    2
+    /2
+  </div>
+  <h2
+    className="foregroundText"
+  >
+    Super heading
+  </h2>
+</div>
+`;

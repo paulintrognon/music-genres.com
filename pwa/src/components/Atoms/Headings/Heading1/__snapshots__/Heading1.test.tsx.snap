@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the Heading1 1`] = `
+<span
+  className="container testClass"
+>
+  Super Title
+</span>
+`;

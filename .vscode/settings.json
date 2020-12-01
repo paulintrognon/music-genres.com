@@ -1,11 +1,15 @@
 {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "cSpell.words": [
-      "musicgenres",
-      "youtube"
-    ]
-  }
+  "editor.tabSize": 2,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "cSpell.words": [
+    "musicgenres",
+    "paulintrognon",
+    "reduxjs",
+    "typesafe",
+    "upvotes",
+    "youtube"
+  ]
+}

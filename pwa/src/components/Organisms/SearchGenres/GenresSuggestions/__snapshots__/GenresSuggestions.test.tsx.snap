@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render "loader" if loading 1`] = `
+<div
+  className="suggestion"
+  style={
+    Object {
+      "textAlign": "center",
+    }
+  }
+>
+  <Loader />
+</div>
+`;
+
+exports[`should render "no result" if no suggestions 1`] = `
+<div
+  className="suggestion"
+>
+  " 
+  <i>
+    Super Genre
+  </i>
+   " does not exist yet.
+   
+  <Link
+    href="/add/video/Super Genre"
+  >
+    <a>
+      Create it!
+    </a>
+  </Link>
+</div>
+`;
+
+exports[`should render the GenresSuggestions 1`] = `
+<div>
+  <Link
+    href="/path/to/genre-1"
+  >
+    <a
+      className="suggestion hover"
+    >
+      Genre 1
+    </a>
+  </Link>
+  <Link
+    href="/path/to/genre-2"
+  >
+    <a
+      className="suggestion hover"
+    >
+      Genre 2
+    </a>
+  </Link>
+  <Link
+    href="/path/to/genre-3"
+  >
+    <a
+      className="suggestion hover"
+    >
+      Genre 3
+    </a>
+  </Link>
+</div>
+`;

@@ -1,0 +1,18 @@
+.input {
+  width: 100%;
+  margin: auto;
+  height: 3rem;
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  padding: 0 1.5rem;
+  box-shadow: 0 0.5rem 0.5rem 0 rgba(0,0,0,.2);
+  transition: height .2s, font-size .2s;
+  box-sizing: border-box;
+  font-family: Oxygen, sans-serif;
+
+  &.dirty {
+    height: 4rem;
+    font-size: var(--font-size-18);
+  }
+}
+

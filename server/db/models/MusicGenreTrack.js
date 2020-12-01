@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       deletedAt: false,
       paranoid: false,
     }
-  );
+  )
 
-  return MusicGenreTrack;
-};
+  return MusicGenreTrack
+}

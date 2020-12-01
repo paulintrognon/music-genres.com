@@ -20,17 +20,17 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: true,
     }
-  );
+  )
 
-  MusicGenre.associate = models => {
-    MusicGenre.hasMany(models.MusicGenreTrack);
-    MusicGenre.hasMany(models.Vote);
-    MusicGenre.belongsToMany(models.Track, { through: models.MusicGenreTrack });
+  MusicGenre.associate = (models) => {
+    MusicGenre.hasMany(models.MusicGenreTrack)
+    MusicGenre.hasMany(models.Vote)
+    MusicGenre.belongsToMany(models.Track, { through: models.MusicGenreTrack })
     MusicGenre.belongsToMany(MusicGenre, {
       as: 'Parents',
       through: 'MusicGenreParents',
-    });
-  };
+    })
+  }
 
-  return MusicGenre;
-};
+  return MusicGenre
+}

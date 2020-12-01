@@ -1,0 +1,31 @@
+@import '../../../styles/mixins.scss';
+
+.container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 2rem 1rem;
+
+
+  @include breakpoint(21rem) {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+  }
+}
+
+.logo img {
+  @include breakpoint(0, phone) {
+    width: 6rem;
+  }
+}
+
+.sideButton {
+  border: none;
+  text-transform: uppercase;
+  font-size: var(--font-size-14);
+  font-weight: 700;
+
+  &:not(:first-child) {
+    margin-left: 2rem;
+  }
+}

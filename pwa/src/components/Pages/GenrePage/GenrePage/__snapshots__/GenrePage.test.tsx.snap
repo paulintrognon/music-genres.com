@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the GenrePage 1`] = `
+<div
+  className="container"
+>
+  <Heading1>
+    # 
+    Super Genre
+  </Heading1>
+  <div
+    className="tracks"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col-xs-4"
+      >
+        <TrackCard
+          track={
+            Object {
+              "id": 1,
+              "playerName": "youtube",
+              "playerTrackId": "abc123",
+              "title": "Super Title",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="addContainer"
+  >
+    <Link
+      href="/add/video/super-genre"
+    >
+      <a>
+        <SquareButton>
+          <PlusIcon />
+          Add video
+        </SquareButton>
+      </a>
+    </Link>
+  </div>
+</div>
+`;

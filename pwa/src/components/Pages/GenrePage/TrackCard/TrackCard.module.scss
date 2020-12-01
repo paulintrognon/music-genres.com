@@ -1,0 +1,38 @@
+.container {
+  display: block;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.play {
+  display: block;
+  padding: 56.25% 0 0;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  position: relative;
+}
+
+.playIconContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  svg path:first-child {
+    transition: fill 200ms;
+    fill: rgba(30, 30, 30, 0.7);
+  }
+  &:hover svg path:first-child {
+    fill: #F44336;
+  }
+}
