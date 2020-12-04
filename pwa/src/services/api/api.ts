@@ -1,11 +1,22 @@
-export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL
+/**
+ * Base API Url, set in .env
+ */
+export const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || 'localhost:3001'
 
-export type HttpErrorResponse = {
+/**
+ * Error Body Type
+ */
+export type HttpErrorBody = {
   error: true
   message: string
   code: string
 }
 
+/**
+ * HTTP Response Type can be either successful or not.
+ * If successful, the body type is given as parameter.
+ * If not successful, the body type is always of type HttpErrorBody.
+ */
 export type HttpResponse<BodyType> = Response &
   (
     | {
@@ -14,10 +25,17 @@ export type HttpResponse<BodyType> = Response &
       }
     | {
         ok: false
-        parsedBody: HttpErrorResponse
+        parsedBody: HttpErrorBody
       }
   )
 
+/**
+ * GET request to the api.
+ * If success, returns
+ *   Promise<{ ok: true, status: <statusCode>, parsedBody: <body> }>
+ * If error, returns:
+ *   Promise<{ ok: false, status: <statusCode>, parsedBody: <body> }>
+ */
 export async function get<BodyType>(path: string): Promise<HttpResponse<BodyType>> {
   try {
     const response = await fetch(`${BASE_API_URL}${path}`)
@@ -27,6 +45,13 @@ export async function get<BodyType>(path: string): Promise<HttpResponse<BodyType
   }
 }
 
+/**
+ * POST request to the api.
+ * If success, returns
+ *   Promise<{ ok: true, status: <statusCode>, parsedBody: <body> }>
+ * If error, returns:
+ *   Promise<{ ok: false, status: <statusCode>, parsedBody: <body> }>
+ */
 export async function post<BodyType>(
   path: string,
   payload: unknown
@@ -46,6 +71,9 @@ export async function post<BodyType>(
   }
 }
 
+/**
+ * Parse the body to json, and return the Response object
+ */
 async function toResponse<BodyType>(response: Response): Promise<HttpResponse<BodyType>> {
   const jsonBody = await response.json()
   if (response.ok) {
@@ -58,10 +86,13 @@ async function toResponse<BodyType>(response: Response): Promise<HttpResponse<Bo
   return {
     ...response,
     ok: false,
-    parsedBody: jsonBody as HttpErrorResponse,
+    parsedBody: jsonBody as HttpErrorBody,
   }
 }
 
+/**
+ * Format internal errors into a HttpErrorResponse
+ */
 function toErrorResponse<BodyType>(error: Error): HttpResponse<BodyType> {
   return {
     ...new Response(undefined, { status: 500, statusText: error.message }),
