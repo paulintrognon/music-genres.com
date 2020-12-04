@@ -15,22 +15,46 @@ interface Props {
 const AddTrack: React.FC<Props> = ({ url, genre, genreName }) => {
   const router = useRouter()
 
+  /**
+   * Add Track Handler
+   */
   const [isAddingTrack, setIsAddingTrack] = useState(false)
   const handleAddTrack = async (): Promise<void> => {
+    /**
+     * Change UI state to loading: true
+     */
+    setIsAddingTrack(true)
+
+    /**
+     * Genre Creation
+     * If no genre has been given upstream, it means that we need to create it first.
+     */
     if (!genre) {
+      // We create the new genre based on its name
       const genreResponse = await createGenre(genreName as string)
+
+      // If an error occurred during genre creation, we stop here.
+      // TODO: show error in ui
       if (!genreResponse.ok || !genreResponse.parsedBody) {
+        setIsAddingTrack(false)
         return
       }
+
+      // We assign the new created genre
       genre = genreResponse.parsedBody
     }
 
-    setIsAddingTrack(true)
+    /**
+     * Add Track To Genre
+     */
     const response = await addTrack(url, genre.id)
-
     if (response.ok || response.parsedBody.code === 'track-already-listed') {
       router.push(genreLink(genre.slug))
     }
+
+    /**
+     * Change UI State to loading: false
+     */
     setIsAddingTrack(false)
   }
 
