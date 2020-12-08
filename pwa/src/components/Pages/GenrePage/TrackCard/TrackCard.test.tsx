@@ -1,11 +1,10 @@
-import React from 'react'
-import { createRenderer } from 'react-test-renderer/shallow'
 import { shallow } from 'enzyme'
 import { TrackType } from '../../../../types/Track/TrackType'
 import TrackCard from './TrackCard'
 
 // Mocking useDispatch
 import { useDispatch } from 'react-redux'
+
 jest.mock('react-redux')
 const useDispatchMock = useDispatch as jest.Mock
 const dispatchMock = jest.fn()
@@ -23,13 +22,13 @@ const track: TrackType = {
 }
 
 it('should render the TrackCard', () => {
-  const renderer = createRenderer()
-  expect(renderer.render(<TrackCard track={track} />)).toMatchSnapshot()
+  const wrapper = shallow(<TrackCard track={track} />)
+  expect(wrapper).toMatchSnapshot()
 })
 
 it('should call the action on click', () => {
-  const component = shallow(<TrackCard track={track} />)
-  component.find('button').simulate('click')
+  const wrapper = shallow(<TrackCard track={track} />)
+  wrapper.find('button').simulate('click')
   expect(dispatchMock.mock.calls).toEqual([
     [
       {

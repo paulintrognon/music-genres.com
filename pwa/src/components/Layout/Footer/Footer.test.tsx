@@ -1,7 +1,7 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
 import Footer from './Footer'
+import { shallow } from 'enzyme'
 
 it('should render the Footer', () => {
-  expect(renderer.create(<Footer />).toJSON()).toMatchSnapshot()
+  const wrapper = shallow(<Footer />)
+  expect(wrapper).toMatchSnapshot()
 })

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Layout } from '../../../components/Layout/Layout'
+import { Layout } from '../../../components/Layout/Layout/Layout'
 import SelectGenrePage from '../../../components/Pages/AddVideo/SelectGenrePage/SelectGenrePage'
 
 const AddVideoIndex: React.FC = () => (

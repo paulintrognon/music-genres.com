@@ -16,10 +16,9 @@ exports[`should render the Footer 1`] = `
         Design by Margot Brun
       </a>
     </p>
-    <img
+    <PlusIcon
       alt="-"
       className="plus"
-      src="plus.png"
     />
     <p>
       <a

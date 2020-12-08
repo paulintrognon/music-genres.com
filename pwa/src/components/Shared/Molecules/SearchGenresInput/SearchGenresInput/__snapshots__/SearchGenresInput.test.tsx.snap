@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SearchGenres 1`] = `
+<div
+  className="container"
+>
+  <InputWithIcon
+    className="searchInput"
+    icon={<MagnifyingGlassIcon />}
+    onChange={[Function]}
+    onSubmit={[Function]}
+    placeholder="Start looking for a genre"
+  />
+</div>
+`;
+
+exports[`should search genres on input 1`] = `
+<div
+  className="container"
+>
+  <InputWithIcon
+    className="searchInput"
+    icon={<MagnifyingGlassIcon />}
+    onChange={[Function]}
+    onClean={[MockFunction]}
+    onDirty={[MockFunction]}
+    onSubmit={[Function]}
+    placeholder="Start looking for a genre"
+  />
+  <GenresSuggestions
+    genreName="test"
+    slugToHref={[Function]}
+    suggestions={
+      Array [
+        Object {
+          "name": "Genre",
+          "slug": "genre",
+        },
+      ]
+    }
+  />
+</div>
+`;

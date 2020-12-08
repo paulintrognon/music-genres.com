@@ -7,36 +7,38 @@ exports[`should render the Header 1`] = `
   <h1
     className="logo"
   >
-    <a
+    <Link
       href="/"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
     >
-      <img
-        alt="Music Genres"
-        src="/images/logo.png"
-      />
-    </a>
+      <a>
+        <img
+          alt="Music Genres"
+          src="/images/logo.png"
+        />
+      </a>
+    </Link>
   </h1>
   <div
     className="sideButtons"
   >
-    <a
-      className="sideButton"
+    <Link
       href="/all"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
     >
-      All genres
-    </a>
-    <a
-      className="sideButton"
+      <a
+        className="sideButton"
+      >
+        All genres
+      </a>
+    </Link>
+    <Link
       href="/add/video"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
     >
-      Add genre
-    </a>
+      <a
+        className="sideButton"
+      >
+        Add genre
+      </a>
+    </Link>
   </div>
 </header>
 `;

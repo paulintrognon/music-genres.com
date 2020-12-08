@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { playTrack } from '../../../../redux/player/player.slice'
 import { TrackType } from '../../../../types/Track/TrackType'
-import PlayIcon from '../../../Atoms/Icons/PlayIcon/PlayIcon'
+import PlayIcon from '../../../Shared/Atoms/Icons/PlayIcon/PlayIcon'
 import classes from './TrackCard.module.scss'
 
 interface Props {

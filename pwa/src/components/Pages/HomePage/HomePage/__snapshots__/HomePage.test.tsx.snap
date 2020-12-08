@@ -14,7 +14,7 @@ exports[`should render the HomePage 1`] = `
   >
     Music Genres gives you a sonore definition of musical genres by listening to YouTube videos.
   </p>
-  <SearchGenres
+  <SearchGenresInput
     onClean={[Function]}
     onDirty={[Function]}
     slugToHref={[Function]}

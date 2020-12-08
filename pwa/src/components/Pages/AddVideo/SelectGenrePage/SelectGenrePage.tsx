@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { addVideoLink } from '../../../../services/links/links'
-import SquareButton from '../../../Atoms/Buttons/SquareButton/SquareButton'
-import SearchGenres from '../../../Organisms/SearchGenres/SearchGenres/SearchGenres'
+import SquareButton from '../../../Shared/Atoms/Buttons/SquareButton/SquareButton'
+import SearchGenresInput from '../../../Shared/Molecules/SearchGenresInput/SearchGenresInput/SearchGenresInput'
 import StepHeading from '../StepHeading/StepHeading'
 import classes from './SelectGenrePage.module.scss'
 
@@ -33,7 +33,7 @@ const SelectGenrePage: React.FC = () => {
       <StepHeading step={1}>Select a genre related to your video</StepHeading>
 
       {/* Search Genre input bar */}
-      <SearchGenres
+      <SearchGenresInput
         slugToHref={addVideoLink}
         onChange={handleGenreChange}
         onSubmit={handleGenreSubmit}

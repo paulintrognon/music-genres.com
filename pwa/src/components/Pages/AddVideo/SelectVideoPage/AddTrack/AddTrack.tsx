@@ -4,7 +4,7 @@ import { addTrack } from '../../../../../services/api/addTrack'
 import { createGenre } from '../../../../../services/api/createGenre'
 import { genreLink } from '../../../../../services/links/links'
 import { MusicGenreBaseType } from '../../../../../types/MusicGenre/MusicGenreBaseType'
-import SquareButton from '../../../../Atoms/Buttons/SquareButton/SquareButton'
+import SquareButton from '../../../../Shared/Atoms/Buttons/SquareButton/SquareButton'
 import classes from './AddTrack.module.scss'
 
 interface Props {

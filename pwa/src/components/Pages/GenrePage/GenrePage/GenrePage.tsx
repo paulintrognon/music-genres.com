@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { MusicGenreDetailsType } from '../../../../types/MusicGenre/MusicGenreDetailsType'
-import SquareButton from '../../../Atoms/Buttons/SquareButton/SquareButton'
-import HashtagTitle from '../../../Atoms/Titles/HashtagTitle/HashtagTitle'
-import PlusIcon from '../../../Atoms/Icons/PlusIcon/PlusIcon'
+import SquareButton from '../../../Shared/Atoms/Buttons/SquareButton/SquareButton'
+import HashtagTitle from '../../../Shared/Atoms/Titles/HashtagTitle/HashtagTitle'
+import PlusIcon from '../../../Shared/Atoms/Icons/PlusIcon/PlusIcon'
 import TrackCard from '../TrackCard/TrackCard'
 import classes from './GenrePage.module.scss'
 

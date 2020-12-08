@@ -1,7 +1,7 @@
-import React from 'react'
-import renderer from 'react-test-renderer'
 import Header from './Header'
+import { shallow } from 'enzyme'
 
 it('should render the Header', () => {
-  expect(renderer.create(<Header />).toJSON()).toMatchSnapshot()
+  const wrapper = shallow(<Header />)
+  expect(wrapper).toMatchSnapshot()
 })

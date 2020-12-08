@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should display genre link on genre typed 1`] = `
+<div
+  className="container"
+>
+  <StepHeading
+    step={1}
+  >
+    Select a genre related to your video
+  </StepHeading>
+  <SearchGenresInput
+    onChange={[Function]}
+    onSubmit={[Function]}
+    slugToHref={[Function]}
+  />
+  <div
+    className="addGenreContainer"
+  >
+    <Link
+      href="/add/video/test genre"
+    >
+      <a>
+        <SquareButton>
+          Create "
+          test genre
+          "
+        </SquareButton>
+      </a>
+    </Link>
+  </div>
+</div>
+`;
+
 exports[`should render SelectGenrePage 1`] = `
 <div
   className="container"
@@ -9,7 +41,7 @@ exports[`should render SelectGenrePage 1`] = `
   >
     Select a genre related to your video
   </StepHeading>
-  <SearchGenres
+  <SearchGenresInput
     onChange={[Function]}
     onSubmit={[Function]}
     slugToHref={[Function]}

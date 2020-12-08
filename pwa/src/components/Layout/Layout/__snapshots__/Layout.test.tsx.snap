@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Layout 1`] = `
+<div>
+  <Header />
+  <div
+    className="content"
+  >
+    Hello world
+  </div>
+  <Footer />
+</div>
+`;

@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import { Layout } from '../components/Layout/Layout'
+import { Layout } from '../components/Layout/Layout/Layout'
 import AllGenres from '../components/Pages/AllGenres/AllGenres'
 import { get } from '../services/api/api'
 import { MusicGenreBaseType } from '../types/MusicGenre/MusicGenreBaseType'

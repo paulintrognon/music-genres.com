@@ -1,4 +1,4 @@
-import PlusIcon from '../../Atoms/Icons/PlusIcon/PlusIcon'
+import PlusIcon from '../../Shared/Atoms/Icons/PlusIcon/PlusIcon'
 import classes from './Footer.module.scss'
 
 const Footer: React.FunctionComponent = () => {
