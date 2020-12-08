@@ -1,11 +1,8 @@
-import React from 'react'
-import { createRenderer } from 'react-test-renderer/shallow'
 import GenresExamples from './GenresExamples'
-
-const renderer = createRenderer()
 
 // Mocking getPost
 import useSWR from 'swr'
+import { shallow } from 'enzyme'
 jest.mock('swr')
 const useSWRMock = useSWR as jest.Mock
 
@@ -20,8 +17,8 @@ it('should render examples after fetch', async () => {
     { name: 'Genre 3', slug: 'genre-3' },
   ]
   useSWRMock.mockReturnValueOnce({ data: { result: examplesResult } })
-  const component = renderer.render(<GenresExamples />)
-  expect(component).toMatchSnapshot()
+  const wrapper = shallow(<GenresExamples />)
+  expect(wrapper).toMatchSnapshot()
 
   expect(useSWRMock).toHaveBeenCalledTimes(1)
   expect(useSWRMock.mock.calls[0]).toEqual(['/api/music-genres/random'])
@@ -29,12 +26,12 @@ it('should render examples after fetch', async () => {
 
 it('should render with loaders if loading', async () => {
   useSWRMock.mockReturnValueOnce({ isValidating: true, data: {} })
-
-  expect(renderer.render(<GenresExamples />)).toMatchSnapshot()
+  const wrapper = shallow(<GenresExamples />)
+  expect(wrapper).toMatchSnapshot()
 })
 
 it('should return null if no data', async () => {
   useSWRMock.mockReturnValueOnce({ data: null })
-
-  expect(renderer.render(<GenresExamples />)).toBeNull()
+  const wrapper = shallow(<GenresExamples />)
+  expect(wrapper).toMatchSnapshot()
 })

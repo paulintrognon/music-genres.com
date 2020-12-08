@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { genreLink } from '../../../../services/links/links'
-import SearchGenres from '../../../Organisms/SearchGenres/SearchGenres/SearchGenres'
-import GenresExamples from './../GenresExamples/GenresExamples'
+import SearchGenresInput from '../../../Shared/Molecules/SearchGenresInput/SearchGenresInput/SearchGenresInput'
+import GenresExamples from '../GenresExamples/GenresExamples'
 import classes from './HomePage.module.scss'
 
 const HomePage: React.FC = () => {
@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
       <p className={classes.subtitle}>
         Music Genres gives you a sonore definition of musical genres by listening to YouTube videos.
       </p>
-      <SearchGenres
+      <SearchGenresInput
         slugToHref={genreLink}
         onDirty={handleOnChangeSearchFocus(true)}
         onClean={handleOnChangeSearchFocus(false)}

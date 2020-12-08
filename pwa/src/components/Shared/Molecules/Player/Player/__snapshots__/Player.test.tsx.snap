@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the Player with visible = false if no track is provided 1`] = `
+<Fader
+  isVisible={false}
+>
+  <div
+    className="container"
+  >
+    <div>
+      <div
+        className="closeContainer"
+      >
+        <button
+          aria-label="Close"
+          className="closeIcon"
+          onClick={[MockFunction]}
+        >
+          <CrossIcon />
+        </button>
+      </div>
+      <iframe
+        frameBorder="0"
+        height="405"
+        src="https://www.youtube.com/embed/undefined?autoplay=1&start=20&origin=https://www.music-genres.com"
+        title="Youtube Player"
+        width="646"
+      />
+    </div>
+  </div>
+</Fader>
+`;
+
+exports[`should render the Player with visible = true if track is provided 1`] = `
+<Fader
+  isVisible={true}
+>
+  <div
+    className="container"
+  >
+    <div>
+      <div
+        className="closeContainer"
+      >
+        <button
+          aria-label="Close"
+          className="closeIcon"
+          onClick={[MockFunction]}
+        >
+          <CrossIcon />
+        </button>
+      </div>
+      <iframe
+        frameBorder="0"
+        height="405"
+        src="https://www.youtube.com/embed/abc123?autoplay=1&start=20&origin=https://www.music-genres.com"
+        title="Youtube Player"
+        width="646"
+      />
+    </div>
+  </div>
+</Fader>
+`;

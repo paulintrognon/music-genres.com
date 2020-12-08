@@ -1,8 +1,7 @@
-import React from 'react'
 import Link from 'next/link'
 import classes from './Header.module.scss'
 
-const Header: React.FunctionComponent = () => {
+const Header: React.FC = () => {
   return (
     <header className={classes.container}>
       <h1 className={classes.logo}>

@@ -4,7 +4,7 @@ import { SWRConfig } from 'swr'
 import { BASE_API_URL } from '../services/api/api'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
-import Player from '../components/Organisms/Player/Player'
+import ConnectedPlayer from '../components/Shared/Molecules/Player/Player/Player.connect'
 import '../styles/styles.scss'
 import '../styles/flexboxgrid.min.css'
 
@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
     }}
   >
     <Provider store={store}>
-      <Player />
+      <ConnectedPlayer />
       <Component {...pageProps} />
     </Provider>
   </SWRConfig>

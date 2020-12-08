@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { parseUrl } from '../../../../../services/api/parseYoutubeUrl'
 import { TrackType } from '../../../../../types/Track/TrackType'
-import Loader from '../../../../Atoms/Loader/Loader'
-import TextInput from '../../../../Atoms/TextInput/TextInput'
+import Loader from '../../../../Shared/Atoms/Loader/Loader'
+import TextInput from '../../../../Shared/Atoms/TextInput/TextInput'
 import TrackCard from '../../../GenrePage/TrackCard/TrackCard'
 import classes from './UrlFieldInput.module.scss'
 

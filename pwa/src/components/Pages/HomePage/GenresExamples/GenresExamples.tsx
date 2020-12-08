@@ -2,7 +2,7 @@ import Link from 'next/link'
 import useSWR from 'swr'
 import { genreLink } from '../../../../services/links/links'
 import { ExampleGenresApiResponseType } from '../../../../types/Api/ExampleGenresApiResponseType'
-import Loader from '../../../Atoms/Loader/Loader'
+import Loader from '../../../Shared/Atoms/Loader/Loader'
 import classes from './GenresExamples.module.scss'
 
 const GenresExamples: React.FC = () => {

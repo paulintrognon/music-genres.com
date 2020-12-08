@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should call onDirty when focus, and onClean when blur 1`] = `
+<input
+  className="input dirty"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  type="text"
+/>
+`;
+
+exports[`should call onDirty when focus, and onClean when blur 2`] = `
+<input
+  className="input"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  type="text"
+/>
+`;
+
+exports[`should render the TextInput 1`] = `
+<input
+  className="input"
+  onBlur={[Function]}
+  onFocus={[Function]}
+  placeholder="placeholder"
+  type="text"
+/>
+`;

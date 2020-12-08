@@ -11,6 +11,7 @@ module.exports = {
   },
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   setupFilesAfterEnv: ['<rootDir>/test/enzyme.js', '<rootDir>/test/fetchMock.js'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
   },
