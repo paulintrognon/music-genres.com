@@ -2,10 +2,10 @@
 node_modules
 
 # testing
-/coverage
+coverage
 
 # production
-/build
+build
 
 # config
 .env
@@ -24,6 +24,8 @@ yarn-error.log*
 ###
 
 /pwa/.next
-/pwa/build
 /pwa/out
-/pwa/coverage
+
+###
+# API
+###

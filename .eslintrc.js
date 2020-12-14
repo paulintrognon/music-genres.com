@@ -68,6 +68,27 @@ module.exports = {
     },
 
     /**
+     * API Configuration
+     */
+    {
+      files: ['api/**/*.ts'],
+      parser: '@typescript-eslint/parser',
+      env: { node: true, es6: true },
+      extends: [
+        // Eslint & TypeScript base rules
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+
+        // Prettier Plugin
+        'prettier/@typescript-eslint',
+        'plugin:prettier/recommended',
+      ],
+      rules: {
+        '@typescript-eslint/no-unused-vars': ['error'],
+      },
+    },
+
+    /**
      * test files
      */
     {
